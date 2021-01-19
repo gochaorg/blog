@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>test-jfrog-oss-parent</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>test-jfrod-dep1</artifactId>
+
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>my-repo1</id>-->
+<!--            <name>your custom repo</name>-->
+<!--            <url>http://jarsm2.dyndns.dk</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>my-repo2</id>-->
+<!--            <name>your custom repo</name>-->
+<!--            <url>http://jarsm2.dyndns.dk</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>test-jfrog-oss</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

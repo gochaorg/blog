@@ -1,0 +1,23 @@
+BODY
+{
+    background-position: left top;
+    /* background-image: url(images/3.gif); */
+    color: black;
+    background-repeat: no-repeat;
+    background-color: white;
+    text-align: center;
+}
+.caption1
+{
+    font-size: 17pt;
+    font-family: 'Times New Roman' , Serif;
+}
+.caption2
+{
+    font-size: 12pt;
+    font-family: 'Times New Roman' , Serif;
+}
+a
+{
+    color:Blue;
+}

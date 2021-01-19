@@ -1,0 +1,83 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Трессировка mssql</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="Трессировка mssql"><a name="%D1%82%D1%80%D0%B5%D1%81%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0 mssql"></a><h1>Трессировка mssql</h1>
+<span style="font-size:large">Просмотр списка трессировок</span>
+
+<span style="font-family:monospace">select * from fn_trace_getinfo(0)</span>
+
+Колонки
+traceid int - Идентификатор трассировки.
+property int - Свойство трассировки:
+
+<ul><li dir="ltr">1 — параметры трассировки. Дополнительные сведения см. в разделе @options в sp_trace_create ( Transact-SQL ) .
+</li><li dir="ltr">2 — имя файла
+</li><li dir="ltr">3 — максимальный размер
+</li><li dir="ltr">4 — время остановки
+</li><li dir="ltr">5 — текущее состояние трассировки. 0 — остановлена. 1 — запущена.
+</li><li dir="ltr">value sql_variant - Сведения о свойстве указанной трассировки</li></ul>
+
+sys.fn_trace_getinfo ( { trace_id | NULL | 0 | DEFAULT } ) <a style="color:#3465A4" href="https://docs.microsoft.com/ru-ru/sql/relational-databases/system-functions/sys-fn-trace-getinfo-transact-sql">https://docs.microsoft.com/ru-ru/sql/relational-databases/system-functions/sys-fn-trace-getinfo-transact-sql</a>
+
+<span style="font-size:large">Просмотр информации о логгируемых событиях</span>
+
+<span style="font-family:monospace">with e1  as (select * from fn_trace_geteventinfo(1))
+select tk.name, te.name, tc.name, tc.type_name, tc.max_size from e1
+left join sys.trace_events te on (te.trace_event_id = e1.eventid)
+left join sys.trace_categories tk on (tk.category_id = te.category_id)
+left join sys.trace_columns tc on (tc.trace_column_id = e1.columnid)</span>
+
+<span style="font-size:large">Просмотр событий</span>
+<b>Вариант 1</b>
+
+select * from fn_trace_gettable('C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Log\log_10160.trc',default)
+
+<b>Вариант 2</b>
+DECLARE @path NVARCHAR(260)
+
+SELECT @path=path FROM sys.traces WHERE is_default = 1
+
+SELECT TE.name AS EventName, DT.DatabaseName, DT.ApplicationName, 
+DT.LoginName, COUNT(*) AS Quantity 
+FROM dbo.fn_trace_gettable (@path,  DEFAULT) DT 
+INNER JOIN sys.trace_events TE 
+ON DT.EventClass = TE.trace_event_id 
+GROUP BY TE.name , DT.DatabaseName , DT.ApplicationName, DT.LoginName 
+ORDER BY TE.name, DT.DatabaseName , DT.ApplicationName, DT.LoginName;
+
+<span style="font-size:large">Pattern 1</span>
+
+<b>-- Считывание из log в таблицы</b>
+select * 
+into trace1<i> -- trace1...traceN</i>
+from master.sys.fn_trace_gettable('C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Log\<i>log_10160.trc</i>',default)
+
+<b>-- Объединение таблиц</b>
+select * into trace_c from trace1 <i> -- trace1...traceN</i>
+insert into trace_c select * from trace5
+
+<b>-- Удаление таблиц</b>
+drop table trace5 <i>-- trace1...traceN</i>
+
+<b>-- Просмотр</b>
+SELECT 
+	TE.name AS EventName, DT.DatabaseName, DT.ApplicationName, 
+	DT.LoginName, COUNT(*) AS Quantity 
+FROM 
+	(select * from trace_c)
+	DT 
+INNER JOIN sys.trace_events TE ON DT.EventClass = TE.trace_event_id 
+GROUP BY TE.name , DT.DatabaseName , DT.ApplicationName, DT.LoginName 
+ORDER BY TE.name, DT.DatabaseName , DT.ApplicationName, DT.LoginName;</div></body></html>

@@ -1,0 +1,54 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql backup views</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql backup views"><a name="mssql backup views"></a><h1>mssql backup views</h1>
+select 
+  bs.type,
+  case bs.type
+	when 'D' then 'Database'
+	when 'I' then 'Differential database'
+	when 'L' then 'Log'
+	when 'F' then 'File or filegroup'
+	when 'G' then 'Differential file'
+	when 'P' then 'Partial'
+	when 'Q' then 'Differential partial'
+	else '?'
+  end as type_desc ,
+  bs.database_name,
+  bs.backup_start_date,
+  bs.backup_finish_date,
+  bs.compatibility_level,
+  bs.backup_size,
+  case 
+	when bs.backup_size &gt;= 1024 and bs.backup_size &lt; 1024*1024 
+		then cast(CEILING( bs.backup_size / 1024 ) as varchar) + 'k'
+	when bs.backup_size &gt;= 1024*1024 and bs.backup_size &lt; 1024*1024*1024 
+		then cast(CEILING( bs.backup_size / (1024*1024) ) as varchar) + 'm'
+	when bs.backup_size &gt;= 1024*1024*1024 
+		then cast(CEILING( bs.backup_size / (1024*1024*1024) ) as varchar) + 'g'
+	else cast(CEILING(bs.backup_size) as varchar)
+  end as backup_size_desc,
+  bs.media_set_id,
+  bs.position,
+  (select top 1 f.physical_device_name from msdb.dbo.backupmediafamily f where f.media_set_id = bs.media_set_id)
+    as physical_device_name,
+  bs.recovery_model,
+  bs.has_incomplete_metadata
+from msdb.dbo.backupset bs
+order by bs.backup_start_date desc
+
+-----------------
+
+</div></body></html>

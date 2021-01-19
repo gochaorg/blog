@@ -1,0 +1,1988 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Linux)">
+	<META NAME="CREATED" CONTENT="20090525;13340200">
+	<META NAME="CHANGEDBY" CONTENT="Камнев Георгий">
+	<META NAME="CHANGED" CONTENT="20101129;1522500">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin-left: 2.3cm; margin-right: 2.3cm; margin-top: 2.3cm; margin-bottom: 3.5cm }
+		P { text-indent: 0.5cm; margin-bottom: 0.21cm; background: transparent; text-align: justify; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto }
+		P.western { font-size: 13pt }
+		P.cjk { font-size: 10pt }
+		H1 { margin-bottom: 0.21cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto }
+		H1.western { font-family: "Times New Roman", serif; font-size: 26pt; font-style: italic; font-weight: bold }
+		H1.cjk { font-family: "Arial"; font-size: 14pt }
+		H1.ctl { font-family: "Arial"; font-size: 14pt }
+		H2 { margin-bottom: 0.21cm; background: transparent; border: none; padding: 0cm; widows: 2; orphans: 2; page-break-before: auto; page-break-after: avoid }
+		H2.western { font-family: "Times New Roman", serif; font-size: 22pt; font-style: italic; font-weight: bold }
+		H2.cjk { font-family: "Arial"; font-size: 14pt }
+		H2.ctl { font-family: "Arial"; font-size: 14pt }
+		P.sdfootnote { margin-left: 0.5cm; text-indent: -0.5cm; margin-bottom: 0cm; background: transparent; font-size: 10pt; text-align: left; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto }
+		P.комментарий-western { margin-left: 4cm; font-style: italic; text-align: right }
+		P.комментарий-cjk { margin-left: 4cm; text-align: right }
+		P.комментарий-ctl { margin-left: 4cm; text-align: right }
+		H3 { margin-bottom: 0.21cm; border: none; padding: 0cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: avoid }
+		H3.western { font-family: "Times New Roman", serif; font-size: 18pt; font-style: italic; font-weight: bold }
+		H3.cjk { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		H3.ctl { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		A:link { color: #000080; so-language: zxx; text-decoration: underline }
+		A.sdfootnoteanc { font-size: 57% }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" LINK="#000080" VLINK="#800000" DIR="LTR">
+<H1 CLASS="western">Введение</H1>
+<P CLASS="western">Компания MYSQL AB (ныне SUN
+MICROSYSTEM) поставляет СУБД MYSQL, в нескольких
+вариантах для Linux, первый это пакеты
+RPM, второй вариант — архив TAR.GZ. Для
+операционных систем на базе DEBIAN LINUX есть
+отдельные сборки DEB пакетов, но они часто
+находится в UNSTABLE или EXPREMENTAL репрезитарий,
+последних актуальных версий MYSQL.</P>
+<P CLASS="western">Данный документ описывает
+как происходил реальный опыт «ручной»
+установки, так процесс может быть не
+совершенным, но охватывает все основные
+этапы, приведенный в инструкции компании
+SUN по установке СУБД MYSQL из пакета TAR.GZ,
+с  нюансами установки для MYSQL версии
+5.1.34 LINUX i686 на DEBIAN LINUX i686, которые не указаны
+в исходном документе.</P>
+<P CLASS="western">Этот документ может быть
+интересен системных администраторам.</P>
+<H2 CLASS="western">О структуре документа</H2>
+<P CLASS="western">В документе приводиться
+примеры команд, они выделены отдельным
+шрифтом</P>
+<P CLASS="western">Приглашение оболочки
+(bash) и команды которые были введены
+выделены следующим образом:</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.50.12:root@debian:/usr/local<br/>
+&gt;
+passwd mysql </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Результат выполнения
+выделен так:</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Введите
+новый пароль UNIX: <br/>
+Повторите
+ввод нового пароля UNIX: <br/>
+passwd:
+пароль успешно обновлён
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">В приглашение оболочки
+выводится следующая информация (само
+приглашение занимает две строки).</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.50.12:root@debian:/usr/local
+<br/>
+&gt;
+passwd mysql</FONT></FONT></FONT></P>
+<UL>
+	<LI><P CLASS="western">Сначала указывается
+	время через точку (02.50.12 — два часа,
+	пятьдесят минут, двенадцать секунд)</P>
+	<LI><P CLASS="western">Затем через двоеточие
+	указывается имя пользователя от которого
+	производились манипуляции (root)</P>
+	<LI><P CLASS="western">Через «собаку»
+	указывается имя хоста (debian)</P>
+	<LI><P CLASS="western">Затем через двоеточие
+	указывается текущий каталог (/usr/local)</P>
+	<LI><P CLASS="western">После символа «больше»
+	указывается текст введенной команды
+	(passwd mysql)</P>
+</UL>
+<H1 CLASS="western">Общий процесс установки</H1>
+<P CLASS="western">В процесс происходил в
+графическом режиме, но он не обязателен.
+В процессе установки использовалась
+два терминальных (консольных) окна, в
+место них можно использовать комбинации
+клавиш ALT+SHIFT+Fx — переключение между
+терминалами, либо использовать один
+терминал, но для этого необходимо
+соответствующим образам подавать
+команды (это будет отмечено ниже).</P>
+<H2 CLASS="western">Получение дистрибутива MYSQL</H2>
+<P CLASS="western">Скачать дистрибутив можно
+с сайта MYSQL AB<A CLASS="sdfootnoteanc" NAME="sdfootnote1anc" HREF="#sdfootnote1sym"><SUP>1</SUP></A>.</P>
+<H2 CLASS="western">Распаковка дистрибутива</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+cd /usr/local</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+gunzip &lt; /path/to/mysql-5.1.34-linux-i686-glibc23 .tar.gz | tar
+xvf -</FONT></FONT></FONT></P>
+<P CLASS="комментарий-western">Взято из
+инструкции по установке</P>
+<P CLASS="western">Распакованный пакет
+должен находиться в каталоге <B>/usr/local</B>.
+Ниже приводиться пример содержимого
+каталога /usr/local с распакованым пакетом:</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ls -la </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">итого
+44 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root staff 4096 Май 25 02:48 . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+11 root root  4096 Май 25  2009 .. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 bin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 etc </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 games </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 include </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 4 root staff 4096 Май 25 02:17 lib </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+13 user user  4096 Апр  1 03:35 mysql-5.1.34-linux-i686-glibc23 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 sbin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root staff 4096 Май 25 02:18 share </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25  2009 src </FONT></FONT></FONT>
+</P>
+<H2 CLASS="western">Создание пользователя MYSQL</H2>
+<P CLASS="western">От данного пользователя
+(<B>mysql</B>) будет производиться запуск
+базы — процесса <B>mysqld</B>. Данный
+пользователь должен иметь основную
+группу доступа <B>mysql</B>,
+такова рекомендация SUN.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.48.04:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+groupadd mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.48.44:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+useradd -g mysql -m mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.49.03:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+usermod -p mysql mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.49.13:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+usermod -s /bin/bash mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.50.12:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+passwd mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Введите
+новый пароль UNIX: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Повторите
+ввод нового пароля UNIX: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt"><FONT COLOR="#280099">passwd:
+пароль успешно о</FONT>бнов<FONT COLOR="#280099">лён</FONT>
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.50.49:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<H2 CLASS="western">Создание ссылки</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.52.32:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ln -s mysql-5.1.34-linux-i686-glibc23/ mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.25.29:user@debian:/usr/local</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ls -la</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">итого
+44</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root staff 4096 Май 25 02:52 .</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+11 root root  4096 Май 25 05:22 ..</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 bin</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 etc</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 games</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 include</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 4 root staff 4096 Май 25 02:17 lib</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">lrwxrwxrwx
+ 1 root staff    9 Май 25 05:01 man -&gt; share/man</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">lrwxrwxrwx
+ 1 root staff   32 Май 25 02:52 mysql -&gt;
+mysql-5.1.34-linux-i686-glibc23/</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+13 root mysql 4096 Май 25 03:04 mysql-5.1.34-linux-i686-glibc23</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 sbin</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root staff 4096 Май 25 02:18 share</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+ 2 root staff 4096 Май 25 05:01 src</FONT></FONT></FONT></P>
+<P CLASS="western">Ссылка <B>/usr/local/mysql </B>создается
+на каталог с текущей версией MYSQL.</P>
+<H2 CLASS="western">Назначение прав</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.52.45:root@debian:/usr/local
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+cd mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.52.50:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+chown -R mysql . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.52.59:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+chgrp -R mysql . </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Назначаются права на
+распакованные файлы созданному
+пользователю.</P>
+<H2 CLASS="western">Запуск скрипта установки</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+scripts/mysql_install_db --user=mysql<A CLASS="sdfootnoteanc" NAME="sdfootnote2anc" HREF="#sdfootnote2sym"><SUP>2</SUP></A>
+--basedir=/usr/local/mysql<A CLASS="sdfootnoteanc" NAME="sdfootnote3anc" HREF="#sdfootnote3sym"><SUP>3</SUP></A></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Installing
+MySQL system tables... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 2:57:17 [ERROR] /usr/local/mysql/bin/mysqld: unknown option
+'--skip-bdb' </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 2:57:17 [ERROR] Aborting </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 2:57:17 [Warning] Forcing shutdown of 2 plugins </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 2:57:17 [Note] /usr/local/mysql/bin/mysqld: Shutdown complete </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Installation
+of system tables failed!  Examine the logs in </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/var/lib/mysql
+for more information. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">You
+can try to start the mysqld daemon with: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">    <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">shell&gt;
+/usr/local/mysql/bin/mysqld --skip-grant &amp; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">and
+use the command line tool /usr/local/mysql/bin/mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">to
+connect to the mysql database and look at the grant tables: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">    <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">shell&gt;
+/usr/local/mysql/bin/mysql -u root mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">    <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+show tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Try
+'mysqld --help' if you have problems with paths.  Using --log </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">gives
+you a log in /var/lib/mysql that may be helpful. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">The
+latest information about MySQL is available on the web at </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">http://www.mysql.com/.
+ Please consult the MySQL manual section </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">'Problems
+running mysql_install_db', and the manual section that </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">describes
+problems on your OS.  Another information source are the </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">MySQL
+email archives available at http://lists.mysql.com/. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Please
+check all of the above before mailing us!  And remember, if </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">you
+do mail us, you MUST use the /usr/local/mysql/scripts/mysqlbug
+script! </FONT></FONT></FONT>
+</P>
+<P CLASS="western">В процессе запуска скрипта
+как указано выше, должно все по идее
+произойти без ошибок, но скрипт выполняется
+не полностью и системные таблице не
+устанавливаются, ниже в тексте будет
+приведен пример как это исправить.</P>
+<H2 CLASS="western">Копирование стандартных
+конфигураций</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ls -la /etc/mysql/ </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">итого
+16 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+  3 root root 4096 Май 25 02:16 . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+111 root root 4096 Май 25 02:50 .. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+  2 root root 4096 Фев  3 21:15 conf.d </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+  1 root root 3865 Фев  3 21:15 my.cnf </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">02.58.15:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+cp ./support-files/my-medium.cnf /etc/mysql/my.cnf <A CLASS="sdfootnoteanc" NAME="sdfootnote4anc" HREF="#sdfootnote4sym"><SUP>4</SUP></A></FONT></FONT></FONT></P>
+<P CLASS="western">Копируются стандартные
+настройки, они достаточно простые и в
+них как правило отключены такие движки
+как InnoDB.</P>
+<H2 CLASS="western">Попытка запуска</H2>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqld --user=mysql --console </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">./bin/mysqld:
+Table 'mysql.plugin' doesn't exist </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:03 [ERROR] Can't open the mysql.plugin table. Please run
+mysql_upgrade to create it. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+The first specified data file ./ibdata1 did not exist: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+a new database to be created! </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:04  InnoDB: Setting file ./ibdata1 size to 10 MB </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Database physically writes the file full: wait... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:04  InnoDB: Log file ./ib_logfile0 did not exist: new to be
+created </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Setting log file ./ib_logfile0 size to 5 MB </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Database physically writes the file full: wait... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:05  InnoDB: Log file ./ib_logfile1 did not exist: new to be
+created </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Setting log file ./ib_logfile1 size to 5 MB </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Database physically writes the file full: wait... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Doublewrite buffer not found: creating new </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Doublewrite buffer created </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Creating foreign key constraint system tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Foreign key constraint system tables created </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:05  InnoDB: Started; log sequence number 0 0 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:01:05 [ERROR] Fatal error: Can't open and lock privilege tables:
+Table 'mysql.host' doesn't exist </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.10.45:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqld_safe --user=mysql --basedir=/usr/local/mysql
+--skip-grant-tables<A CLASS="sdfootnoteanc" NAME="sdfootnote5anc" HREF="#sdfootnote5sym"><SUP>5</SUP></A>
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+03:13:23 mysqld_safe Logging to '/usr/local/mysql/data/debian.err'. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+03:13:24 mysqld_safe Starting mysqld daemon with databases from
+/usr/local/mysql/data </FONT></FONT></FONT>
+</P>
+<P CLASS="western">При попытке запуска демона
+происходит ошибка, так как нет системных
+таблиц, тогда производиться попытка
+запуска демона стабильной версии, с
+игнорированием системных таблиц. В
+данном случае (Версии ОС, и СУБД) демон
+запускается.</P>
+<H2 CLASS="western">Восстановление системных
+таблиц</H2>
+<P CLASS="western">Открывается второй
+терминал (т.&nbsp;к. первый занят демоном).</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">====
+on term 2 === </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.14.21:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysql_fi </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql_find_rows
+            mysql_fix_privilege_tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql_fix_extensions
+       </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Две утилиты <B>mysql_fix_extensions</B>
+и <B>mysql_fix_privilege_tables</B> — обе предназначен
+для исправления ошибок, мы используем
+вторую для исправления системных таблиц.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.14.21:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysql_fix_privilege_tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">This
+script updates all the mysql privilege tables to be usable by </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">the
+current version of MySQL </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">done
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Исправлены системные
+таблицы</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.17.18:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqladmin<A CLASS="sdfootnoteanc" NAME="sdfootnote6anc" HREF="#sdfootnote6sym"><SUP>6</SUP></A>
+-u root password 'root' </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">./bin/mysqladmin:
+connect to server at 'localhost' failed </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">error:
+'Access denied for user 'root'@'localhost' (using password: NO)' </FONT></FONT></FONT>
+</P>
+<P CLASS="western">При попытке соединится
+с базой мы не можем пройти аутентификацию,
+т.&nbsp;к. системные таблицы не содержат
+данные — это мы увидим ниже.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.21.31:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+killall -9 mysqld </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.21.49:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+killall -9 mysqld_safe </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Уничтожаем экземпляры
+демонов mysql. Возможно данное действие
+не обязательно, т.&nbsp;к. нам снова придется
+запускать демона дальше.</P>
+<H2 CLASS="western">Восстановление пользователя
+mysql - root</H2>
+<P CLASS="western">На терминале 1 заново
+запускаем обычного демона mysqld (наверно
+можно и mysqld_safe), с пропуском таблиц
+доступа.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">====
+on term 1 === </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.23.30:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqld --user=mysql --basedir=/usr/local/mysql
+--skip-grant-tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+The log sequence number in ibdata files does not match </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+the log sequence number in the ib_logfiles! </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12  InnoDB: Database was not shut down normally! </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Starting crash recovery. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Reading tablespace information from the .ibd files... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+Restoring possible half-written data pages from the doublewrite </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">InnoDB:
+buffer... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12  InnoDB: Started; log sequence number 0 46409 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12 [Note] Recovering after a crash using mysql-bin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12 [Note] Starting crash recovery... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12 [Note] Crash recovery finished. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+ 3:24:12 [Note] ./bin/mysqld: ready for connections. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Version:
+'5.1.34-log'  socket: '/tmp/mysql.sock'  port: 3306  MySQL Community
+Server (GPL) </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Демон успешно запущен</P>
+<P CLASS="western">На терминале 2 согласно
+рекомендациям SUN пытаемся сбросить
+пароль пользователя root СУБД.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">====
+on term 2 === </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.24.01:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqladmin -u root password 'root' </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">./bin/mysqladmin:
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">You
+cannot use 'password' command as mysqld runs </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"> <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">with
+grant tables disabled (was started with --skip-grant-tables). </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Use:
+&quot;mysqladmin flush-privileges password '*'&quot; instead </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqladmin  flush-privileges password 'root' </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">./bin/mysqladmin:
+unable to change password; error: 'Can't find any matching row in the
+user table' </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.42.35:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+killall -9 mysqld </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Согласно инструкции SUN у
+нас не получается из-за той же причины
+— отсутствие записей в системных
+таблицах. По этому мы снова запускаем
+версию mysqld_safe.</P>
+<H3 CLASS="western">Запуск mysqld_safe</H3>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">====
+on term 1 === </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.51.49:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqld_safe --user=mysql --basedir=/usr/local/mysql
+--skip-grant-tables </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+03:53:00 mysqld_safe Logging to '/usr/local/mysql/data/debian.err'. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">090525
+03:53:01 mysqld_safe Starting mysqld daemon with databases from
+/usr/local/mysql/data </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Данная конструкция
+работает</P>
+<H3 CLASS="western">Выполнение запросов к СУБД</H3>
+<P CLASS="western">Согласно документации
+SUN / MYSQL AB. Добавить или изменить
+пользователя, а так же его привилегии
+можно, если записать соответствующие
+данные в системные таблицы, что мы и
+будем делать.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">====
+on term 2 === </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">03.55.14:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Welcome
+to the MySQL monitor.  Commands end with ; or \g. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Your
+MySQL connection id is 1 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Server
+version: 5.1.34-log MySQL Community Server (GPL) </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Type
+'help;' or '\h' for help. Type '\c' to clear the current input
+statement. </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Вход осуществлен без
+проверки пароля, т.&nbsp;к. демон был запущен
+с опцией <B>--skip-grant-tables</B> (с пропуском
+таблиц доступа)</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+show databases; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+--------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Database           | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+--------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+information_schema | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+mysql              | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+test               | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+--------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">3
+rows in set (0.00 sec) </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Вот какие у нас имеются
+схемы субд (базы данных в терминах
+MYSQL).</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+use mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Database
+changed </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Используем системную
+базу - <B>mysql</B></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+show tables; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+---------------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Tables_in_mysql           | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+---------------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+columns_priv              | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+db                        | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+event                     | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+func                      | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+general_log               | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+help_category             | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+help_keyword              | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+help_relation             | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+help_topic                | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+host                      | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+ndb_binlog_index          | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+plugin                    | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+proc                      | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+procs_priv                | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+servers                   | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+slow_log                  | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+tables_priv               | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+time_zone                 | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+time_zone_leap_second     | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+time_zone_name            | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+time_zone_transition      | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+time_zone_transition_type | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+user                      | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+---------------------------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">23
+rows in set (0.01 sec) </FONT></FONT></FONT>
+</P>
+<P CLASS="western">А это список таблиц в
+системной базе, смотрим что у нас с
+пользователями.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+select count(*) from user; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+----------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+count(*) | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+----------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+       0 | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+----------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">1
+row in set (0.00 sec) </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Пользователи отсутствуют
+— это и есть основная причина по которой
+нас не пускали в базу. Смотрим описание
+таблицы <B>user</B>.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+desc user; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+-----------------------+-----------------------------------+------+-----+---------+-------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Field                 | Type                              | Null |
+Key | Default | Extra | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+-----------------------+-----------------------------------+------+-----+---------+-------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Host                  | char(60)                          | NO   |
+PRI |         |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+User                  | char(16)                          | NO   |
+PRI |         |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Password              | char(41)                          | NO   |   
+ |         |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Select_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Insert_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Update_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Delete_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Create_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Drop_priv             | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Reload_priv           | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Shutdown_priv         | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Process_priv          | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+File_priv             | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Grant_priv            | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+References_priv       | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Index_priv            | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Alter_priv            | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Show_db_priv          | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Super_priv            | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Create_tmp_table_priv | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Lock_tables_priv      | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Execute_priv          | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Repl_slave_priv       | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Repl_client_priv      | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Create_view_priv      | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Show_view_priv        | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Create_routine_priv   | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Alter_routine_priv    | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Create_user_priv      | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Event_priv            | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+Trigger_priv          | enum('N','Y')                     | NO   |   
+ | N       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+ssl_type              | enum('','ANY','X509','SPECIFIED') | NO   |   
+ |         |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+ssl_cipher            | blob                              | NO   |   
+ | NULL    |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+x509_issuer           | blob                              | NO   |   
+ | NULL    |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+x509_subject          | blob                              | NO   |   
+ | NULL    |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+max_questions         | int(11) unsigned                  | NO   |   
+ | 0       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+max_updates           | int(11) unsigned                  | NO   |   
+ | 0       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+max_connections       | int(11) unsigned                  | NO   |   
+ | 0       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">|
+max_user_connections  | int(11) unsigned                  | NO   |   
+ | 0       |       | </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">+-----------------------+-----------------------------------+------+-----+---------+-------+
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">39
+rows in set (0.01 sec) </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P CLASS="western">Добавляем пользователя
+<B>root</B> с паролем <B>root</B>, для хоста
+<B>localhost</B></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+insert into user (host,user,password) values
+('localhost','root',password('root')); </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Query
+OK, 1 row affected, 3 warnings (0.01 sec) </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P CLASS="western">Наделяем пользователя
+всеми возможными привилегиями</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+update user set select_priv='Y', Insert_priv='Y', Update_priv='Y',
+Delete_priv='Y', Create_priv='Y', Drop_priv='Y', Reload_priv='Y',
+Shutdown_priv='Y', Process_priv='Y', File_priv='Y', Grant_priv='Y',
+References_priv='Y', Index_priv='Y', Alter_priv='Y',
+Show_db_priv='Y', Super_priv='Y', Create_tmp_table_priv='Y',
+Lock_tables_priv='Y', Execute_priv='Y', Repl_slave_priv='Y',
+Repl_client_priv='Y', Create_view_priv='Y', Show_view_priv='Y',
+Create_routine_priv='Y', Alter_routine_priv='Y',
+Create_user_priv='Y', Event_priv='Y', Trigger_priv='Y'; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Query
+OK, 1 row affected (0.00 sec) </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Rows
+matched: 1  Changed: 1  Warnings: 0 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">mysql&gt;
+exit </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Bye
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Завершаем работу демона
+mysql как полагается.</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">04.15.23:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./bin/mysqladmin -u root -proot shutdown </FONT></FONT></FONT>
+</P>
+<H2 CLASS="western">Установка переменной PATH</H2>
+<P CLASS="western">В профиле пользователя
+mysql (т.&nbsp;е. для оболочки bash — файл
+~/.bashrc; для оболочки sh — файл ~/.profile)
+добавляем строку в конец</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">export
+PATH=&quot;/usr/local/mysql/bin:$PATH&quot;</FONT></FONT></P>
+<P CLASS="western">Тем самым указываем в
+переменной PATH путь доступа к утилитам
+mysql, mysqladmin и другим.</P>
+<H2 CLASS="western">Установка прав на каталоги
+MYSQL</H2>
+<P CLASS="western">После того как все
+заработало, меняем права доступа к
+файлам данных, так что бы только
+пользователь mysql имел доступ.</P>
+<P CLASS="western">Смотрим текущее состояние</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.07.41:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ls -la </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">итого
+96 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+13 mysql mysql  4096 Май 25 03:04 . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root  staff  4096 Май 25 02:52 .. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 mysql mysql  4096 Апр  1 03:35 bin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 mysql mysql 19071 Апр  1 03:35 COPYING </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-x---
+ 4 mysql mysql  4096 Май 25 04:15 data </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 mysql mysql  4096 Апр  1 03:35 docs </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 mysql mysql  5139 Апр  1 03:35 EXCEPTIONS-CLIENT </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 mysql mysql  4096 Апр  1 03:35 include </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 mysql mysql  8769 Апр  1 03:35 INSTALL-BINARY </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 3 mysql mysql  4096 Апр  1 03:35 lib </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 4 mysql mysql  4096 Апр  1 03:35 man </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+10 mysql mysql  4096 Апр  1 03:35 mysql-test </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 mysql mysql  1410 Апр  1 03:35 README </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 mysql mysql  4096 Апр  1 03:35 scripts </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+27 mysql mysql  4096 Апр  1 03:35 share </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 5 mysql mysql  4096 Апр  1 03:35 sql-bench </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 mysql mysql  4096 Апр  1 03:35 support-files </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Меняем права согласно
+инструкции</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.07.44:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+chown -R root . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.08.35:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+chown -R mysql data </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.08.47:root@debian:/usr/local/mysql
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+ls -la </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">итого
+96 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+13 root  mysql  4096 Май 25 03:04 . </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxrwsr-x
+11 root  staff  4096 Май 25 02:52 .. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 root  mysql  4096 Апр  1 03:35 bin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 root  mysql 19071 Апр  1 03:35 COPYING </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-x---
+ 4 mysql mysql  4096 Май 25 04:15 data </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 root  mysql  4096 Апр  1 03:35 docs </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 root  mysql  5139 Апр  1 03:35 EXCEPTIONS-CLIENT </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 root  mysql  4096 Апр  1 03:35 include </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 root  mysql  8769 Апр  1 03:35 INSTALL-BINARY </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 3 root  mysql  4096 Апр  1 03:35 lib </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 4 root  mysql  4096 Апр  1 03:35 man </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+10 root  mysql  4096 Апр  1 03:35 mysql-test </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">-rw-r--r--
+ 1 root  mysql  1410 Апр  1 03:35 README </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 root  mysql  4096 Апр  1 03:35 scripts </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+27 root  mysql  4096 Апр  1 03:35 share </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 5 root  mysql  4096 Апр  1 03:35 sql-bench </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">drwxr-xr-x
+ 2 root  mysql  4096 Апр  1 03:35 support-files </FONT></FONT></FONT>
+</P>
+<H2 CLASS="western">Создание службы MYSQL</H2>
+<P CLASS="western">Последний этап, это
+заставить базу (СУБД) автоматически
+вместе с включением сервера запускаться
+и останавливаться соответственно. Для
+этого выполем следующие действия:</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+cd /etc/init.d/ </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.37.32:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Копируем скрипт для
+запуска/остановки службы</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+cp /usr/local/mysql/support-files/mysql.server /etc/init.d/ </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.48.21:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">И правим его содержимое</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+gedit mysql.server &amp; <A CLASS="sdfootnoteanc" NAME="sdfootnote7anc" HREF="#sdfootnote7sym"><SUP>7</SUP></A></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">[1]
+3112 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.48.38:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+</FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">(gedit:3112):
+GnomeUI-WARNING **: While connecting to session manager: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Authentication
+Rejected, reason : None of the authentication protocols specified are
+supported and host-based authentication failed. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">[1]+
+ Done                    gedit mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.51.21:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+more mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#!/bin/sh
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Copyright Abandoned 1996 TCX DataKonsult AB &amp; Monty Program KB &amp;
+Detron HB </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+This file is public domain and comes with NO WARRANTY of any kind </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+MySQL daemon start/stop script. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Usually this is put in /etc/init.d (at least on machines SYSV R4
+based </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+systems) and linked to /etc/rc3.d/S99mysql and /etc/rc0.d/K01mysql. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+When this is done the mysql server will be started when the machine
+is </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+started and shut down when the systems goes down. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Comments to support chkconfig on RedHat Linux </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+chkconfig: 2345 64 36 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+description: A very fast and reliable SQL database engine. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Comments to support LSB init script conventions </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">###
+BEGIN INIT INFO </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Provides: mysql </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Required-Start: $local_fs $network $remote_fs </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Should-Start: ypbind nscd ldap ntpd xntpd </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Required-Stop: $local_fs $network $remote_fs </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Default-Start:  2 3 4 5 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Default-Stop: 0 1 6 </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Short-Description: start and stop MySQL </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Description: MySQL is a very fast and reliable SQL database engine. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">###
+END INIT INFO </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"> </FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+If you install MySQL on some other places than /usr/local/mysql, then
+you </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+have to do one of the following things for this script to work: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+- Run this script from within the MySQL installation directory </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+- Create a /etc/my.cnf file with the following information: </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+  [mysqld] </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+  basedir=&lt;path-to-mysql-installation-directory&gt; </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+- Add the above to any other configuration file (for example
+~/.my.ini) </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+  and copy my_print_defaults to /usr/bin </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+- Add the path to the mysql-installation-directory to the basedir
+variable </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+  below. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+If you want to affect other MySQL variables, you should make your
+changes </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+in the /etc/my.cnf, ~/.my.cnf or other MySQL configuration files. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+If you change base dir, you must also change datadir. These may get </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+overwritten by settings in the MySQL configuration files. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">basedir=<B>/usr/local/mysql
+</B></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">datadir=<B>/usr/local/mysql/data
+</B></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Default value, in seconds, afterwhich the script should timeout
+waiting </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+for server start. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">#
+Value here is overriden by value in my.cnf. </FONT></FONT></FONT>
+</P>
+<P CLASS="western">Прописываем базовый
+каталог — куда установлена сама база,
+и каталог где содержаться данные, это
+параметры <B>basedir</B> и <B>datadir</B> соответственно.</P>
+<P CLASS="western">Проверяем работу</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.52.02:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Usage:
+./mysql.server  {start|stop|restart|reload|force-reload|status}  [
+MySQL server options ] </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.56.17:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Запускаем СУБД</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./mysql.server start </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Starting
+MySQL.. </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.56.21:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Смотрим статус</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./mysql.server status </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">MySQL
+running (3522). </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.56.31:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Останавливаем</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+./mysql.server stop </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Shutting
+down MySQL... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">05.56.48:root@debian:/etc/init.d
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western">Обновляем ссылки для
+запуска на соответствующих уровнях</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; font-weight: normal; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#800000"><FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">&gt;
+update-rc.d<A CLASS="sdfootnoteanc" NAME="sdfootnote8anc" HREF="#sdfootnote8sym"><SUP>8</SUP></A>
+mysql.server defaults </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080"> <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">Adding
+system startup for /etc/init.d/mysql.server ... </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc0.d/K20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc1.d/K20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc6.d/K20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc2.d/S20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc3.d/S20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc4.d/S20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="text-indent: 0cm; margin-bottom: 0cm; background: #e6e6e6; border: 1px solid #e6e6e6; padding: 0.1cm; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
+<FONT COLOR="#000080">   <FONT FACE="Monospaced"><FONT SIZE=2 STYLE="font-size: 9pt">/etc/rc5.d/S20mysql.server
+-&gt; ../init.d/mysql.server </FONT></FONT></FONT>
+</P>
+<DIV ID="sdfootnote1">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A><A HREF="http://dev.mysql.com/downloads/mysql/5.1.html#downloads">http://dev.mysql.com/downloads/mysql/5.1.html#downloads</A>
+	— Страница загрузки СУБД MYSQL</P>
+</DIV>
+<DIV ID="sdfootnote2">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote2sym" HREF="#sdfootnote2anc">2</A>Параметр
+	<B>--user</B> указывает на созданного
+	пользователя</P>
+</DIV>
+<DIV ID="sdfootnote3">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote3sym" HREF="#sdfootnote3anc">3</A>Параметр
+	<B>--basedir</B> указывает на каталог где
+	располагается распакованный дистрибутив.</P>
+</DIV>
+<DIV ID="sdfootnote4">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote4sym" HREF="#sdfootnote4anc">4</A>В
+	дистрибутиве поставляется каталог
+	<B>support-files</B> который содержит вспомогательные
+	файлы</P>
+</DIV>
+<DIV ID="sdfootnote5">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote5sym" HREF="#sdfootnote5anc">5</A>Параметр
+	<B>--skip-grant-tables</B> указывает на игнорирование
+	системных таблиц отвечающих за
+	предоставление доступа к данным</P>
+</DIV>
+<DIV ID="sdfootnote6">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote6sym" HREF="#sdfootnote6anc">6</A><B>mysqladmin</B>
+	— стандартный инструмент СУБД MYSQL, для
+	администраторов</P>
+</DIV>
+<DIV ID="sdfootnote7">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote7sym" HREF="#sdfootnote7anc">7</A><B>gedit
+	</B>— Графический текстовый редактор
+	для среды GNOME</P>
+</DIV>
+<DIV ID="sdfootnote8">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote8sym" HREF="#sdfootnote8anc">8</A><B>update-rc.d</B>
+	— Входит в поставку DEBIAN LINUX, но возможно
+	отсутствует в других версиях LINUX.</P>
+</DIV>
+</BODY>
+</HTML>

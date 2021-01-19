@@ -1,0 +1,22 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql 2000 current processes</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql 2000 current processes"><a name="mssql 2000 current processes"></a><h1>mssql 2000 current processes</h1>
+select 
+ p.spid, p.program_name, p.status, p.waittime, p.lastwaittype, p.login_time, p.cpu, dbid, cmd, 
+ --(select top 1 text from ::fn_get_sql(p.sql_handle)) as sql
+ sql_handle
+from master.dbo.sysprocesses p
+order by p.waittime desc</div></body></html>

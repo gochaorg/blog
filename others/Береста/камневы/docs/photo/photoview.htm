@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <META http-equiv="Content-Type" content="text/html; charset=windows-1251">
+        <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+        <LINK href="..\text.css" type="text/css" rel="stylesheet">
+        <script language="javascript" src="photos.js"></script>
+        <script language="javascript">
+<!--
+var idxCurrent = 0;
+var zoomstep = 50;
+var propset = "width";
+
+function evBack(){
+    idxCurrent--;
+    if( idxCurrent<0 )idxCurrent = 0;
+    setImage( idxCurrent );
+}
+
+function evNext(){
+    idxCurrent++;
+    if( idxCurrent>photos.length-1 )idxCurrent = photos.length-1;
+    setImage( idxCurrent );
+}
+
+function evLoad()
+{
+    photo.height = "500";
+    setImage( idxCurrent );
+}
+
+function setImage( index )
+{
+    if( index>=0 && index<photos.length )
+    {
+        photo.src = photos[index];
+        current.innerText = (index+1)+'/'+photos.length;
+        propset = getSettingProp();
+        
+        if( index<aboutText.length )
+        {
+            about.innerHTML = aboutText[index];
+        }else{
+            about.innerHTML = "";
+        }
+    }
+}
+
+function getSettingProp(){
+    return "height";
+}
+
+function evPlus() {
+    photo[propset] += zoomstep;
+}
+
+function evMinus() {
+    if( photo[propset]>zoomstep )photo[propset] -= zoomstep;
+}
+
+//-->
+        </script>
+    </head>
+    <body onload="evLoad();">
+        <IMG id="back" alt="" src="left.gif" language="javascript" onclick="return evBack()"
+            style="CURSOR: hand">
+        <DIV style="DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 25px; WIDTH: 100px; FONT-FAMILY: Monospace; HEIGHT: 35px"
+            ms_positioning="FlowLayout" id="current">0</DIV>
+        <IMG id="next" alt="" src="right.gif" language="javascript" onclick="return evNext()"
+            style="CURSOR: hand">&nbsp; <IMG id="plus" alt="" src="plus.jpg" language="javascript" onclick="return evPlus()"
+            style="CURSOR: hand">&nbsp;<IMG id="minus" alt="" src="minus.jpg" language="javascript" onclick="return evMinus()"
+            style="CURSOR: hand"> <A href="../main.htm">Вернуться обратно</A>
+        <HR width="100%" SIZE="1">
+        <P align="center">
+            <IMG id="photo" alt="" src="" border="0"><br>
+            <span id="about"></span>
+        </P>
+    </body>
+</html>

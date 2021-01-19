@@ -1,0 +1,126 @@
+Вопросы по SQL
+=================
+
+Базовые вопросы
+----------------
+
+- Какими характеристиками обладает таблица БД
+    - *Уникальными именем в пределах схемы*
+    - *Именноваными и типизированными колонками*
+- Primary key / Forigien key
+- Нормализация / Денормализация
+- DML / DDL
+    - *DML - язык запросов / манипуляции данными*
+        - Декартово произведение / Join
+    - *DDL - язык определения модели данных*
+- Что такое индекс ?
+- Транзакция
+    - Изоляция транзакций
+    - Откат транзакций
+    - Что такое блокировка
+- Хранимая процедура / функция, отличия первой от второй
+- Триггеры
+- View
+    - Что такое view
+    - Обновляемые view
+
+Средние и выше вопросы
+----------------------
+
+- Запросы
+    - Оконные функции
+    - Merge запросы
+    - План запроса
+    - Стоимостная оптимизация запроса
+    - Актуальный и расчетный план запроса
+    - Закрепленные планы запросов
+    - Статистика ожиданий
+    - FILESTREAM
+    - Linked сервера
+    - PolyBase
+        - Машинное обучение на SQL
+    - Синонимы
+    - Компонент Full-text Search
+    - Написание CLR/C# процедур
+    - Написание Java процедур
+    - [JSON](https://docs.microsoft.com/ru-ru/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver15)
+        - OPENJSON/FOR JSON
+        - Индексы для JSON
+- Безопастность
+    - Ширование сетевого канала
+    - Имена входа (Login)
+    - Пользователи базы данных
+    - Предопределенные роли сервера
+    - Предопределенные роли базы данных
+    - Пользователи автономной базы данных
+    - Разрешения
+    - Шифрование баз данных
+    - Безопасность на уровне строк (RLS)
+    - Динамическое маскирование данных
+    - Подсистема аудита SQL Server
+- [Средства мониторинга MSSQL](https://docs.microsoft.com/ru-ru/sql/relational-databases/performance/monitor-sql-server-components?view=sql-server-ver15#select-the-appropriate-tool)
+    - Системный монитор WINDOWS
+    - Счетчики производительности WINDOWS
+    - SQL Server Management Studio
+        - Монитор активности MSSQL
+    - SQL Server Profiler
+    - Расширенные события (XEvents)
+    - Сборщик данных (Data Collector)
+    - Хранилище запросов (Query Store)
+- Транзкации и блокировки
+    - [Уровни изоляции транзакций](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#database-engine-isolation-levels)
+    - SNASHOT изоляция
+    - 2фазная блокировка + select for update
+    - [Обнаружение длительных транзакций](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#discovering-long-running-transactions)
+        - *sys.dm_tran_database_transactions*
+        - *DBCC OPENTRAN*
+    - [иерархии блокировок](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#lock-granularity-and-hierarchies)
+    - [укрупнения блокировок, отключение укрупнения, порог укрупнения](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#lock-escalation)
+    - Обнаружение взаимоблокировки
+        - *[xml_deadlock_report (xEvent)](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#deadlock-information-tools)*
+        - *[флага трассировки 1204](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#trace-flag-1204-example)*
+        - *[флага трассировки 1222](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#trace-flag-1222-example)*
+        - *[Deadlock Graph компонента Profiler](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#profiler-deadlock-graph-event)*
+    - минимизации взаимоблокировок
+        - [Осуществляйте доступ к объектам в одинаковом порядке](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#access-objects-in-the-same-order)
+        - Избегайте взаимодействия с пользователем в транзакциях.
+        - Уменьшайте размер транзакций
+        - [Используйте изоляцию моментальных снимков](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#row-versioning-based-isolation-level-example)
+        - [Использование связанных соединений](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#use-bound-connections)
+        - [Использование связанных сеансов](https://docs.microsoft.com/ru-ru/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver15#using-bound-sessions)
+- Таблицы MSSQL
+    - Просмотр определения таблиы *(sys.tables, INFORMATION_SCHEMA)*
+    - Просмотр зависимостей *sys.sql_expression_dependencies*
+    - Вычисляемые столбцы
+    - Изменить тип колонки на identity для уже существующей таблицы с данными *на ходу не получиться, необходимо скопировать таблицу, там менять, потом переименовать и drop*
+    - HEAP таблицы и Clustered Indexed Table
+- Индексы
+    - Фрагментация индексов
+    - fill factor
+    - Влиение статистики на работу индексов
+    - Фильтрованные индексы
+    - Индексы с включенными (included) колонками
+    - SORT_IN_TEMPDB
+    - Реорганизация и перестроение
+    - Columnstore
+- Статистика
+    - Гистограмма значений *(макс 200 на колонку)*
+    - Плотность
+    - Фильтрованная статистика
+- Резервное копированине
+    - Процерка целостности БД
+    - Какие есть системные базы в MSSQL - *master, msdb, model, tempdb, resources*
+    - Модели восстановления БД  MSSQL - *SIMPLE, Bulk, FULL*
+    - Типы резервных копий БД - *FULL, DIFF, TLOG*
+    - Механизмы резервирования БД - *SQL BACKUP, WINDOWS SHADOW SERVICES, LOG SHIPPING, MIRROR, Availabliti GROUP*
+- Подсистема хранения MSSQL
+    - Что такое файловая группа, первичная файловая группа
+        - Перераспределение данных в файлах
+    - Что такое журнал транзакций
+        - Усечение журнала транзакций
+    - Страница MSSQL
+        - *Типы страниц: Данные, Индекс, изображение, карта распределения, Свободное место на страницах, Карта распределения индекса, Карта массовых изменений данных, Карта изменений для разностной резервной копии.*
+    - Экстет
+        - *Однородные и Смешанные*
+        - *Экстет - восьми непрерывных страниц*
+    - Секционирование таблиц и индексов

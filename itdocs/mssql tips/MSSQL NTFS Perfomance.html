@@ -1,0 +1,43 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>MSSQL NTFS Perfomance</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="MSSQL NTFS Perfomance"><a name="mssql ntfs perfomance"></a><h1>MSSQL NTFS Perfomance</h1>
+Размер кластера NTFS джолжен быть 64К
+Размер сектора NTFS 512
+
+Пример:
+<span style="font-family:monospace">D:\&gt;fsutil fsinfo ntfsinfo b:
+NTFS Volume Serial Number :       0xa2060a7f060a54a7
+Version :                         3.1
+Number Sectors :                  0x00000000043c3f5f
+Total Clusters :                  0x000000000008787e
+Free Clusters  :                  0x000000000008746e
+Total Reserved :                  0x0000000000000000
+<b>Bytes Per Sector  :               512</b></span><span style="font-family:monospace">
+<b>Bytes Per Cluster :               65536</b></span><span style="font-family:monospace">
+Bytes Per FileRecord Segment    : 1024
+Clusters Per FileRecord Segment : 0
+Mft Valid Data Length :           0x0000000000010000
+Mft Start Lcn  :                  0x000000000000c000
+Mft2 Start Lcn :                  0x0000000000043c3f
+Mft Zone Start :                  0x000000000000c000
+Mft Zone End   :                  0x000000000001cf20</span>
+
+Лучшие практики собаководов 
+1) <a style="color:#3465A4" href="https://technet.microsoft.com/en-us/library/dd758814(v=sql.100).aspx">https://technet.microsoft.com/en-us/library/dd758814(v=sql.100).aspx</a>
+2) <a style="color:#3465A4" href="https://dba.stackexchange.com/questions/28801/sql-server-ntfs-allocation-unit-size">https://dba.stackexchange.com/questions/28801/sql-server-ntfs-allocation-unit-size</a>
+
+You shouldn't need to uninstall/install: your data and log files should be on separate disk arrays/SAN Luns from the binaries.
+</div></body></html>

@@ -1,0 +1,179 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql wait stats</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql wait stats"><a name="mssql wait stats"></a><h1>mssql wait stats</h1>
+<span style="font-size:xx-large">SQL</span>
+
+<span style="font-size:small"><span style="font-family:monospace">WITH [Waits] AS
+    (SELECT
+        [wait_type],
+        [wait_time_ms] / 1000.0 AS [WaitS],
+        ([wait_time_ms] - [signal_wait_time_ms]) / 1000.0 AS [ResourceS],
+        [signal_wait_time_ms] / 1000.0 AS [SignalS],
+        [waiting_tasks_count] AS [WaitCount],
+       100.0 * [wait_time_ms] / SUM ([wait_time_ms]) OVER() AS [Percentage],
+        ROW_NUMBER() OVER(ORDER BY [wait_time_ms] DESC) AS [RowNum]
+    FROM sys.dm_os_wait_stats
+    WHERE [wait_type] NOT IN (
+        N'BROKER_EVENTHANDLER', N'<a style="color:#204A87" href="#broker_receive_waitfor">BROKER_RECEIVE_WAITFOR</a></span></span><span style="font-size:small"><span style="font-family:monospace">',
+        N'BROKER_TASK_STOP', N'BROKER_TO_FLUSH',
+        N'<a style="color:#204A87" href="#broker_transmitter">BROKER_TRANSMITTER</a></span></span><span style="font-size:small"><span style="font-family:monospace">', N'CHECKPOINT_QUEUE',
+        N'CHKPT', N'CLR_AUTO_EVENT',
+        N'CLR_MANUAL_EVENT', N'CLR_SEMAPHORE',
+ 
+        -- Maybe uncomment these four if you have mirroring issues
+        N'DBMIRROR_DBM_EVENT', N'<a style="color:#204A87" href="#dbmirror_events_queue">DBMIRROR_EVENTS_QUEUE</a></span></span><span style="font-size:small"><span style="font-family:monospace">',
+        N'DBMIRROR_WORKER_QUEUE', N'<a style="color:#204A87" href="#dbmirroring_cmd">DBMIRRORING_CMD</a></span></span><span style="font-size:small"><span style="font-family:monospace">',
+ 
+        N'DIRTY_PAGE_POLL', N'DISPATCHER_QUEUE_SEMAPHORE',
+        N'EXECSYNC', N'FSAGENT',
+        N'FT_IFTS_SCHEDULER_IDLE_WAIT', N'FT_IFTSHC_MUTEX',
+ 
+        -- Maybe uncomment these six if you have AG issues
+        N'HADR_CLUSAPI_CALL', N'HADR_FILESTREAM_IOMGR_IOCOMPLETION',
+        N'HADR_LOGCAPTURE_WAIT', N'HADR_NOTIFICATION_DEQUEUE',
+        N'HADR_TIMER_TASK', N'HADR_WORK_QUEUE',
+ 
+        N'KSOURCE_WAKEUP', N'LAZYWRITER_SLEEP',
+        N'LOGMGR_QUEUE', N'MEMORY_ALLOCATION_EXT',
+        N'<a style="color:#204A87" href="#ondemand_task_queue">ONDEMAND_TASK_QUEUE</a></span></span><span style="font-size:small"><span style="font-family:monospace">',
+        N'PREEMPTIVE_XE_GETTARGETSTATE',
+        N'PWAIT_ALL_COMPONENTS_INITIALIZED',
+        N'PWAIT_DIRECTLOGCONSUMER_GETNEXT',
+        N'QDS_PERSIST_TASK_MAIN_LOOP_SLEEP', N'QDS_ASYNC_QUEUE',
+        N'QDS_CLEANUP_STALE_QUERIES_TASK_MAIN_LOOP_SLEEP',
+        N'QDS_SHUTDOWN_QUEUE', N'REDO_THREAD_PENDING_WORK',
+        N'REQUEST_FOR_DEADLOCK_SEARCH', N'RESOURCE_QUEUE',
+        N'SERVER_IDLE_CHECK', N'<a style="color:#204A87" href="#sleep_bpool_flush">SLEEP_BPOOL_FLUSH</a></span></span><span style="font-size:small"><span style="font-family:monospace">',
+        N'SLEEP_DBSTARTUP', N'SLEEP_DCOMSTARTUP',
+        N'SLEEP_MASTERDBREADY', N'SLEEP_MASTERMDREADY',
+        N'SLEEP_MASTERUPGRADED', N'SLEEP_MSDBSTARTUP',
+        N'SLEEP_SYSTEMTASK', N'SLEEP_TASK',
+        N'SLEEP_TEMPDBSTARTUP', N'SNI_HTTP_ACCEPT',
+        N'SP_SERVER_DIAGNOSTICS_SLEEP', N'SQLTRACE_BUFFER_FLUSH',
+        N'SQLTRACE_INCREMENTAL_FLUSH_SLEEP',
+        N'<a style="color:#204A87" href="#sqltrace_wait_entries">SQLTRACE_WAIT_ENTRIES</a></span></span><span style="font-size:small"><span style="font-family:monospace">', N'WAIT_FOR_RESULTS',
+        N'WAITFOR', N'WAITFOR_TASKSHUTDOWN',
+        N'WAIT_XTP_RECOVERY',
+        N'WAIT_XTP_HOST_WAIT', N'WAIT_XTP_OFFLINE_CKPT_NEW_LOG',
+        N'WAIT_XTP_CKPT_CLOSE', N'XE_DISPATCHER_JOIN',
+        N'XE_DISPATCHER_WAIT', N'XE_TIMER_EVENT')
+    AND [waiting_tasks_count] &gt; 0
+    )
+SELECT
+    MAX ([W1].[wait_type]) AS [WaitType],
+    CAST (MAX ([W1].[WaitS]) AS DECIMAL (16,2)) AS [Wait_S],
+    CAST (MAX ([W1].[ResourceS]) AS DECIMAL (16,2)) AS [Resource_S],
+    CAST (MAX ([W1].[SignalS]) AS DECIMAL (16,2)) AS [Signal_S],
+    MAX ([W1].[WaitCount]) AS [WaitCount],
+    CAST (MAX ([W1].[Percentage]) AS DECIMAL (5,2)) AS [Percentage],
+    CAST ((MAX ([W1].[WaitS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgWait_S],
+    CAST ((MAX ([W1].[ResourceS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgRes_S],
+    CAST ((MAX ([W1].[SignalS]) / MAX ([W1].[WaitCount])) AS DECIMAL (16,4)) AS [AvgSig_S],
+    CAST ('<a style="color:#3465A4" href="https://www.sqlskills.com/help/waits/'">https://www.sqlskills.com/help/waits/'</a></span></span><span style="font-size:small"><span style="font-family:monospace"> + MAX ([W1].[wait_type]) as XML) AS [Help/Info URL]
+FROM [Waits] AS [W1]
+INNER JOIN [Waits] AS [W2]
+    ON [W2].[RowNum] &lt;= [W1].[RowNum]
+GROUP BY [W1].[RowNum]
+HAVING SUM ([W2].[Percentage]) - MAX( [W1].[Percentage] ) &lt; 95; -- percentage threshold
+GO</span></span>
+
+<span style="font-size:xx-large">Сброс</span>
+<span style="font-size:small"><a style="color:#204A87" href="#dbcc">DBCC</a></span><span style="font-size:small"><span style="font-family:monospace"> SQLPERF (N'sys.dm_os_wait_stats', CLEAR);</span></span>
+
+Типы ожиданий: <a style="color:#204A87" href="#cxpacket">CXPACKET</a>, <a style="color:#204A87" href="#pageiolatch_xx">PAGEIOLATCH_XX</a>, <a style="color:#204A87" href="#async_network_io">ASYNC_NETWORK_IO</a>, <a style="color:#204A87" href="#writelog">WRITELOG</a>, <a style="color:#204A87" href="#broker_receive_waitfor">BROKER_RECEIVE_WAITFOR</a>, <a style="color:#204A87" href="#msql_xp">MSQL_XP</a>, <a style="color:#204A87" href="#oledb">OLEDB</a>, <a style="color:#204A87" href="#backupio">BACKUPIO</a>, <a style="color:#204A87" href="#lck_m_xx">LCK_M_XX</a>, <a style="color:#204A87" href="#ondemand_task_queue">ONDEMAND_TASK_QUEUE</a>, <a style="color:#204A87" href="#backupbuffer">BACKUPBUFFER</a>, <a style="color:#204A87" href="#io_completion">IO_COMPLETION</a>, <a style="color:#204A87" href="#sos_scheduler_yield">SOS_SCHEDULER_YIELD</a>, <a style="color:#204A87" href="#dbmirror_events_queue">DBMIRROR_EVENTS_QUEUE</a>, <a style="color:#204A87" href="#dbmirroring_cmd">DBMIRRORING_CMD</a>, <a style="color:#204A87" href="#pagelatch_xx">PAGELATCH_XX</a>, <a style="color:#204A87" href="#latch_xx">LATCH_XX</a>, <span style="color:#555753;text-decoration:underline">PREEMPTIVE_OS_PIPEOPS</span>, <a style="color:#204A87" href="#threadpool">THREADPOOL</a>, <a style="color:#204A87" href="#broker_transmitter">BROKER_TRANSMITTER</a>, <a style="color:#204A87" href="#sqltrace_wait_entries">SQLTRACE_WAIT_ENTRIES</a>, <a style="color:#204A87" href="#dbmirror_dbm_mutex">DBMIRROR_DBM_MUTEX</a>, <a style="color:#204A87" href="#resource_semaphore">RESOURCE_SEMAPHORE</a>, <span style="color:#555753;text-decoration:underline">PREEMPTIVE_OS_AUTHENTICATIONOPS</span>, <span style="color:#555753;text-decoration:underline">PREEMPTIVE_OS_GENERICOPS</span>, <a style="color:#204A87" href="#sleep_bpool_flush">SLEEP_BPOOL_FLUSH</a>, <a style="color:#204A87" href="#msql_dq">MSQL_DQ</a>, <a style="color:#204A87" href="#resource_semaphore">RESOURCE_SEMAPHORE</a>_QUERY_COMPILE <span style="font-size:small"><a style="color:#204A87" href="#resource_semaphore">RESOURCE_SEMAPHORE</a></span><span style="font-size:small">_QUERY_COMPILE</span>, <a style="color:#204A87" href="#dac_init">DAC_INIT</a>, <a style="color:#204A87" href="#mssearch">MSSEARCH</a>, <a style="color:#204A87" href="#sqltrace_lock">SQLTRACE_LOCK</a>
+</div><div class="note" id="BROKER_RECEIVE_WAITFOR"><a name="broker_receive_waitfor"></a><h1>BROKER_RECEIVE_WAITFOR</h1>
+Здесь Service Broker ждет новые сообщения. Я бы рекомендовал добавить это ожидание в список исключаемых и заново выполнить запрос со статистикой ожидания.</div><div class="note" id="BROKER_TRANSMITTER"><a name="broker_transmitter"></a><h1>BROKER_TRANSMITTER</h1>
+Здесь Service Broker ждет новых сообщений для отправки. Я бы рекомендовал добавить это ожидание в список исключаемых и заново выполнить запрос со статистикой ожидания.
+</div><div class="note" id="DBMIRROR_EVENTS_QUEUE"><a name="dbmirror_events_queue"></a><h1>DBMIRROR_EVENTS_QUEUE</h1>
+см. <a style="color:#204A87" href="#dbmirror_events_queue and dbmirroring_cmd">DBMIRROR_EVENTS_QUEUE and DBMIRRORING_CMD</a></div><div class="note" id="DBMIRRORING_CMD"><a name="dbmirroring_cmd"></a><h1>DBMIRRORING_CMD</h1>
+см. <a style="color:#204A87" href="#dbmirror_events_queue">DBMIRROR_EVENTS_QUEUE</a>+DBMIRRORING_CMD</div><div class="note" id="ONDEMAND_TASK_QUEUE"><a name="ondemand_task_queue"></a><h1>ONDEMAND_TASK_QUEUE</h1>
+Это нормально и является частью системы фоновых задач (таких как отложенный сброс, очистка в фоне). Я бы добавил это ожидание в список исключаемых и заново выполнил запрос со статистикой ожидания.
+</div><div class="note" id="SLEEP_BPOOL_FLUSH"><a name="sleep_bpool_flush"></a><h1>SLEEP_BPOOL_FLUSH</h1>
+Это ожидание можно часто увидеть и оно означает, что контрольная точка ограничивает себя для того, чтобы избежать перегрузки системы ввода/вывода. Я бы рекомендовал добавить это ожидание в список исключаемых и заново выполнить запрос со статистикой ожидания.</div><div class="note" id="SQLTRACE_WAIT_ENTRIES"><a name="sqltrace_wait_entries"></a><h1>SQLTRACE_WAIT_ENTRIES</h1>
+Часть слушателя (trace) SQL Server'а. Я бы рекомендовал добавить это ожидание в список исключаемых и заново выполнить запрос со статистикой ожидания
+</div><div class="note" id="CXPACKET"><a name="cxpacket"></a><h1>CXPACKET</h1>
+Означает параллелизм, но не обязательно в нем проблема. 
+
+Поток-координатор в параллельном запросе всегда накапливает эти ожидания. Если параллельные потоки не заняты работой или один из потоков заблокирован, то ожидающие потоки также накапливают ожидание CXPACKET, что приводит к более быстрому накоплению статистики по этому типу — в этом и проблема. 
+
+Один поток может иметь больше работы, чем остальные, и по этой причине весь запрос блокируется, пока долгий поток не закончит свою работу. 
+
+Если этот тип ожидания совмещен с большими цифрами ожидания <a style="color:#204A87" href="#pageiolatch_xx">PAGEIOLATCH_XX</a>, то это может быть сканирование больших таблиц по причине некорректных некластерных индексов или из-за плохого плана выполнения запроса. 
+
+Если это не является причиной, вы можете попробовать применение опции MAXDOP со значениями 4, 2, или 1 для проблемных запросов или для всего экземпляра сервера (устанавливается на сервере параметром «max degree of parallelism»). 
+
+Если ваша система основана на схеме NUMA, попробуйте установить MAXDOP в значение, равное количеству процессоров в одном узле NUMA для того, чтобы определить, не в этом ли проблема. 
+
+Вам также нужно определить эффект от установки MAXDOP на системах со смешанной нагрузкой. Если честно, я бы поиграл с параметром «cost threshold for parallelism» (поднял его до 25 для начала), прежде чем снижать значение MAXDOP для всего экземпляра. И не забывайте про регулятор ресурсов (Resource Governor) в Enterprise версии SQL Server 2008, который позволяет установить количество процессоров для конкретной группы соединений с сервером.
+</div><div class="note" id="PAGEIOLATCH_XX"><a name="pageiolatch_xx"></a><h1>PAGEIOLATCH_XX</h1>
+Вот тут SQL Server ждет чтения страницы данных с диска в память. 
+
+Этот тип ожидания может указывать на проблему в системе ввода/вывода (что является первой реакцией на этот тип ожидания), <i>но почему система ввода/вывода должна обслуживать такое количество чтений</i>? 
+
+Возможно, давление оказывает буферный пул/память (недостаточно памяти для типичной нагрузки), 
+
+внезапное изменение в планах выполнения, приводящее к большим параллельным сканированиям вместо поиска, 
+
+раздувание кэша планов или некоторые другие причины. 
+
+Не стоит считать, что основная проблема в системе ввода/вывода.</div><div class="note" id="ASYNC_NETWORK_IO"><a name="async_network_io"></a><h1>ASYNC_NETWORK_IO</h1>
+Здесь SQL Server ждет, пока клиент закончит получать данные. Причина может быть в том, что клиент запросил слишком большое количество данных или просто получает их ооочень медленно из-за плохого кода — я почти никогда не не видел, чтобы проблема заключалась в сети. Клиенты часто читают по одной строке за раз — так называемый RBAR или «строка за агонизирующей строкой»(Row-By-Agonizing-Row) — вместо того, чтобы закешировать данные на клиенте и уведомить SQL Server об окончании чтения немедленно.</div><div class="note" id="WRITELOG"><a name="writelog"></a><h1>WRITELOG</h1>
+Подсистема управления логом ожидает записи лога на диск. Как правило, означает, что система ввода/ввода не может обеспечить своевременную запись всего объема лога, но на высоконагруженных системах это может быть вызвано общими ограничениями записи лога, что может означать, что вам следует разделить нагрузку между несколькими базами, или даже сделать ваши транзакции чуть более долгими, чтобы уменьшить количество записей лога на диск. Для того, чтобы убедиться, что причина в системе ввода/вывода, используйте DMV sys.dm_io_virtual_file_stats для того, чтобы изучить задержку ввода/вывода для файла лога и увидеть, совпадает ли она с временем задержки WRITELOG. Если WRITELOG длится дольше, вы получили внутреннюю конкуренцию за запись на диск и должны разделить нагрузку. Если нет, выясняйте, почему вы создаете такой большой лог транзакций. Здесь (англ.) и здесь (англ.) можно почерпнуть некоторые идеи.
+
+<span style="font-size:small"><span style="font-family:monospace">-- Плохо: Ср.задержка одной операции &gt; 20 мсек
+USE master
+GO
+SELECT cast(db_name(a.database_id) AS VARCHAR) AS Database_Name
+	 , b.physical_name
+	 --, a.io_stall
+	 , a.size_on_disk_bytes
+	 , a.io_stall_read_ms / a.num_of_reads 'Ср.задержка одной операции чтения'
+	 , a.io_stall_write_ms / a.num_of_writes 'Ср.задержка одной операции записи'
+	 --, *
+FROM
+	sys.dm_io_virtual_file_stats(NULL, NULL) a
+	INNER JOIN sys.master_files b
+		ON a.database_id = b.database_id AND a.file_id = b.file_id
+where num_of_writes &gt; 0 and num_of_reads &gt; 0
+ORDER BY
+	Database_Name
+  , a.io_stall DESC</span></span>
+</div><div class="note" id="MSQL_XP"><a name="msql_xp"></a><h1>MSQL_XP</h1>
+Здесь SQL Server ждет выполнения расширенных хранимых процедур. Это может означать наличие проблем в коде ваших расширенных хранимых процедур.</div><div class="note" id="OLEDB"><a name="oledb"></a><h1>OLEDB</h1>
+Как и предполагается из названия, это ожидание взаимодействия с использованием OLEDB — например, со связанным сервером. Однако, OLEDB также используется в DMV и командой <a style="color:#204A87" href="#dbcc">DBCC</a> CHECKDB, так что не думайте, что проблема обязательно в связанных серверах — это может быть внешняя система мониторинга, чрезмерно использующая вызовы DMV. Если это и в самом деле связанный сервер — тогда проведите анализ ожиданий на связанном сервере и определите, в чем проблема с производительностью на нем.</div><div class="note" id="BACKUPIO"><a name="backupio"></a><h1>BACKUPIO</h1>
+Показывает, когда вы делаете бэкап напрямую на ленту, что ооочень медленно. Я бы предпочел отфильтровать это ожидание. (прим. переводчика: я встречался с этим типом ожиданий при записи бэкапа на диск, при этом бэкап небольшой базы выполнялся очень долго, не успевая выполниться в технологический перерыв и вызывая проблемы с производительностью у пользователей. Если это ваш случай, возможно дело в системе ввода/вывода, используемой для бэкапирования, необходимо рассмотреть возможность увеличения ее производительности либо пересмотреть план обслуживания (не выполнять полные бэкапы в короткие технологические перерывы, заменив их дифференциальными))</div><div class="note" id="LCK_M_XX"><a name="lck_m_xx"></a><h1>LCK_M_XX</h1>
+Здесь поток просто ждет доступа для наложения блокировки на объект и означает проблемы с блокировками. Это может быть вызвано нежелательной эскалацией блокировок или плохим кодом, но также может быть вызвано тем, что операции ввода/вывода занимают слишком долгое время и держат блокировки дольше, чем обычно. Посмотрите на ресурсы, связанные с блокировками, используя DMV sys.dm_os_waiting_tasks. Не стоит считать, что основная проблема в блокировках.</div><div class="note" id="BACKUPBUFFER"><a name="backupbuffer"></a><h1>BACKUPBUFFER</h1>
+Показывает, когда вы делаете бэкап напрямую на ленту, что ооочень медленно. Я бы предпочел отфильтровать это ожидание.</div><div class="note" id="IO_COMPLETION"><a name="io_completion"></a><h1>IO_COMPLETION</h1>
+SQL Server ждет завершения ввода/вывода и этот тип ожидания может быть индикатором проблемы с системой ввода/вывода</div><div class="note" id="SOS_SCHEDULER_YIELD"><a name="sos_scheduler_yield"></a><h1>SOS_SCHEDULER_YIELD</h1>
+Чаще всего это код, который не попадает в другие типы ожидания, но иногда это может быть конкуренция в циклической блокировке</div><div class="note" id="PAGELATCH_XX"><a name="pagelatch_xx"></a><h1>PAGELATCH_XX</h1>
+Это конкуренция за доступ к копиям страниц в памяти. Наиболее известные случаи — это конкуренция PFS, SGAM, и GAM, возникающие в базе tempdb при определенных типах нагрузок (англ.). Для того, чтобы выяснить, за какие страницы идет конкуренция, вам нужно использовать DMV sys.dm_os_waiting_tasks для того, чтобы выяснить, из-за каких страниц возникают блокировки. По проблемам с базой tempdb Роберт Дэвис (его блог, твиттер) написал хорошую статью, показывающую, как их решать (англ.) Другая частая причина, которую я видел — часто обновляемый индекс с конкурирующими вставками в индекс, использующий последовательный ключ (IDENTITY)</div><div class="note" id="LATCH_XX"><a name="latch_xx"></a><h1>LATCH_XX</h1>
+Это конкуренция за какие либо не страничные структуры в SQL Server'е — так что это не связано с вводом/выводом и данными вообще. Причину такого типа задержки может быть достаточно сложно понять и вам необходимо использовать DMV sys.dm_os_latch_stats</div><div class="note" id="THREADPOOL"><a name="threadpool"></a><h1>THREADPOOL</h1>
+Такой тип говорит, что недостаточно рабочих потоков в системе для того, чтобы удовлетворить запрос. Обычно причина в большом количестве сильно параллелизованных запросов, пытающихся выполниться. (прим. переводчика: также это может быть намеренно урезанное значение параметра сервера «max worker threads»)
+</div><div class="note" id="DBMIRROR_DBM_MUTEX"><a name="dbmirror_dbm_mutex"></a><h1>DBMIRROR_DBM_MUTEX</h1>
+Это один из недокументированных типов и в нем конкуренция возникает за отправку буфера, который делится между сессиями зеркального отображения (database mirroring). Может означать, что у вас слишком много сессий зеркального отображения
+</div><div class="note" id="RESOURCE_SEMAPHORE"><a name="resource_semaphore"></a><h1>RESOURCE_SEMAPHORE</h1>
+Здесь запрос ждет память для исполнения (память, используемая для обработки операторов запроса — таких, как сортировка). Это может быть недостаток памяти при конкурентной нагрузке.
+
+<span style="color:#555753;text-decoration:underline">RESOURCE_SEMAPHORE_QUERY_COMPILE</span>
+
+Когда в системе происходит слишком много конкурирующих перекомпиляций запросов, SQL Server ограничивает их выполнение. Я не помню уровня ограничения, но это ожидание может означать излишнюю перекомпиляцию или, возможно, слишком частое использование одноразовых планов.
+</div><div class="note" id="MSQL_DQ"><a name="msql_dq"></a><h1>MSQL_DQ</h1>
+Здесь SQL Server ожидает, пока выполнится распределенный запрос. Это может означать проблемы с распределенными запросами или может быть просто нормой.</div><div class="note" id="DAC_INIT"><a name="dac_init"></a><h1>DAC_INIT</h1>
+Я никогда раньше этого не видел и BOL говорит, что причина в инициализации административного подключения. Я не могу представить, как это может быть преимущественным ожиданием на чьей либо системе...
+</div><div class="note" id="MSSEARCH"><a name="mssearch"></a><h1>MSSEARCH</h1>
+Этот тип является нормальным при полнотекстовых операциях. Если это преимущественное ожидание, это может означать, что ваша система тратит больше всего времени на выполнение полнотекстовых запросов. Вы можете рассмотреть возможность добавить этот тип ожидания в список исключаемых.
+</div><div class="note" id="SQLTRACE_LOCK"><a name="sqltrace_lock"></a><h1>SQLTRACE_LOCK</h1>
+Часть слушателя (trace) SQL Server'а. Я бы рекомендовал добавить это ожидание в список исключаемых и заново выполнить запрос со статистикой ожидания.</div></body></html>

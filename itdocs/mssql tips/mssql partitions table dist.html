@@ -1,0 +1,24 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql partitions table dist</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql partitions table dist"><a name="mssql partitions table dist"></a><h1>mssql partitions table dist</h1>
+select * from 
+(SELECT o.[name] obj_name, o.[type] obj_type, i.[name] idx_name, i.[index_id] idx_id, f.[name] file_grp FROM sys.indexes i
+INNER JOIN sys.filegroups f ON i.data_space_id = f.data_space_id
+INNER JOIN sys.all_objects o ON i.[object_id] = o.[object_id] 
+WHERE i.data_space_id = f.data_space_id
+AND o.type = 'U' -- User Created Tables
+) q1
+where q1.file_grp like 'FG%'</div></body></html>

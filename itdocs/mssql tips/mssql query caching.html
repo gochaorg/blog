@@ -1,0 +1,34 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql query caching</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql query caching"><a name="mssql query caching"></a><h1>mssql query caching</h1>
+<a style="color:#3465A4" href="https://www.sqlshack.com/searching-the-sql-server-query-plan-cache/">https://www.sqlshack.com/searching-the-sql-server-query-plan-cache/</a>
+
+SELECT TOP 10
+		databases.name,
+	dm_exec_sql_text.text AS TSQL_Text,
+	dm_exec_query_stats.creation_time, 
+	dm_exec_query_stats.execution_count,
+	dm_exec_query_stats.total_worker_time AS total_cpu_time,
+	dm_exec_query_stats.total_elapsed_time, 
+	dm_exec_query_stats.total_logical_reads, 
+	dm_exec_query_stats.total_physical_reads, 
+	dm_exec_query_plan.query_plan
+FROM sys.dm_exec_query_stats 
+CROSS APPLY sys.dm_exec_sql_text(dm_exec_query_stats.plan_handle)
+CROSS APPLY sys.dm_exec_query_plan(dm_exec_query_stats.plan_handle)
+INNER JOIN sys.databases
+ON dm_exec_sql_text.dbid = databases.database_id
+WHERE dm_exec_sql_text.text LIKE '%SalesOrderHeader%';</div></body></html>

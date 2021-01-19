@@ -1,0 +1,4329 @@
+oracle@linux-for-srk:[oracle@linux-for-srk oracle]$ sqlplus / as sysdba
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Jan 14 12:13:50 2010
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> select status from v$instance;
+
+STATUS
+------------
+MOUNTED
+
+SQL> select name from v#datafile;
+select name from v#datafile
+                 *
+ERROR at line 1:
+ORA-01219: database not open: queries allowed on fixed tables/views only
+
+
+SQL> select name from v$datafile;
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/system01.dbf
+/opt/ora102/oradata/A/undotbs01.dbf
+/opt/ora102/oradata/A/sysaux01.dbf
+/opt/ora102/oradata/A/users01.dbf
+/opt/ora102/oradata/A/monp01.dbf
+/opt/ora102/oradata/A/ch001.dbf
+/opt/ora102/oradata/A/ch005.dbf
+/opt/ora102/oradata/A/ch_ntm.dbf
+/opt/ora102/oradata/A/ch_006.dbf
+/opt/ora102/oradata/A/ch001_reorg0.dbf
+/opt/ora102/oradata/A/ch_but
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/prd01.dbf
+/opt/ora102/oradata/A/kgok.dbf
+/opt/ora102/oradata/A/system02.dbf
+/opt/ora102/oradata/A/sysaux02.dbf
+
+15 rows selected.
+
+SQL> desc v$archived_log;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RECID						    NUMBER
+ STAMP						    NUMBER
+ NAME						    VARCHAR2(513)
+ DEST_ID					    NUMBER
+ THREAD#					    NUMBER
+ SEQUENCE#					    NUMBER
+ RESETLOGS_CHANGE#				    NUMBER
+ RESETLOGS_TIME 				    DATE
+ RESETLOGS_ID					    NUMBER
+ FIRST_CHANGE#					    NUMBER
+ FIRST_TIME					    DATE
+ NEXT_CHANGE#					    NUMBER
+ NEXT_TIME					    DATE
+ BLOCKS 					    NUMBER
+ BLOCK_SIZE					    NUMBER
+ CREATOR					    VARCHAR2(7)
+ REGISTRAR					    VARCHAR2(7)
+ STANDBY_DEST					    VARCHAR2(3)
+ ARCHIVED					    VARCHAR2(3)
+ APPLIED					    VARCHAR2(3)
+ DELETED					    VARCHAR2(3)
+ STATUS 					    VARCHAR2(1)
+ COMPLETION_TIME				    DATE
+ DICTIONARY_BEGIN				    VARCHAR2(3)
+ DICTIONARY_END 				    VARCHAR2(3)
+ END_OF_REDO					    VARCHAR2(3)
+ BACKUP_COUNT					    NUMBER
+ ARCHIVAL_THREAD#				    NUMBER
+ ACTIVATION#					    NUMBER
+ IS_RECOVERY_DEST_FILE				    VARCHAR2(3)
+ COMPRESSED					    VARCHAR2(3)
+ FAL						    VARCHAR2(3)
+ END_OF_REDO_TYPE				    VARCHAR2(10)
+
+SQL> select name from v$archived_log;
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+NAME
+--------------------------------------------------------------------------------
+
+
+
+/opt/ora102/oradata/A/archlogs/1_43731_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43732_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43733_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43734_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43735_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43736_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43737_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43738_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43739_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43740_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43741_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43742_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43743_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43744_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43745_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43746_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43747_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43748_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43749_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43750_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43751_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43752_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43753_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43754_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43755_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43756_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43757_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43758_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43759_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43760_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43761_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43762_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43763_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43764_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43765_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43766_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43767_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43768_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43769_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43770_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43771_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43772_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43773_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43774_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43775_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43776_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43777_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43778_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43779_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43780_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43781_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43782_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43783_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43784_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43785_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43786_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43787_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43788_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43789_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43790_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43791_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43792_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43793_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43794_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43795_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43796_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43797_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43798_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43799_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43800_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43801_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43802_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43803_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43804_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43805_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43806_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43807_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43808_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43809_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43810_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43811_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43812_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43813_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43814_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43815_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43816_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43817_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43818_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43819_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43820_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43821_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43822_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43823_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43824_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43825_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43826_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43827_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43828_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43829_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43830_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43831_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43832_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43833_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43834_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43835_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43836_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43837_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43838_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43839_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43840_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43841_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43842_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43843_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43844_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43845_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43846_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43847_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43848_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43849_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43850_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43851_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43852_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43853_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43854_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43855_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43856_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43857_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43858_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43859_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43860_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43861_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43862_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43863_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43864_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43865_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43866_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43867_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43868_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43869_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43870_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43871_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43872_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43873_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43874_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43875_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43876_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43877_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43878_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43879_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43880_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43881_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43882_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43883_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43884_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43885_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43886_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43887_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43888_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43889_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43890_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43891_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43892_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43893_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43894_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43895_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43896_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43897_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43898_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43899_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43900_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43901_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43902_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43903_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43904_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43905_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43906_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43907_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43908_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43909_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43910_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43911_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43912_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43913_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43914_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43915_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43916_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43917_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43918_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43919_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43920_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43921_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43922_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43923_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43924_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43925_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43926_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43927_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43928_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43929_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43930_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43931_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43932_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43933_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43934_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43935_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43936_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43937_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43938_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43939_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43940_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43941_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43942_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43943_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43944_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43945_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43946_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43947_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43948_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43949_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43950_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43951_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43952_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43953_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43954_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43955_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43956_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43957_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43958_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43959_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43960_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43961_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43962_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43963_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43964_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43965_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43966_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43967_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43968_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43969_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43970_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43971_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43972_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43973_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43974_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43975_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43976_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43977_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43978_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43979_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43980_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43981_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43982_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43983_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43984_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43985_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43986_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43987_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43988_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43989_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43990_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43991_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_43992_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43993_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43994_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43995_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43996_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43997_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43998_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_43999_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44000_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44001_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44002_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44003_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44004_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44005_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44006_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44007_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44008_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44009_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44010_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44011_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44012_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44013_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44014_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44015_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44016_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44017_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44018_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44019_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44020_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44021_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44022_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44023_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44024_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44025_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44026_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44027_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44028_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44029_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44030_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44031_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44032_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44033_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44034_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44035_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44036_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44037_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44038_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44039_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44040_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44041_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44042_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44043_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44044_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44045_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44046_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44047_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44048_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44049_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44050_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44051_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44052_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44053_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44054_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44055_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44056_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44057_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44058_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44059_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44060_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44061_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44062_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44063_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44064_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44065_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44066_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44067_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44068_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44069_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44070_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44071_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44072_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44073_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44074_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44075_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44076_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44077_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44078_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44079_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44080_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44081_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44082_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44083_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44084_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44085_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44086_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44087_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44088_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44089_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44090_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44091_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44092_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44093_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44094_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44095_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44096_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44097_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44098_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44099_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44100_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44101_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44102_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44103_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44104_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44105_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44106_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44107_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44108_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44109_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44110_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44111_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44112_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44113_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44114_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44115_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44116_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44117_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44118_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44119_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44120_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44121_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44122_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44123_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44124_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44125_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44126_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44127_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44128_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44129_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44130_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44131_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44132_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44133_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44134_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44135_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44136_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44137_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44138_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44139_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44140_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44141_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44142_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44143_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44144_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44145_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44146_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44147_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44148_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44149_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44150_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44151_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44152_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44153_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44154_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44155_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44156_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44157_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44158_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44159_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44160_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44161_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44162_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44163_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44164_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44165_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44166_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44167_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44168_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44169_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44170_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44171_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44172_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44173_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44174_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44175_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44176_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44177_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44178_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44179_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44180_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44181_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44182_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44183_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44184_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44185_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44186_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44187_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44188_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44189_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44190_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44191_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44192_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44193_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44194_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44195_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44196_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44197_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44198_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44199_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44200_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44201_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44202_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44203_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44204_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44205_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44206_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44207_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44208_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44209_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44210_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44211_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44212_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44213_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44214_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44215_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44216_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44217_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44218_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44219_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44220_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44221_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44222_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44223_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44224_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44225_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44226_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44227_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44228_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44229_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44230_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44231_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44232_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44233_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44234_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44235_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44236_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44237_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44238_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44239_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44240_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44241_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44242_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44243_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44244_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44245_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44246_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44247_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44248_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44249_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44250_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44251_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44252_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44253_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44254_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44255_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44256_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44257_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44258_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44259_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44260_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44261_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44262_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44263_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44264_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44265_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44266_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44267_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44268_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44269_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44270_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44271_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44272_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44273_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44274_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44275_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44276_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44277_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44278_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44279_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44280_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44281_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44282_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44283_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44284_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44285_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44286_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44287_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44288_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44289_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44290_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44291_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44292_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44293_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44294_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44295_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44296_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44297_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44298_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44299_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44300_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44301_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44302_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44303_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44304_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44305_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44306_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44307_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44308_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44309_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44310_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44311_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44312_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44313_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44314_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44315_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44316_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44317_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44318_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44319_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44320_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44321_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44322_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44323_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44324_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44325_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44326_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44327_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44328_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44329_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44330_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44331_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44332_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44333_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44334_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44335_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44336_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44337_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44338_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44339_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44340_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44341_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44342_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44343_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44344_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44345_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44346_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44347_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44348_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44349_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44350_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44351_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44352_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44353_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44354_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44355_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44356_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44357_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44358_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44359_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44360_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44361_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44362_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44363_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44364_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44365_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44366_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44367_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44368_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44369_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44370_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44371_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44372_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44373_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44374_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44375_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44376_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44377_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44378_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44379_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44380_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44381_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44382_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44383_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44384_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44385_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44386_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44387_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44388_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44389_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44390_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44391_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44392_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44393_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44394_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44395_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44396_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44397_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44398_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44399_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44400_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44401_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44402_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44403_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44404_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44405_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44406_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44407_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44408_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44409_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44410_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44411_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44412_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44413_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44414_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44415_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44416_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44417_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44418_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44419_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44420_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44421_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44422_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44423_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44424_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44425_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44426_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44427_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44428_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44429_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44430_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44431_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44432_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44433_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44434_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44435_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44436_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44437_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44438_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44439_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44441_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44440_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44442_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44443_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44444_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44445_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44446_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44447_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44448_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44449_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44450_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44451_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44452_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44453_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44454_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44455_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44456_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44457_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44458_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44459_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44460_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44461_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44462_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44463_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44464_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44465_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44466_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44467_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44468_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44469_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44470_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44471_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44472_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44473_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44474_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44475_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44476_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44477_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44478_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44479_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44480_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44481_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44482_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44483_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44484_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44485_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44486_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44487_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44488_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44489_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44490_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44491_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44492_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44493_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44494_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44495_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44496_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44497_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44498_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44499_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44500_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44501_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44502_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44503_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44504_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44505_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44506_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44507_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44508_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44509_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44510_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44511_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44512_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44513_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44514_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44515_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44516_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44517_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44518_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44519_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44520_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44521_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44522_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44523_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44524_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44525_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44526_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44527_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44528_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44529_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44530_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44531_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44532_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44533_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44534_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44535_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44536_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44537_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44538_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44539_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44540_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44541_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44542_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44543_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44544_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44545_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44546_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44547_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44548_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44549_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44550_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44551_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44552_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44553_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44554_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44555_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44556_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44557_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44558_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44559_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44560_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44561_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44562_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44563_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44564_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44565_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44566_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44567_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44568_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44569_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44570_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44571_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44572_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44573_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44574_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44575_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44576_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44577_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44578_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44579_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44580_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44581_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44582_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44583_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44584_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44585_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44586_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44587_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44588_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44589_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44590_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44591_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44592_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44593_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44594_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44595_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44596_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44597_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44598_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44599_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44600_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44601_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44602_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44603_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44604_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44605_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44606_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44607_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44608_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44609_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44610_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44611_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44612_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44613_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44614_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44615_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44616_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44617_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44618_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44619_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44620_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44621_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44622_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44623_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44624_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44625_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44626_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44627_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44628_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44629_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44630_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44631_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44632_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44633_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44634_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44635_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44636_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44637_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44638_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44639_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44640_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44641_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44642_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44643_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44644_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44645_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44646_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44647_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44648_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44649_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44650_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44651_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44652_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44653_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44654_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44655_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44656_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44657_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44658_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44659_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44660_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44661_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44662_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44663_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44664_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44665_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44666_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44667_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44668_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44669_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44670_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44671_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44672_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44673_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44674_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44675_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44676_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44677_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44678_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44679_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44680_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44681_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44682_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44683_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44684_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44685_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44686_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44687_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44688_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44689_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44690_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44691_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44692_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44693_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44694_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44695_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44696_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44697_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44698_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44699_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44700_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44701_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44702_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44703_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44704_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44705_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44706_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44707_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44708_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44709_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44710_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44711_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44712_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44713_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44714_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44715_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44716_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44717_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44718_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44719_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44720_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44721_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44722_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44723_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44724_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44725_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44726_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44727_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44728_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44729_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44730_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44731_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44732_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44733_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44734_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44735_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44736_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44737_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44738_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44739_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44740_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44741_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44742_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44743_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44744_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44745_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44746_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44747_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44748_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44749_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44750_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44751_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44752_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44753_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44754_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44755_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44756_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44757_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44758_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44759_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44760_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44761_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44762_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44763_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44764_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44765_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44766_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44767_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44768_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44769_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44770_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44771_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44772_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44773_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44774_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44775_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44776_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44777_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44778_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44779_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44780_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44781_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44782_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44783_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44784_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44785_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44786_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44787_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44788_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44789_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44790_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44791_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44792_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44793_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44794_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44795_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44796_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44797_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44798_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44799_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44800_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44801_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44802_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44803_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44804_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44805_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44806_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44807_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44808_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44809_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44810_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44811_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44812_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44813_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44814_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44815_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44816_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44817_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44818_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44819_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44820_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44821_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44822_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44823_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44824_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44825_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44826_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44827_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44828_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44829_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44830_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44831_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44832_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44833_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44834_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44835_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44836_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44837_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44838_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44839_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44840_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44841_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44842_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44843_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44844_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44845_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44846_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44847_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44848_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44849_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44850_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44851_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44852_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44853_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44854_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44855_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44856_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44857_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44858_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44859_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44860_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44861_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44862_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44863_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44864_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44865_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44866_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44867_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44868_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44869_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44870_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44871_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44872_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44873_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44874_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44875_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44876_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44877_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44878_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44879_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44880_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44881_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44882_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44883_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44884_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44885_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44886_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44887_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44888_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44889_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44890_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44891_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44892_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44893_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44894_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44895_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44896_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44897_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44898_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44899_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44900_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44901_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44902_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44903_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44904_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44905_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44906_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44907_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44908_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44909_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44910_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44911_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44912_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44913_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44914_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44915_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44916_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44917_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44918_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44919_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44920_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44921_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44922_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44923_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44924_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44925_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44926_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44927_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44928_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44929_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44930_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44931_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44932_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44933_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44934_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44935_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44936_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44937_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44938_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44939_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44940_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44941_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44942_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44943_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44944_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44945_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44946_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44947_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44948_571317858.dbf
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/archlogs/1_44949_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44950_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44951_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44952_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44953_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44954_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44955_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44956_571317858.dbf
+/opt/ora102/oradata/A/archlogs/1_44957_571317858.dbf
+
+2352 rows selected.
+
+SQL> desc v$controlfile;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STATUS 					    VARCHAR2(7)
+ NAME						    VARCHAR2(513)
+ IS_RECOVERY_DEST_FILE				    VARCHAR2(3)
+ BLOCK_SIZE					    NUMBER
+ FILE_SIZE_BLKS 				    NUMBER
+
+SQL> select name from v$controlfile;
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/control01.ctl
+/opt/ora102/oradata/A/control02.ctl
+/opt/ora102/oradata/A/control03.ctl
+
+SQL> desc v$logfile;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GROUP# 					    NUMBER
+ STATUS 					    VARCHAR2(7)
+ TYPE						    VARCHAR2(7)
+ MEMBER 					    VARCHAR2(513)
+ IS_RECOVERY_DEST_FILE				    VARCHAR2(3)
+
+SQL> select name from v$logfile;
+select name from v$logfile
+       *
+ERROR at line 1:
+ORA-00904: "NAME": invalid identifier
+
+
+SQL> select member from v$logfile;
+
+MEMBER
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/redo03.log
+/opt/ora102/oradata/A/redo02.log
+/opt/ora102/oradata/A/redo01.log
+
+SQL> desc v$tempfile;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FILE#						    NUMBER
+ CREATION_CHANGE#				    NUMBER
+ CREATION_TIME					    DATE
+ TS#						    NUMBER
+ RFILE# 					    NUMBER
+ STATUS 					    VARCHAR2(7)
+ ENABLED					    VARCHAR2(10)
+ BYTES						    NUMBER
+ BLOCKS 					    NUMBER
+ CREATE_BYTES					    NUMBER
+ BLOCK_SIZE					    NUMBER
+ NAME						    VARCHAR2(513)
+
+SQL> select name from v$tempfile;
+
+NAME
+--------------------------------------------------------------------------------
+/opt/ora102/oradata/A/temp01.dbf
+
+SQL> shutdown abort;
+ORACLE instance shut down.
+SQL> exit
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+oracle@linux-for-srk:
+[oracle@linux-for-srk oracle]$ cd /opt/ora102/oradata/A
+[oracle@linux-for-srk A]$ ll
+total 12072404
+drwxrwxrwx    2 root     root        32768 Jan 14 08:08 archlogs
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 ch001.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 ch001_reorg0.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 ch005.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 ch_006.dbf
+-rw-r-----    1 oracle   oinstall 471867392 Jan 14 08:12 ch_but
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 ch_ntm.dbf
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control01.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control02.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control03.ctl
+-rw-r-----    1 oracle   oinstall 1073750016 Jan 14 08:12 kgok.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 08:12 monp01.dbf
+-rw-r-----    1 oracle   oinstall 524296192 Jan 14 08:12 prd01.dbf
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:08 redo01.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:12 redo02.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:08 redo03.log
+-rw-r-----    1 oracle   oinstall 597696512 Jan 14 08:12 sysaux01.dbf
+-rw-r-----    1 oracle   oinstall 20979712 Jan 14 08:12 sysaux02.dbf
+-rw-r-----    1 oracle   oinstall 639639552 Jan 14 08:12 system01.dbf
+-rw-r-----    1 oracle   oinstall 10493952 Jan 14 08:12 system02.dbf
+-rw-r-----    1 oracle   oinstall 267395072 Jan 14 04:22 temp01.dbf
+-rw-r-----    1 oracle   oinstall 2375032832 Jan 14 08:12 undotbs01.dbf
+-rw-r-----    1 oracle   oinstall 20979712 Jan 14 08:12 users01.dbf
+[oracle@linux-for-srk A]$ rm *.dbf
+drwxrwxrwx    2 root     root        32768 Jan 14 08:08 archlogs
+-rw-r-----    1 oracle   oinstall 471867392 Jan 14 08:12 ch_but
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control01.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control02.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 12:22 control03.ctl
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:08 redo01.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:12 redo02.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 08:08 redo03.log
+[oracle@linux-for-srk A]$ rm -f ch_but 
+[oracle@linux-for-srk A]$ rm -f *.ctl
+[oracle@linux-for-srk A]$ rm -f *.log
+[oracle@linux-for-srk A]$ cd archlogs/
+[oracle@linux-for-srk archlogs]$ ll
+total 3502980
+-rw-r-----    1 oracle   oinstall  9775104 Jan 12 13:05 1_44440_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7057408 Jan 12 13:05 1_44441_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 13:05 1_44442_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8939008 Jan 12 13:05 1_44443_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 13:05 1_44444_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 13:05 1_44445_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 13:05 1_44446_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9582592 Jan 12 13:05 1_44447_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7687680 Jan 12 13:05 1_44448_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8946176 Jan 12 13:05 1_44449_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9648640 Jan 12 13:05 1_44450_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9090560 Jan 12 13:05 1_44451_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10033664 Jan 12 13:05 1_44452_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9333248 Jan 12 13:05 1_44453_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7244288 Jan 12 13:05 1_44454_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:05 1_44455_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:05 1_44456_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:05 1_44457_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:05 1_44458_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:05 1_44459_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5843968 Jan 12 13:06 1_44460_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5256704 Jan 12 13:06 1_44461_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5249024 Jan 12 13:06 1_44462_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5260800 Jan 12 13:06 1_44463_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5544960 Jan 12 13:06 1_44464_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5244416 Jan 12 13:06 1_44465_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5262336 Jan 12 13:06 1_44466_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44467_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44468_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44469_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44470_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44471_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44472_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44473_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44474_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44475_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5288960 Jan 12 13:06 1_44476_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 12 13:06 1_44477_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44478_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44479_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44480_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44481_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:06 1_44482_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5302272 Jan 12 13:07 1_44483_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243392 Jan 12 13:07 1_44484_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5258752 Jan 12 13:07 1_44485_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5250560 Jan 12 13:07 1_44486_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44487_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6767104 Jan 12 13:07 1_44488_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 12 13:07 1_44489_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5264896 Jan 12 13:07 1_44490_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44491_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44492_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6678016 Jan 12 13:07 1_44493_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 12 13:07 1_44494_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5260800 Jan 12 13:07 1_44495_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9451008 Jan 12 13:07 1_44496_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44497_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9593856 Jan 12 13:07 1_44498_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243392 Jan 12 13:07 1_44499_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5265408 Jan 12 13:07 1_44500_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44501_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:07 1_44502_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5295616 Jan 12 13:07 1_44503_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 12 13:08 1_44504_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5259264 Jan 12 13:08 1_44505_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44506_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6920704 Jan 12 13:08 1_44507_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5293056 Jan 12 13:08 1_44508_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5261824 Jan 12 13:08 1_44509_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44510_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7204352 Jan 12 13:08 1_44511_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10098688 Jan 12 13:08 1_44512_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44513_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44514_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44515_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44516_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44517_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 13:08 1_44518_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8156160 Jan 12 13:08 1_44519_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6324736 Jan 12 13:08 1_44520_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8280576 Jan 12 13:08 1_44521_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7038464 Jan 12 13:08 1_44522_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5267456 Jan 12 13:08 1_44523_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6858752 Jan 12 13:15 1_44524_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243392 Jan 12 13:30 1_44525_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5244416 Jan 12 13:45 1_44526_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 14:00 1_44527_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5509632 Jan 12 14:05 1_44528_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 14:05 1_44529_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7268864 Jan 12 14:05 1_44530_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8509440 Jan 12 14:05 1_44531_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6002688 Jan 12 14:05 1_44532_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 14:10 1_44533_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5307904 Jan 12 14:26 1_44534_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5257728 Jan 12 14:41 1_44535_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5245952 Jan 12 15:00 1_44536_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8847360 Jan 12 15:05 1_44537_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8535040 Jan 12 15:05 1_44538_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9994240 Jan 12 15:05 1_44539_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10478080 Jan 12 15:05 1_44540_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 15:05 1_44541_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6855168 Jan 12 15:05 1_44542_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10042880 Jan 12 15:21 1_44543_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 15:36 1_44544_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 15:52 1_44545_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7646208 Jan 12 16:05 1_44546_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9497088 Jan 12 16:05 1_44547_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10481664 Jan 12 16:05 1_44548_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8321024 Jan 12 16:05 1_44549_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5248000 Jan 12 16:05 1_44550_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6139904 Jan 12 16:22 1_44551_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 16:37 1_44552_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 16:52 1_44553_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6208000 Jan 12 17:05 1_44554_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9445888 Jan 12 17:05 1_44555_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 17:05 1_44556_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 17:05 1_44557_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9970688 Jan 12 17:05 1_44558_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7906304 Jan 12 17:05 1_44559_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 17:05 1_44560_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 17:07 1_44561_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 17:28 1_44562_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 12 17:43 1_44563_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 17:58 1_44564_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10339840 Jan 12 18:05 1_44565_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10283520 Jan 12 18:05 1_44566_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 18:05 1_44567_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6452224 Jan 12 18:05 1_44568_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 12 18:05 1_44569_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 12 18:23 1_44570_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 18:39 1_44571_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5252608 Jan 12 18:54 1_44572_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5667840 Jan 12 19:05 1_44573_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9760768 Jan 12 19:05 1_44574_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9361920 Jan 12 19:05 1_44575_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9856000 Jan 12 19:05 1_44576_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9874944 Jan 12 19:05 1_44577_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8880640 Jan 12 19:05 1_44578_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5372416 Jan 12 19:05 1_44579_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 19:05 1_44580_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 12 19:24 1_44581_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 19:39 1_44582_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 19:54 1_44583_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6698496 Jan 12 20:05 1_44584_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 20:05 1_44585_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10480640 Jan 12 20:05 1_44586_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8118784 Jan 12 20:05 1_44587_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5250560 Jan 12 20:05 1_44588_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8828416 Jan 12 20:25 1_44589_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 20:40 1_44590_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 20:55 1_44591_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7547904 Jan 12 21:05 1_44592_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 21:05 1_44593_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 21:05 1_44594_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10408960 Jan 12 21:05 1_44595_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9745920 Jan 12 21:05 1_44596_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7068672 Jan 12 21:05 1_44597_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5237248 Jan 12 21:05 1_44598_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 21:10 1_44599_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 21:31 1_44600_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 12 21:46 1_44601_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 22:01 1_44602_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8647680 Jan 12 22:05 1_44603_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9536000 Jan 12 22:05 1_44604_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9593344 Jan 12 22:05 1_44605_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 22:05 1_44606_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 22:05 1_44607_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5254656 Jan 12 22:11 1_44608_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243904 Jan 12 22:26 1_44609_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5267968 Jan 12 22:41 1_44610_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 23:00 1_44611_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9340928 Jan 12 23:05 1_44612_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9434624 Jan 12 23:05 1_44613_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9884160 Jan 12 23:05 1_44614_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 12 23:05 1_44615_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7249408 Jan 12 23:05 1_44616_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8367616 Jan 12 23:06 1_44617_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5235712 Jan 12 23:06 1_44618_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 12 23:12 1_44619_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5257216 Jan 12 23:27 1_44620_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5277696 Jan 12 23:47 1_44621_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5253120 Jan 13 00:00 1_44622_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8752128 Jan 13 00:05 1_44623_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7598592 Jan 13 00:05 1_44624_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10317312 Jan 13 00:06 1_44625_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6215168 Jan 13 00:06 1_44626_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246976 Jan 13 00:06 1_44627_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 00:06 1_44628_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 00:23 1_44629_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 00:38 1_44630_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 00:53 1_44631_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5264384 Jan 13 01:05 1_44632_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8295936 Jan 13 01:05 1_44633_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 01:05 1_44634_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8310784 Jan 13 01:05 1_44635_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9768960 Jan 13 01:06 1_44636_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8073216 Jan 13 01:06 1_44637_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5239296 Jan 13 01:06 1_44638_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5236736 Jan 13 01:06 1_44639_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 01:08 1_44640_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 01:29 1_44641_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242880 Jan 13 01:44 1_44642_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 01:59 1_44643_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7766016 Jan 13 02:05 1_44644_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8170496 Jan 13 02:06 1_44645_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10475520 Jan 13 02:06 1_44646_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7543808 Jan 13 02:06 1_44647_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5237248 Jan 13 02:06 1_44648_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 02:14 1_44649_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 02:29 1_44650_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 13 02:44 1_44651_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 03:00 1_44652_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7460352 Jan 13 03:05 1_44653_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10212352 Jan 13 03:05 1_44654_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9848832 Jan 13 03:06 1_44655_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8700416 Jan 13 03:06 1_44656_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10477056 Jan 13 03:06 1_44657_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6651904 Jan 13 03:06 1_44658_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 03:06 1_44659_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 03:10 1_44660_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 03:29 1_44661_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 03:45 1_44662_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 04:00 1_44663_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7066112 Jan 13 04:06 1_44664_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8172032 Jan 13 04:06 1_44665_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 04:06 1_44666_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6502400 Jan 13 04:06 1_44667_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5240320 Jan 13 04:06 1_44668_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 04:06 1_44669_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 04:25 1_44670_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 04:41 1_44671_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5244416 Jan 13 04:56 1_44672_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7030784 Jan 13 05:05 1_44673_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9366528 Jan 13 05:05 1_44674_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 05:06 1_44675_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10320896 Jan 13 05:06 1_44676_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10480128 Jan 13 05:06 1_44677_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9238528 Jan 13 05:06 1_44678_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 05:06 1_44679_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 05:11 1_44680_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246464 Jan 13 05:26 1_44681_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5245440 Jan 13 05:46 1_44682_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 06:00 1_44683_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8250880 Jan 13 06:06 1_44684_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7080960 Jan 13 06:06 1_44685_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10444800 Jan 13 06:06 1_44686_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10115584 Jan 13 06:06 1_44687_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6022656 Jan 13 06:06 1_44688_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5249024 Jan 13 06:22 1_44689_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 06:37 1_44690_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246976 Jan 13 06:52 1_44691_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5291008 Jan 13 07:05 1_44692_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10124800 Jan 13 07:05 1_44693_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7572992 Jan 13 07:06 1_44694_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8670720 Jan 13 07:06 1_44695_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9006080 Jan 13 07:06 1_44696_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10467840 Jan 13 07:06 1_44697_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7243776 Jan 13 07:06 1_44698_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 07:06 1_44699_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 07:18 1_44700_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 07:33 1_44701_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 07:48 1_44702_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 08:03 1_44703_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8086528 Jan 13 08:06 1_44704_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7255040 Jan 13 08:06 1_44705_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10477056 Jan 13 08:06 1_44706_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10479616 Jan 13 08:06 1_44707_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8888320 Jan 13 08:18 1_44708_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 08:38 1_44709_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 08:54 1_44710_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5279744 Jan 13 09:05 1_44711_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9572864 Jan 13 09:06 1_44712_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8439808 Jan 13 09:06 1_44713_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8269824 Jan 13 09:06 1_44714_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7709184 Jan 13 09:06 1_44715_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 09:06 1_44716_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9743872 Jan 13 09:06 1_44717_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 09:06 1_44718_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 09:19 1_44719_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5304832 Jan 13 09:39 1_44720_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 09:54 1_44721_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6152704 Jan 13 10:06 1_44722_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8889856 Jan 13 10:06 1_44723_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 10:06 1_44724_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9426432 Jan 13 10:06 1_44725_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9500672 Jan 13 10:06 1_44726_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 10:06 1_44727_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 10:20 1_44728_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5245440 Jan 13 10:40 1_44729_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 13 10:55 1_44730_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5755904 Jan 13 11:05 1_44731_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6591488 Jan 13 11:06 1_44732_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10384384 Jan 13 11:06 1_44733_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9746432 Jan 13 11:06 1_44734_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10478592 Jan 13 11:06 1_44735_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 11:06 1_44736_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7588352 Jan 13 11:06 1_44737_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 11:06 1_44738_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 11:20 1_44739_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 11:41 1_44740_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246464 Jan 13 11:56 1_44741_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6370816 Jan 13 12:06 1_44742_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10448384 Jan 13 12:06 1_44743_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10476032 Jan 13 12:06 1_44744_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7909376 Jan 13 12:06 1_44745_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 12:06 1_44746_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5370880 Jan 13 12:06 1_44747_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6477824 Jan 13 12:26 1_44748_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 12:41 1_44749_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5244928 Jan 13 12:57 1_44750_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6446592 Jan 13 13:06 1_44751_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9052672 Jan 13 13:06 1_44752_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482176 Jan 13 13:06 1_44753_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10105856 Jan 13 13:06 1_44754_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10475008 Jan 13 13:06 1_44755_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8822272 Jan 13 13:06 1_44756_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 13:06 1_44757_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 13:07 1_44758_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 13:22 1_44759_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 13:42 1_44760_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 13:57 1_44761_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6422528 Jan 13 14:06 1_44762_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8847360 Jan 13 14:06 1_44763_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9801728 Jan 13 14:06 1_44764_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8389632 Jan 13 14:06 1_44765_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 14:06 1_44766_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5236736 Jan 13 14:07 1_44767_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 14:18 1_44768_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 14:33 1_44769_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5251584 Jan 13 14:53 1_44770_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 15:06 1_44771_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9440256 Jan 13 15:06 1_44772_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9004544 Jan 13 15:06 1_44773_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6699520 Jan 13 15:06 1_44774_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7793664 Jan 13 15:06 1_44775_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10354688 Jan 13 15:06 1_44776_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8065024 Jan 13 15:06 1_44777_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5234688 Jan 13 15:07 1_44778_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 15:07 1_44779_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 15:23 1_44780_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246976 Jan 13 15:39 1_44781_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5260288 Jan 13 15:54 1_44782_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5277696 Jan 13 16:06 1_44783_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9760768 Jan 13 16:06 1_44784_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10305536 Jan 13 16:06 1_44785_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7572480 Jan 13 16:07 1_44786_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5239296 Jan 13 16:07 1_44787_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9581056 Jan 13 16:09 1_44788_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 13 16:24 1_44789_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 13 16:39 1_44790_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246464 Jan 13 17:00 1_44791_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5276160 Jan 13 17:06 1_44792_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10085888 Jan 13 17:06 1_44793_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7692288 Jan 13 17:06 1_44794_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 13 17:06 1_44795_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5833728 Jan 13 17:06 1_44796_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8645120 Jan 13 17:07 1_44797_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7069184 Jan 13 17:07 1_44798_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5677056 Jan 13 17:07 1_44799_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243904 Jan 13 17:07 1_44800_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 17:25 1_44801_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 17:40 1_44802_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246464 Jan 13 17:55 1_44803_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5898240 Jan 13 18:06 1_44804_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10256896 Jan 13 18:07 1_44805_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5553664 Jan 13 18:07 1_44806_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8150016 Jan 13 18:07 1_44807_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5436928 Jan 13 18:07 1_44808_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 18:07 1_44809_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 18:07 1_44810_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6279168 Jan 13 18:26 1_44811_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5242368 Jan 13 18:41 1_44812_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 18:56 1_44813_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5880320 Jan 13 19:06 1_44814_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9348608 Jan 13 19:06 1_44815_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10476544 Jan 13 19:06 1_44816_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9485312 Jan 13 19:07 1_44817_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9975296 Jan 13 19:07 1_44818_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7744512 Jan 13 19:07 1_44819_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 19:07 1_44820_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5236224 Jan 13 19:07 1_44821_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 19:16 1_44822_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5243904 Jan 13 19:31 1_44823_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 19:51 1_44824_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5248000 Jan 13 20:02 1_44825_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9619968 Jan 13 20:07 1_44826_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9526272 Jan 13 20:07 1_44827_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8882688 Jan 13 20:07 1_44828_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7696384 Jan 13 20:07 1_44829_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8043008 Jan 13 20:12 1_44830_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 20:27 1_44831_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 20:42 1_44832_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5239296 Jan 13 21:00 1_44833_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7681536 Jan 13 21:06 1_44834_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9889792 Jan 13 21:06 1_44835_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8321536 Jan 13 21:07 1_44836_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9504256 Jan 13 21:07 1_44837_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6172160 Jan 13 21:07 1_44838_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8752640 Jan 13 21:07 1_44839_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5260800 Jan 13 21:07 1_44840_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 21:07 1_44841_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 21:13 1_44842_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 21:28 1_44843_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 21:43 1_44844_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 21:58 1_44845_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6098944 Jan 13 22:07 1_44846_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9601024 Jan 13 22:07 1_44847_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5732352 Jan 13 22:07 1_44848_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9854976 Jan 13 22:07 1_44849_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 22:07 1_44850_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5237760 Jan 13 22:07 1_44851_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 22:13 1_44852_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 22:29 1_44853_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5244928 Jan 13 22:49 1_44854_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 23:00 1_44855_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7987712 Jan 13 23:06 1_44856_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7931392 Jan 13 23:06 1_44857_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8781824 Jan 13 23:07 1_44858_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8308224 Jan 13 23:07 1_44859_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6234112 Jan 13 23:07 1_44860_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10481152 Jan 13 23:07 1_44861_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 23:07 1_44862_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 23:07 1_44863_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 23:09 1_44864_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 13 23:27 1_44865_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 13 23:44 1_44866_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 00:00 1_44867_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6148096 Jan 14 00:07 1_44868_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7759872 Jan 14 00:07 1_44869_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5247488 Jan 14 00:07 1_44870_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10201088 Jan 14 00:07 1_44871_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246976 Jan 14 00:07 1_44872_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 00:07 1_44873_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 00:07 1_44874_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 00:25 1_44875_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 00:40 1_44876_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 00:55 1_44877_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5476864 Jan 14 01:06 1_44878_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8941568 Jan 14 01:06 1_44879_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9086464 Jan 14 01:06 1_44880_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 14 01:07 1_44881_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6313472 Jan 14 01:07 1_44882_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10477056 Jan 14 01:07 1_44883_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7822336 Jan 14 01:07 1_44884_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8092672 Jan 14 01:07 1_44885_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5351936 Jan 14 01:26 1_44886_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5257728 Jan 14 01:41 1_44887_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 01:56 1_44888_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 02:07 1_44889_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9852928 Jan 14 02:07 1_44890_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8430080 Jan 14 02:07 1_44891_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7289344 Jan 14 02:07 1_44892_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8056320 Jan 14 02:07 1_44893_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5236224 Jan 14 02:07 1_44894_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 02:16 1_44895_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 02:36 1_44896_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5246976 Jan 14 02:52 1_44897_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6462464 Jan 14 03:06 1_44898_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9611264 Jan 14 03:06 1_44899_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8107008 Jan 14 03:06 1_44900_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9664512 Jan 14 03:07 1_44901_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7578624 Jan 14 03:07 1_44902_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8379392 Jan 14 03:07 1_44903_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6803968 Jan 14 03:07 1_44904_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5234176 Jan 14 03:07 1_44905_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 03:07 1_44906_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 03:22 1_44907_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 03:37 1_44908_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5251072 Jan 14 03:53 1_44909_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5641728 Jan 14 04:07 1_44910_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9585152 Jan 14 04:07 1_44911_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8094720 Jan 14 04:07 1_44912_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 14 04:07 1_44913_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5542912 Jan 14 04:07 1_44914_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5239808 Jan 14 04:07 1_44915_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 04:18 1_44916_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 04:33 1_44917_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 04:48 1_44918_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 05:03 1_44919_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10248192 Jan 14 05:06 1_44920_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482176 Jan 14 05:06 1_44921_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8960000 Jan 14 05:07 1_44922_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6096384 Jan 14 05:07 1_44923_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8349184 Jan 14 05:07 1_44924_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7352320 Jan 14 05:07 1_44925_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5520896 Jan 14 05:07 1_44926_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 05:07 1_44927_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 05:19 1_44928_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 05:39 1_44929_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 05:54 1_44930_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 06:04 1_44931_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8739328 Jan 14 06:07 1_44932_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7336960 Jan 14 06:07 1_44933_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10480640 Jan 14 06:07 1_44934_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6726144 Jan 14 06:07 1_44935_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5255168 Jan 14 06:08 1_44936_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8923136 Jan 14 06:24 1_44937_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 06:40 1_44938_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241344 Jan 14 06:55 1_44939_571317858.dbf
+-rw-r-----    1 oracle   oinstall  6006272 Jan 14 07:06 1_44940_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8296960 Jan 14 07:06 1_44941_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10308608 Jan 14 07:07 1_44942_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8157696 Jan 14 07:07 1_44943_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10093056 Jan 14 07:07 1_44944_571317858.dbf
+-rw-r-----    1 oracle   oinstall  8482304 Jan 14 07:07 1_44945_571317858.dbf
+-rw-r-----    1 oracle   oinstall  9127936 Jan 14 07:08 1_44946_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 07:08 1_44947_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5287424 Jan 14 07:20 1_44948_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5241856 Jan 14 07:35 1_44949_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5277696 Jan 14 07:40 1_44950_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5261824 Jan 14 07:55 1_44951_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5272576 Jan 14 08:07 1_44952_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 14 08:07 1_44953_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10438144 Jan 14 08:07 1_44954_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5882880 Jan 14 08:08 1_44955_571317858.dbf
+-rw-r-----    1 oracle   oinstall  7955968 Jan 14 08:08 1_44956_571317858.dbf
+-rw-r-----    1 oracle   oinstall  5239808 Jan 14 08:08 1_44957_571317858.dbf
+-rw-r--r--    1 oracle   oinstall        0 Jan 12 12:58 md5sum.txt
+[oracle@linux-for-srk archlogs]$ rm -f *.dbf
+[oracle@linux-for-srk archlogs]$ rm -f md5sum.txt 
+[oracle@linux-for-srk archlogs]$ ll
+total 0
+[oracle@linux-for-srk archlogs]$ cd ..
+[oracle@linux-for-srk A]$ ll
+total 32
+drwxrwxrwx    2 root     root        32768 Jan 14 12:24 archlogs
+[oracle@linux-for-srk A]$ ll -a
+total 40
+drwxr-xr-x    3 oracle   oinstall     4096 Jan 14 12:24 .
+drwxr-xr-x    4 oracle   oinstall     4096 Oct  8  2008 ..
+drwxrwxrwx    2 root     root        32768 Jan 14 12:24 archlogs
+[oracle@linux-for-srk A]$ rman target / as sysdba
+
+Argument     Value          Description
+-----------------------------------------------------------------------------
+target       quoted-string  connect-string for target database
+catalog      quoted-string  connect-string for recovery catalog
+nocatalog    none           if specified, then no recovery catalog
+cmdfile      quoted-string  name of input command file
+log          quoted-string  name of output message log file
+trace        quoted-string  name of output debugging message log file
+append       none           if specified, log is opened in append mode
+debug        optional-args  activate debugging
+msgno        none           show RMAN-nnnn prefix for all messages
+send         quoted-string  send a command to the media manager
+pipe         string         building block for pipe names
+timeout      integer        number of seconds to wait for pipe input
+checksyntax  none           check the command file for syntax errors
+-----------------------------------------------------------------------------
+Both single and double quotes (' or ") are accepted for a quoted-string.
+Quotes are not required unless the string contains embedded white-space.
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-00552: syntax error in command line arguments
+RMAN-01009: syntax error: found "as": expecting one of: "append, at, auxiliary, catalog, cmdfile, clone, checksyntax, debug, log, msglog, mask, msgno, nocatalog, pipe, rcvcat, script, slaxdebug, send, target, timeout, trace"
+RMAN-01007: at line 2 column 1 file: command line arguments
+[oracle@linux-for-srk A]$ rman taregt /
+
+Argument     Value          Description
+-----------------------------------------------------------------------------
+target       quoted-string  connect-string for target database
+catalog      quoted-string  connect-string for recovery catalog
+nocatalog    none           if specified, then no recovery catalog
+cmdfile      quoted-string  name of input command file
+log          quoted-string  name of output message log file
+trace        quoted-string  name of output debugging message log file
+append       none           if specified, log is opened in append mode
+debug        optional-args  activate debugging
+msgno        none           show RMAN-nnnn prefix for all messages
+send         quoted-string  send a command to the media manager
+pipe         string         building block for pipe names
+timeout      integer        number of seconds to wait for pipe input
+checksyntax  none           check the command file for syntax errors
+-----------------------------------------------------------------------------
+Both single and double quotes (' or ") are accepted for a quoted-string.
+Quotes are not required unless the string contains embedded white-space.
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-00552: syntax error in command line arguments
+RMAN-01009: syntax error: found "identifier": expecting one of: "append, at, auxiliary, catalog, cmdfile, clone, checksyntax, debug, log, msglog, mask, msgno, nocatalog, pipe, rcvcat, script, slaxdebug, send, target, timeout, trace"
+RMAN-01008: the bad identifier was: taregt
+RMAN-01007: at line 2 column 1 file: command line arguments
+[oracle@linux-for-srk A]$ rman target /
+
+Recovery Manager: Release 10.2.0.1.0 - Production on Thu Jan 14 12:26:09 2010
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+connected to target database (not started)
+
+RMAN> startup nomount;
+exit
+
+
+Recovery Manager complete.
+[oracle@linux-for-srk A]$ export NB_ORA_SERV=address.com
+[oracle@linux-for-srk A]$ export NB_ORA_CLIENT=address2.com
+[oracle@linux-for-srk A]$ rman target /
+
+Recovery Manager: Release 10.2.0.1.0 - Production on Thu Jan 14 12:27:34 2010
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+connected to target database (not started)
+
+RMAN> startup nomount
+
+Oracle instance started
+
+Total System Global Area    1258291200 bytes
+
+Fixed Size                     1219160 bytes
+Variable Size                402654632 bytes
+Database Buffers             838860800 bytes
+Redo Buffers                  15556608 bytes
+
+RMAN> set dbid=3808941853;
+
+executing command: SET DBID
+
+RMAN> run {
+2> set controlfile autobackup format for device type 'sbt_tape' to '%F';
+3> allocate channel t1 device type 'sbt_tape';
+4> restore controlfile from autobackup MAXSEQ 20 MAXDAYS 2;
+5> }
+
+executing command: SET CONTROLFILE AUTOBACKUP FORMAT
+using target database control file instead of recovery catalog
+
+allocated channel: t1
+channel t1: sid=486 devtype=SBT_TAPE
+channel t1: Veritas NetBackup for Oracle - Release 6.5 (2008052301)
+
+Starting restore at 14-JAN-10
+
+channel t1: looking for autobackup on day: 20100114
+channel t1: looking for autobackup on day: 20100113
+channel t1: autobackup found: c-3808941853-20100113-02
+channel t1: control file restore from autobackup complete
+output filename=/opt/ora102/oradata/A/control01.ctl
+output filename=/opt/ora102/oradata/A/control02.ctl
+output filename=/opt/ora102/oradata/A/control03.ctl
+Finished restore at 14-JAN-10
+released channel: t1
+
+RMAN> alter database mount;
+
+database mounted
+
+RMAN> run {
+2> ALLOCATE CHANNEL CH00 TYPE 'SBT_TAPE';
+3> SEND 'NB_ORA_SERV=address.com, NB_ORA_CLIENT=client.ru';
+4> restore database;
+5> }
+
+allocated channel: CH00
+channel CH00: sid=486 devtype=SBT_TAPE
+channel CH00: Veritas NetBackup for Oracle - Release 6.5 (2008052301)
+
+sent command to channel: CH00
+
+Starting restore at 14-JAN-10
+Starting implicit crosscheck backup at 14-JAN-10
+Finished implicit crosscheck backup at 14-JAN-10
+
+Starting implicit crosscheck copy at 14-JAN-10
+Crosschecked 3 objects
+Finished implicit crosscheck copy at 14-JAN-10
+
+searching for all files in the recovery area
+cataloging files...
+no files cataloged
+
+
+channel CH00: starting datafile backupset restore
+channel CH00: specifying datafile(s) to restore from backup set
+restoring datafile 00002 to /opt/ora102/oradata/A/undotbs01.dbf
+restoring datafile 00010 to /opt/ora102/oradata/A/ch001_reorg0.dbf
+restoring datafile 00011 to /opt/ora102/oradata/A/ch_but
+restoring datafile 00012 to /opt/ora102/oradata/A/prd01.dbf
+restoring datafile 00014 to /opt/ora102/oradata/A/system02.dbf
+channel CH00: reading from backup piece bk_4050_1_708206418
+channel CH00: restored backup piece 1
+piece handle=bk_4050_1_708206418 tag=HOT_DB_BK_LEVEL0
+channel CH00: restore complete, elapsed time: 00:02:36
+channel CH00: starting datafile backupset restore
+channel CH00: specifying datafile(s) to restore from backup set
+restoring datafile 00001 to /opt/ora102/oradata/A/system01.dbf
+restoring datafile 00004 to /opt/ora102/oradata/A/users01.dbf
+restoring datafile 00005 to /opt/ora102/oradata/A/monp01.dbf
+restoring datafile 00006 to /opt/ora102/oradata/A/ch001.dbf
+restoring datafile 00008 to /opt/ora102/oradata/A/ch_ntm.dbf
+channel CH00: reading from backup piece bk_4051_1_708206805
+channel CH00: restored backup piece 1
+piece handle=bk_4051_1_708206805 tag=HOT_DB_BK_LEVEL0
+channel CH00: restore complete, elapsed time: 00:02:17
+channel CH00: starting datafile backupset restore
+channel CH00: specifying datafile(s) to restore from backup set
+restoring datafile 00003 to /opt/ora102/oradata/A/sysaux01.dbf
+restoring datafile 00007 to /opt/ora102/oradata/A/ch005.dbf
+restoring datafile 00009 to /opt/ora102/oradata/A/ch_006.dbf
+restoring datafile 00013 to /opt/ora102/oradata/A/kgok.dbf
+restoring datafile 00015 to /opt/ora102/oradata/A/sysaux02.dbf
+channel CH00: reading from backup piece bk_4052_1_708207143
+channel CH00: restored backup piece 1
+piece handle=bk_4052_1_708207143 tag=HOT_DB_BK_LEVEL0
+channel CH00: restore complete, elapsed time: 00:01:55
+Finished restore at 14-JAN-10
+released channel: CH00
+
+RMAN> run {
+2> ALLOCATE CHANNEL CH00 TYPE 'SBT_TAPE';
+3> SEND 'NB_ORA_SERV=address.com, NB_ORA_CLIENT=client.ru';
+4> restore archivelog all;
+5> }
+
+allocated channel: CH00
+channel CH00: sid=486 devtype=SBT_TAPE
+channel CH00: Veritas NetBackup for Oracle - Release 6.5 (2008052301)
+
+sent command to channel: CH00
+
+Starting restore at 14-JAN-10
+
+released channel: CH00
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of restore command at 01/14/2010 14:33:03
+RMAN-06026: some targets not found - aborting restore
+RMAN-06025: no backup of log thread 1 seq 49617 lowscn 195020129310 found to restore
+RMAN-06025: no backup of log thread 1 seq 49616 lowscn 195020124302 found to restore
+RMAN-06025: no backup of log thread 1 seq 49615 lowscn 195020123492 found to restore
+RMAN-06025: no backup of log thread 1 seq 49614 lowscn 195020122615 found to restore
+RMAN-06025: no backup of log thread 1 seq 49613 lowscn 195020096602 found to restore
+RMAN-06025: no backup of log thread 1 seq 49612 lowscn 195020096436 found to restore
+RMAN-06025: no backup of log thread 1 seq 49611 lowscn 195020096070 found to restore
+RMAN-06025: no backup of log thread 1 seq 49610 lowscn 195020094520 found to restore
+RMAN-06025: no backup of log thread 1 seq 49609 lowscn 195020015462 found to restore
+RMAN-06025: no backup of log thread 1 seq 47106 lowscn 194923662379 found to restore
+RMAN-06025: no backup of log thread 1 seq 47105 lowscn 194923622796 found to restore
+RMAN-06025: no backup of log thread 1 seq 47104 lowscn 194923585539 found to restore
+RMAN-06025: no backup of log thread 1 seq 47103 lowscn 194923516642 found to restore
+RMAN-06025: no backup of log thread 1 seq 47102 lowscn 194923433737 found to restore
+RMAN-06025: no backup of log thread 1 seq 47101 lowscn 194923407552 found to restore
+RMAN-06025: no backup of log thread 1 seq 47100 lowscn 194923407020 found to restore
+RMAN-06025: no backup of log thread 1 seq 47099 lowscn 194923406447 found to restore
+RMAN-06025: no backup of log thread 1 seq 47098 lowscn 194923372174 found to restore
+RMAN-06025: no backup of log thread 1 seq 47097 lowscn 194923371925 found to restore
+RMAN-06025: no backup of log thread 1 seq 47096 lowscn 194923370829 found to restore
+RMAN-06025: no backup of log thread 1 seq 47095 lowscn 194923293899 found to restore
+RMAN-06025: no backup of log thread 1 seq 47094 lowscn 194923293294 found to restore
+RMAN-06025: no backup of log thread 1 seq 47093 lowscn 194923291676 found to restore
+RMAN-06025: no backup of log thread 1 seq 47092 lowscn 194923231818 found to restore
+RMAN-06025: no backup of log thread 1 seq 47091 lowscn 194923187768 found to restore
+RMAN-06025: no backup of log thread 1 seq 47090 lowscn 194923107353 found to restore
+RMAN-06025: no backup of log thread 1 seq 47089 lowscn 194923083353 found to restore
+RMAN-06025: no backup of log thread 1 seq 47088 lowscn 194923082045 found to restore
+RMAN-06025: no backup of log thread 1 seq 47087 lowscn 194923048591 found to restore
+RMAN-06025: no backup of log thread 1 seq 47086 lowscn 194923048050 found to restore
+RMAN-06025: no backup of log thread 1 seq 47085 lowscn 194923046469 found to restore
+RMAN-06025: no backup of log thread 1 seq 47084 lowscn 194923003570 found to restore
+RMAN-06025: no backup of log thread 1 seq 47083 lowscn 194922953230 found to restore
+RMAN-06025: no backup of log thread 1 seq 47082 lowscn 194922870872 found to restore
+RMAN-06025: no backup of log thread 1 seq 47081 lowscn 194922511196 found to restore
+RMAN-06025: no backup of log thread 1 seq 47080 lowscn 194922491509 found to restore
+RMAN-06025: no backup of log thread 1 seq 47079 lowscn 194922490914 found to restore
+RMAN-06025: no backup of log thread 1 seq 47078 lowscn 194922461570 found to restore
+RMAN-06025: no backup of log thread 1 seq 47077 lowscn 194922461271 found to restore
+RMAN-06025: no backup of log thread 1 seq 47076 lowscn 194922460026 found to restore
+RMAN-06025: no backup of log thread 1 seq 47075 lowscn 194922403618 found to restore
+RMAN-06025: no backup of log thread 1 seq 47074 lowscn 194922403034 found to restore
+RMAN-06025: no backup of log thread 1 seq 47073 lowscn 194922402475 found to restore
+RMAN-06025: no backup of log thread 1 seq 47072 lowscn 194922374535 found to restore
+RMAN-06025: no backup of log thread 1 seq 47071 lowscn 194922331673 found to restore
+RMAN-06025: no backup of log thread 1 seq 47070 lowscn 194922302995 found to restore
+RMAN-06025: no backup of log thread 1 seq 47069 lowscn 194922184245 found to restore
+RMAN-06025: no backup of log thread 1 seq 47068 lowscn 194922138356 found to restore
+RMAN-06025: no backup of log thread 1 seq 47067 lowscn 194922137590 found to restore
+RMAN-06025: no backup of log thread 1 seq 47066 lowscn 194922136875 found to restore
+RMAN-06025: no backup of log thread 1 seq 47065 lowscn 194922111280 found to restore
+RMAN-06025: no backup of log thread 1 seq 47064 lowscn 194922110621 found to restore
+RMAN-06025: no backup of log thread 1 seq 47063 lowscn 194922109652 found to restore
+RMAN-06025: no backup of log thread 1 seq 47062 lowscn 194922058340 found to restore
+ MAN-06025: no backup of log thread 1 seq 47061 lowscn 194921993900 found to 
+RMAN> spool log to '/home/oracle/backup_list.txt';
+RMAN> list backup;
+RMAN> spool log off;
+
+Spooling for log turned off
+
+Recovery Manager10.2.0.1.0
+
+RMAN> exit
+
+
+Recovery Manager complete.
+[oracle@linux-for-srk A]$ pwd
+/opt/ora102/oradata/A
+[oracle@linux-for-srk A]$ ll
+total 11796572
+drwxrwxrwx    2 root     root        32768 Jan 14 12:24 archlogs
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:38 ch001.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:35 ch001_reorg0.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:40 ch005.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:40 ch_006.dbf
+-rw-r-----    1 oracle   oinstall 471867392 Jan 14 13:35 ch_but
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:38 ch_ntm.dbf
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 14:47 control01.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 14:47 control02.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 14:47 control03.ctl
+-rw-r-----    1 oracle   oinstall 1073750016 Jan 14 13:40 kgok.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 13:38 monp01.dbf
+-rw-r-----    1 oracle   oinstall 524296192 Jan 14 13:35 prd01.dbf
+-rw-r-----    1 oracle   oinstall 597696512 Jan 14 13:40 sysaux01.dbf
+-rw-r-----    1 oracle   oinstall 36708352 Jan 14 13:39 sysaux02.dbf
+-rw-r-----    1 oracle   oinstall 639639552 Jan 14 13:38 system01.dbf
+-rw-r-----    1 oracle   oinstall 10493952 Jan 14 13:34 system02.dbf
+-rw-r-----    1 oracle   oinstall 2375032832 Jan 14 13:36 undotbs01.dbf
+-rw-r-----    1 oracle   oinstall 20979712 Jan 14 13:37 users01.dbf
+[oracle@linux-for-srk A]$ cd archlogs/
+[oracle@linux-for-srk archlogs]$ ll
+total 0
+[oracle@linux-for-srk archlogs]$ rman target /
+
+Recovery Manager: Release 10.2.0.1.0 - Production on Thu Jan 14 14:50:02 2010
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+connected to target database: A (DBID=3808941853, not open)
+
+RMAN> RUN {
+2> ALLOCATE CHANNEL CH00 TYPE 'SBT_TAPE';
+3> SEND 'NB_ORA_SERV=address.com, NB_ORA_CLIENT=client.ru';
+4> RESTORE ARCHIVELOG SEQUENCE BETWEEN }
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-00558: error encountered while parsing input commands
+RMAN-01009: syntax error: found "}": expecting one of: "integer"
+RMAN-01007: at line 4 column 37 file: standard input
+
+RMAN> recover database;
+
+Starting recover at 14-JAN-10
+using target database control file instead of recovery catalog
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: sid=489 devtype=DISK
+
+starting media recovery
+
+Oracle Error: 
+ORA-01547: warning: RECOVER succeeded but OPEN RESETLOGS would get error below
+ORA-01152: file 1 was not restored from a sufficiently old backup 
+ORA-01110: data file 1: '/opt/ora102/oradata/A/system01.dbf'
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of recover command at 01/14/2010 14:52:23
+RMAN-06053: unable to perform media recovery because of missing log
+RMAN-06025: no backup of log thread 1 seq 49617 lowscn 195020129310 found to restore
+RMAN-06025: no backup of log thread 1 seq 49616 lowscn 195020124302 found to restore
+RMAN-06025: no backup of log thread 1 seq 49615 lowscn 195020123492 found to restore
+RMAN-06025: no backup of log thread 1 seq 49614 lowscn 195020122615 found to restore
+RMAN-06025: no backup of log thread 1 seq 49613 lowscn 195020096602 found to restore
+RMAN-06025: no backup of log thread 1 seq 49612 lowscn 195020096436 found to restore
+RMAN-06025: no backup of log thread 1 seq 49611 lowscn 195020096070 found to restore
+RMAN-06025: no backup of log thread 1 seq 49610 lowscn 195020094520 found to restore
+RMAN-06025: no backup of log thread 1 seq 49609 lowscn 195020015462 found to restore
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49608 lowscn 195020015451
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49607 lowscn 195019834505
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49606 lowscn 195019777204
+
+RMAN> recover database;
+
+Starting recover at 14-JAN-10
+using channel ORA_DISK_1
+
+starting media recovery
+
+Oracle Error: 
+ORA-01547: warning: RECOVER succeeded but OPEN RESETLOGS would get error below
+ORA-01152: file 1 was not restored from a sufficiently old backup 
+ORA-01110: data file 1: '/opt/ora102/oradata/A/system01.dbf'
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of recover command at 01/14/2010 14:53:14
+RMAN-06053: unable to perform media recovery because of missing log
+RMAN-06025: no backup of log thread 1 seq 49617 lowscn 195020129310 found to restore
+RMAN-06025: no backup of log thread 1 seq 49616 lowscn 195020124302 found to restore
+RMAN-06025: no backup of log thread 1 seq 49615 lowscn 195020123492 found to restore
+RMAN-06025: no backup of log thread 1 seq 49614 lowscn 195020122615 found to restore
+RMAN-06025: no backup of log thread 1 seq 49613 lowscn 195020096602 found to restore
+RMAN-06025: no backup of log thread 1 seq 49612 lowscn 195020096436 found to restore
+RMAN-06025: no backup of log thread 1 seq 49611 lowscn 195020096070 found to restore
+RMAN-06025: no backup of log thread 1 seq 49610 lowscn 195020094520 found to restore
+RMAN-06025: no backup of log thread 1 seq 49609 lowscn 195020015462 found to restore
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49608 lowscn 195020015451
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49607 lowscn 195019834505
+RMAN-06102: no channel to restore a backup or copy of log thread 1 seq 49606 lowscn 195019777204
+
+RMAN> run {
+2> ALLOCATE CHANNEL CH00 TYPE 'SBT_TAPE';
+3> SEND 'NB_ORA_SERV=address.com, NB_ORA_CLIENT=client.ru';
+4> RESTORE ARCHIVELOG SEQUENCE BETWEEN 490606 AND 49617;
+5> }
+
+released channel: ORA_DISK_1
+allocated channel: CH00
+channel CH00: sid=489 devtype=SBT_TAPE
+channel CH00: Veritas NetBackup for Oracle - Release 6.5 (2008052301)
+
+sent command to channel: CH00
+
+Starting restore at 14-JAN-10
+
+released channel: CH00
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of restore command at 01/14/2010 14:54:31
+RMAN-06026: some targets not found - aborting restore
+RMAN-06025: no backup of log thread 1 seq 49617 lowscn 195020129310 found to restore
+RMAN-06025: no backup of log thread 1 seq 49616 lowscn 195020124302 found to restore
+RMAN-06025: no backup of log thread 1 seq 49615 lowscn 195020123492 found to restore
+RMAN-06025: no backup of log thread 1 seq 49614 lowscn 195020122615 found to restore
+RMAN-06025: no backup of log thread 1 seq 49613 lowscn 195020096602 found to restore
+RMAN-06025: no backup of log thread 1 seq 49612 lowscn 195020096436 found to restore
+RMAN-06025: no backup of log thread 1 seq 49611 lowscn 195020096070 found to restore
+RMAN-06025: no backup of log thread 1 seq 49610 lowscn 195020094520 found to restore
+RMAN-06025: no backup of log thread 1 seq 49609 lowscn 195020015462 found to restore
+
+RMAN> host 'bash';
+
+[oracle@linux-for-srk archlogs]$ ll
+total 0
+[oracle@linux-for-srk archlogs]$ pwd
+/opt/ora102/oradata/A/archlogs
+[oracle@linux-for-srk archlogs]$ exit
+exit
+host command complete
+
+RMAN> run {
+2> ALLOCATE CHANNEL CH00 TYPE 'SBT_TAPE';
+3> SEND 'NB_ORA_SERV=address.com, NB_ORA_CLIENT=client.ru';
+4> RESTORE ARCHIVELOG SEQUENCE BETWEEN 49606 AND 49608;
+5> }
+
+allocated channel: CH00
+channel CH00: sid=489 devtype=SBT_TAPE
+channel CH00: Veritas NetBackup for Oracle - Release 6.5 (2008052301)
+
+sent command to channel: CH00
+
+Starting restore at 14-JAN-10
+
+channel CH00: starting archive log restore to default destination
+channel CH00: restoring archive log
+archive log thread=1 sequence=49606
+channel CH00: restoring archive log
+archive log thread=1 sequence=49607
+channel CH00: restoring archive log
+archive log thread=1 sequence=49608
+channel CH00: reading from backup piece al_4068_1_708208896
+channel CH00: restored backup piece 1
+piece handle=al_4068_1_708208896 tag=TAG20100113T201742
+channel CH00: restore complete, elapsed time: 00:00:57
+Finished restore at 14-JAN-10
+released channel: CH00
+
+RMAN> host 'll';
+
+/bin/bash: line 1: ll: command not found
+host command complete
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-06135: error executing host command: Additional information: 32512
+Additional information: 11
+
+RMAN> host 'ls -la';
+
+total 7852
+drwxrwxrwx    2 root     root        32768 Jan 14 14:57 .
+drwxr-xr-x    3 oracle   oinstall     4096 Jan 14 13:39 ..
+-rw-r-----    1 oracle   oinstall  5254144 Jan 14 14:57 1_49606_571317858.dbf
+-rw-r-----    1 oracle   oinstall  2724864 Jan 14 14:57 1_49607_571317858.dbf
+-rw-r-----    1 oracle   oinstall     1024 Jan 14 14:57 1_49608_571317858.dbf
+host command complete
+
+RMAN> recovrer database;
+
+Starting recover at 14-JAN-10
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: sid=489 devtype=DISK
+
+starting media recovery
+
+archive log thread 1 sequence 49606 is already on disk as file /opt/ora102/oradata/A/archlogs/1_49606_571317858.dbf
+archive log thread 1 sequence 49607 is already on disk as file /opt/ora102/oradata/A/archlogs/1_49607_571317858.dbf
+archive log thread 1 sequence 49608 is already on disk as file /opt/ora102/oradata/A/archlogs/1_49608_571317858.dbf
+Oracle Error: 
+ORA-01547: warning: RECOVER succeeded but OPEN RESETLOGS would get error below
+ORA-01152: file 1 was not restored from a sufficiently old backup 
+ORA-01110: data file 1: '/opt/ora102/oradata/A/system01.dbf'
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-03002: failure of recover command at 01/14/2010 14:59:19
+RMAN-06053: unable to perform media recovery because of missing log
+RMAN-06025: no backup of log thread 1 seq 49617 lowscn 195020129310 found to restore
+RMAN-06025: no backup of log thread 1 seq 49616 lowscn 195020124302 found to restore
+RMAN-06025: no backup of log thread 1 seq 49615 lowscn 195020123492 found to restore
+RMAN-06025: no backup of log thread 1 seq 49614 lowscn 195020122615 found to restore
+RMAN-06025: no backup of log thread 1 seq 49613 lowscn 195020096602 found to restore
+RMAN-06025: no backup of log thread 1 seq 49612 lowscn 195020096436 found to restore
+RMAN-06025: no backup of log thread 1 seq 49611 lowscn 195020096070 found to restore
+RMAN-06025: no backup of log thread 1 seq 49610 lowscn 195020094520 found to restore
+RMAN-06025: no backup of log thread 1 seq 49609 lowscn 195020015462 found to restore
+
+RMAN> recover database until sequence = 49608;
+
+Starting recover at 14-JAN-10
+using channel ORA_DISK_1
+
+starting media recovery
+
+archive log thread 1 sequence 49606 is already on disk as file /opt/ora102/oradata/A/archlogs/1_49606_571317858.dbf
+archive log thread 1 sequence 49607 is already on disk as file /opt/ora102/oradata/A/archlogs/1_49607_571317858.dbf
+archive log filename=/opt/ora102/oradata/A/archlogs/1_49606_571317858.dbf thread=1 sequence=49606
+archive log filename=/opt/ora102/oradata/A/archlogs/1_49607_571317858.dbf thread=1 sequence=49607
+media recovery complete, elapsed time: 00:00:04
+Finished recover at 14-JAN-10
+
+RMAN> alter database open resetlogs;
+
+database opened
+
+RMAN> alter databse shutdown
+
+RMAN-00571: ===========================================================
+RMAN-00569: =============== ERROR MESSAGE STACK FOLLOWS ===============
+RMAN-00571: ===========================================================
+RMAN-00558: error encountered while parsing input commands
+RMAN-01009: syntax error: found "identifier": expecting one of: "clone, database"
+RMAN-01008: the bad identifier was: databse
+RMAN-01007: at line 1 column 7 file: standard input
+
+RMAN> shutdown abort
+
+Oracle instance shut down
+
+RMAN> exit
+
+
+Recovery Manager complete.
+[oracle@linux-for-srk archlogs]$ sqlplus / as sysdba
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Jan 14 15:07:10 2010
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL> startup
+ORACLE instance started.
+
+Total System Global Area 1258291200 bytes
+Fixed Size		    1219160 bytes
+Variable Size		  402654632 bytes
+Database Buffers	  838860800 bytes
+Redo Buffers		   15556608 bytes
+Database mounted.
+Database opened.
+SQL> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> exit
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+[oracle@linux-for-srk archlogs]$ pwd
+/opt/ora102/oradata/A/archlogs
+[oracle@linux-for-srk archlogs]$ ll
+total 73888
+-rw-r-----    1 oracle   oinstall  8864768 Jan 14 15:06 1_1_708275159.dbf
+-rw-r-----    1 oracle   oinstall  8296448 Jan 14 15:06 1_2_708275159.dbf
+-rw-r-----    1 oracle   oinstall 10183168 Jan 14 15:06 1_3_708275159.dbf
+-rw-r-----    1 oracle   oinstall 10052608 Jan 14 15:06 1_4_708275159.dbf
+-rw-r-----    1 oracle   oinstall  5254144 Jan 14 14:57 1_49606_571317858.dbf
+-rw-r-----    1 oracle   oinstall  2724864 Jan 14 14:57 1_49607_571317858.dbf
+-rw-r-----    1 oracle   oinstall     1024 Jan 14 14:57 1_49608_571317858.dbf
+-rw-r-----    1 oracle   oinstall 10482688 Jan 14 15:06 1_5_708275159.dbf
+-rw-r-----    1 oracle   oinstall  7726080 Jan 14 15:06 1_6_708275159.dbf
+-rw-r-----    1 oracle   oinstall  5330944 Jan 14 15:06 1_7_708275159.dbf
+-rw-r-----    1 oracle   oinstall  5239808 Jan 14 15:06 1_8_708275159.dbf
+-rw-r-----    1 oracle   oinstall  1335808 Jan 14 15:07 1_9_708275159.dbf
+[oracle@linux-for-srk archlogs]$ cd ..
+[oracle@linux-for-srk A]$ ll
+total 11827428
+drwxrwxrwx    2 root     root        32768 Jan 14 15:07 archlogs
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 ch001.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 ch001_reorg0.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 ch005.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 ch_006.dbf
+-rw-r-----    1 oracle   oinstall 471867392 Jan 14 15:07 ch_but
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 ch_ntm.dbf
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 15:08 control01.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 15:08 control02.ctl
+-rw-r-----    1 oracle   oinstall  8601600 Jan 14 15:08 control03.ctl
+-rw-r-----    1 oracle   oinstall 1073750016 Jan 14 15:07 kgok.dbf
+-rw-r-----    1 oracle   oinstall 1048584192 Jan 14 15:07 monp01.dbf
+-rw-r-----    1 oracle   oinstall 524296192 Jan 14 15:07 prd01.dbf
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 15:07 redo01.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 15:07 redo02.log
+-rw-r-----    1 oracle   oinstall 10486272 Jan 14 15:07 redo03.log
+-rw-r-----    1 oracle   oinstall 597696512 Jan 14 15:07 sysaux01.dbf
+-rw-r-----    1 oracle   oinstall 36708352 Jan 14 15:07 sysaux02.dbf
+-rw-r-----    1 oracle   oinstall 639639552 Jan 14 15:07 system01.dbf
+-rw-r-----    1 oracle   oinstall 10493952 Jan 14 15:07 system02.dbf
+-rw-r-----    1 oracle   oinstall 20979712 Jan 14 15:06 temp01.dbf
+-rw-r-----    1 oracle   oinstall 2375032832 Jan 14 15:07 undotbs01.dbf
+-rw-r-----    1 oracle   oinstall 20979712 Jan 14 15:07 users01.dbf
+[oracle@linux-for-srk A]$ exit
+logout

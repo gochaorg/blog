@@ -1,0 +1,16 @@
+Общие вопросы
+==============
+
+- [Ко/контр вариантность](types/readme.md)
+
+Опросники
+==========
+
+- [Общий список](common.md)
+- [Вопросы по JAVA](java.md)
+- [Вопросы по JVM](jvm.md)
+- [Безопасность](java-security.md)
+- [Многопоточная JAVA](java-threads.md)
+- [Maven](maven.md)
+- [JDBC](jdbc.md)
+- [MSSQL](mssql.md)

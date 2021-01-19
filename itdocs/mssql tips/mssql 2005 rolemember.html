@@ -1,0 +1,32 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql 2005 rolemember</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql 2005 rolemember"><a name="mssql 2005 rolemember"></a><h1>mssql 2005 rolemember</h1>
+SELECT 
+    rm.role_principal_id as [role_id], 
+	sp.name as [role_name],
+	sp.type_desc as [role_type],
+	sp.is_disabled as [role_disabled],
+
+    rm.member_principal_id as [member_id],
+	sp2.name as [member_name],
+	sp2.type_desc as [member_type],
+	sp2.is_disabled as [member_disabled]
+from sys.server_role_members rm
+	left outer join sys.server_principals sp
+		on rm.role_principal_id = sp.principal_id
+	left outer join sys.server_principals sp2
+		on rm.member_principal_id = sp2.principal_id
+;</div></body></html>

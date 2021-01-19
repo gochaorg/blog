@@ -1,0 +1,36 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Оптимизация индексов mssql вариант 2</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="Оптимизация индексов mssql вариант 2"><a name="%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F %D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%BE%D0%B2 mssql %D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82 2"></a><h1>Оптимизация индексов mssql вариант 2</h1>
+select 
+	OBJECT_NAME(object_id) object_name, 
+	(select name from sys.indexes i where i.object_id = pi.object_id and i.index_id = pi.index_id) as index_name,
+	(
+		'ALTER INDEX ['+
+		(select name from sys.indexes i where i.object_id = pi.object_id and i.index_id = pi.index_id)+
+		'] ON [dbo].['+
+		OBJECT_NAME(object_id)+
+		'] REBUILD WITH (SORT_IN_TEMPDB = ON);'+
+		' -- avg frag='+cast(pi.avg_fragmentation_in_percent as nvarchar)+'%'
+	) as rebuild_sql,
+	*
+FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, NULL) pi
+WHERE 
+	avg_fragmentation_in_percent &gt; 2
+	and index_type_desc not in ( 'HEAP' )
+order by avg_fragmentation_in_percent desc
+;
+
+--select * from sys.indexes i where i.object_id = 248492064;</div></body></html>

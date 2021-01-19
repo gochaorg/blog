@@ -1,0 +1,54 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql lock tree</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql lock tree"><a name="mssql lock tree"></a><h1>mssql lock tree</h1>
+SET NOCOUNT ON; 
+SET CONCAT_NULL_YIELDS_NULL OFF 
+GO 
+
+WITH BLOCKERS (SPID, BLOCKED, LEVEL, BATCH,waittype,lastwaittype) 
+AS 
+( 
+   SELECT 
+   SPID, 
+   BLOCKED, 
+   CAST (REPLICATE ('0', 4-LEN (CAST (SPID AS VARCHAR))) + CAST (SPID AS VARCHAR) AS VARCHAR (1000)) AS LEVEL, 
+   REPLACE (REPLACE (T.TEXT, CHAR(10), ' '), CHAR (13), ' ' ) AS BATCH, 
+   R.waittype, 
+   R.lastwaittype 
+   FROM sys.sysprocesses R with (nolock) 
+   CROSS APPLY SYS.DM_EXEC_SQL_TEXT(R.SQL_HANDLE) T 
+   WHERE (BLOCKED = 0 OR BLOCKED = SPID) 
+   AND EXISTS    (SELECT SPID,BLOCKED,CAST (REPLICATE ('0', 4-LEN (CAST (SPID AS VARCHAR))) + CAST (SPID AS VARCHAR) AS VARCHAR (1000)) AS LEVEL, 
+   BLOCKED, REPLACE (REPLACE (T.TEXT, CHAR(10), ' '), CHAR (13), ' ' ) AS BATCH,R.waittype,R.lastwaittype FROM sys.sysprocesses R2 with (nolock) 
+   CROSS APPLY SYS.DM_EXEC_SQL_TEXT(R.SQL_HANDLE) T 
+WHERE R2.BLOCKED = R.SPID AND R2.BLOCKED &lt;&gt; R2.SPID) 
+
+UNION ALL 
+
+SELECT 
+    R.SPID, 
+    R.BLOCKED, 
+    CAST (BLOCKERS.LEVEL + RIGHT (CAST ((1000 + R.SPID) AS VARCHAR (100)), 4) AS VARCHAR (1000)) AS LEVEL, 
+    REPLACE (REPLACE (T.TEXT, CHAR(10), ' '), CHAR (13), ' ' ) AS BATCH, 
+    R.waittype, 
+    R.lastwaittype 
+    FROM sys.sysprocesses AS R with (nolock) 
+    CROSS APPLY SYS.DM_EXEC_SQL_TEXT(R.SQL_HANDLE) T 
+    INNER JOIN BLOCKERS ON R.BLOCKED = BLOCKERS.SPID WHERE R.BLOCKED &gt; 0 AND R.BLOCKED &lt;&gt; R.SPID 
+) 
+
+SELECT N'       ' + REPLICATE (N'|      ', LEN (LEVEL)/4 - 2) + CASE WHEN (LEN (LEVEL)/4 - 1) = 0 THEN 'HEAD - ' ELSE '|------ ' END + CAST (SPID AS VARCHAR (10)) + ' '  + BATCH AS BLOCKING_TREE ,  waittype ,lastwaittype,  GETDATE() as Time FROM BLOCKERS with (nolock) ORDER BY LEVEL ASC 
+go</div></body></html>

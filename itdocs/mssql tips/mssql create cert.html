@@ -1,0 +1,29 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql create cert</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql create cert"><a name="mssql create cert"></a><h1>mssql create cert</h1>
+<span style="font-size:large">Выпуск сертификата</span>
+CREATE CERTIFICATE WhitenessServerCert
+WITH SUBJECT = 'Whiteness Server Certificate',
+START_DATE = '08/15/2011',
+EXPIRY_DATE = '08/15/2021';
+GO
+
+<span style="font-size:large">Backup сертификата</span>
+BACKUP CERTIFICATE WhitenessServerCert TO FILE = 'C:\Cert\WhitenessServerCert.cer'
+go
+
+<span style="font-size:large">Создание сертификата из файла</span>
+CREATE CERTIFICATE WhitenessServerCert FROM FILE = 'C:\cert\WhitenessServerCert.cer'</div></body></html>

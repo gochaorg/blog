@@ -1,0 +1,9 @@
+openssh-server
+vsftpd
+samba samba-common samba-doc smbclient
+reiserfsprogs
+acl
+apache2
+libapache2-mod-php5
+php5-mysql
+mysql-server

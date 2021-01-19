@@ -1,0 +1,100 @@
+Вопросы по Maven
+=================
+
+- [Что  за файл settings.xml](https://maven.apache.org/settings.html) ?
+- структура проекта
+	- [назначение файлов/каталогов](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
+		- *src/main*
+		- *src/main/resources*
+		- *src/test*
+		- *src/test/resources*
+		- *target/*
+		- *pom.xml*
+- [Минимальная структура pom.xml](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html)
+	- *project*
+	- *project/modelVersion*
+	- *project/group*
+ 	- *project/artifact*
+ 	- *project/version*
+- [Типы сборок](https://maven.apache.org/pom.html#packaging) *packaging* - *jar/pom/war/zip/...*
+- [фазы сборки проекта](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference)
+	- *clean*
+	- *site*
+	- *validate*
+	- *compile*
+	- *test*
+	- *package*
+	- *verify*
+	- *install*
+	- *deploy*
+- Репозитории
+	- [Какие типы репозиториев бывают](https://maven.apache.org/guides/introduction/introduction-to-repositories.html) ? *локальные/удаленные публичные (central)/удаленные частные*
+		- Где располагается локальный репозиторий *.m2/repository*
+		- Как подключаются удаленные репозитории ?
+			- [прописать в settings.xml](https://maven.apache.org/guides/introduction/introduction-to-repositories.html#using-the-internal-repository)
+			- прописать в pom.xml
+		- [Как шифровать логины/пароли в settings.xml](https://maven.apache.org/guides/mini/guide-encryption.html)
+			- Как безопасно хранить пароли - *использовать master password settings.xml/settingsSecurity/relocation*
+		- [Как установить jar в локальный репозиторий](https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html) - *mvn install:install-file*
+- [Зависимости](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html)
+	- [Что входит в maven координаты](https://maven.apache.org/pom.html#Maven_Coordinates) ?
+		- *Обязательно groupId, artifactId, version*
+		- *Опционально type, classifier*
+		- Что указывается в version ?
+			- формат1 - *major.minor*
+			- *в номерах версий добавляются классификаторы (beta/SNAPSHOT/RC1)*
+		- Что такое SNAPSHOT версия ?
+	- как добавить зависимость ? *project/dependencies/dependency*
+	- [как добавить зависимость с указанием диапазона](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#CJHDEHAB)
+	- Транзитивные зависимости
+	- [Область зависимости (scope)](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#dependency-scope)
+		- compile
+		- provided
+		- runtime
+		- test
+		- system
+		- import
+	- Как исключить зависимости ? *dependencies/dependency/exclusions/exclusion*
+	- Как просмотреть все зависимости проекта ? - *mvn dependency:tree*
+- Профили
+	- Что такое профили
+	- Условная активация профилей
+	- Расположение  профилей
+- Свойства
+- Много модульные проекты (multiproject)
+	- Наследование настроек
+- Deploy в удаленный репозитарий
+	- [Maven Wagon](https://maven.apache.org/wagon/index.html)
+- Архетипы
+	- Что такое архетип
+	- Как создать свой архетип
+- Написание плагинов
+	- Конфигурация плагинов
+		- Фаза сборки
+		- Зависимости плагинов
+- Типичные задачи
+	- Как добавить тесты
+		- Указать категории тестов
+	- Как добавить ресурсы для тестов
+	- Как создать fat-jar
+	- Как добавить информацию о версии сборке в код
+	- javadoc артефакт
+	- java sources артефакт
+	- генерация подписей к артефактам
+	- создание attached артефакта
+	- запуск java проекта
+	- запуск bash/bat скрипта
+	- запуск JSR233/BeanShell/Groovy скрипта
+	- проверка наличия новых версий библиотек
+	- изменение расположения локального репозитория
+	- копирование артефактов и зависимостей в отдельную директорию
+- Сборка дистрибутив
+	- maven-jar-plugin - добавление манифеста
+	- maven assembly - сборка дистрибутива
+	- maven appassembler
+		- сборка bash/bat скриптов для stand alone apps
+		- сборка дистрибутива для служб/демонов
+- Управление версиями
+	- проверка наличия новых версий библиотек
+	- рекурсивная смена версии
+	- публикация релиза - плагин Maven Release Plugin

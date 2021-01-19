@@ -1,0 +1,52 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>RESTORE HEADERONLY</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="RESTORE HEADERONLY"><a name="restore headeronly"></a><h1>RESTORE HEADERONLY</h1>
+<b>Пример 1</b>
+<span style="font-family:monospace">RESTORE HEADERONLY </span>FROM DISK = N'' WITH <span style="font-family:monospace">NOUNLOAD</span>
+RESTORE FILELISTONLY FROM DISK = N'path' WITH NOUNLOAD, FILE=1
+
+<b>Синтаксис</b>
+<span style="font-family:monospace">RESTORE HEADERONLY 
+FROM &lt;backup_device&gt; 
+[ WITH 
+ {
+--Backup Set Options
+   FILE = { backup_set_file_number | @backup_set_file_number } 
+ | PASSWORD = { password | @password_variable } 
+
+--Media Set Options
+ | MEDIANAME = { media_name | @media_name_variable } 
+ | MEDIAPASSWORD = { mediapassword | @mediapassword_variable }
+
+--Error Management Options
+ | { CHECKSUM | NO_CHECKSUM } 
+ | { STOP_ON_ERROR | CONTINUE_AFTER_ERROR }
+
+--Tape Options
+ | { REWIND | NOREWIND } 
+ | { UNLOAD | NOUNLOAD }  
+ } [ ,...n ]
+]
+[;]
+
+&lt;backup_device&gt; ::=
+{ 
+   { logical_backup_device_name |
+      @logical_backup_device_name_var }
+   | { DISK | TAPE } = { 'physical_backup_device_name' |
+       @physical_backup_device_name_var } 
+} 
+</span></div></body></html>

@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg4565"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="co-vars.svg"
+   inkscape:export-filename="/home/user/code/blog/itdocs/types/co-vars.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs4559">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker1282"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1280" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker1278"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1276" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutM"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path1147"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible;"
+       id="marker1272"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path1270" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible;"
+       id="marker1268"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         id="path1266" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="666.42523"
+     inkscape:cy="363.89537"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1858"
+     inkscape:window-height="1016"
+     inkscape:window-x="62"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:snap-grids="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-page="true" />
+  <metadata
+     id="metadata4562">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <rect
+       style="fill:#f6f6f6;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:1, 1;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1308"
+       width="297"
+       height="210"
+       x="0"
+       y="87" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="86.862602"
+       y="102.16051"
+       id="text5141"><tspan
+         sodipodi:role="line"
+         id="tspan5139"
+         x="86.862602"
+         y="109.33802"
+         style="stroke-width:0.26458332" /></text>
+    <rect
+       style="fill:#ff4e4e;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect1825"
+       width="297"
+       height="20.773174"
+       x="0"
+       y="87" />
+    <g
+       id="g1281"
+       transform="translate(0,5.2916667)">
+      <text
+         id="text5131"
+         y="136.41089"
+         x="18.975723"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="136.41089"
+           x="18.975723"
+           id="tspan5129"
+           sodipodi:role="line">object</tspan><tspan
+           id="tspan5133"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="145.8082"
+           x="18.975723"
+           sodipodi:role="line">number:object</tspan><tspan
+           id="tspan5135"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="155.20552"
+           x="18.975723"
+           sodipodi:role="line">int:number</tspan><tspan
+           id="tspan5137"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="164.60284"
+           x="18.975723"
+           sodipodi:role="line">double:number</tspan></text>
+      <text
+         id="text5145"
+         y="118.71394"
+         x="19.493507"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="118.71394"
+           x="19.493507"
+           id="tspan5143"
+           sodipodi:role="line">types</tspan></text>
+      <g
+         transform="matrix(0.96865676,0,0,0.96865676,-28.615499,9.8463568)"
+         id="g1393">
+        <text
+           id="text5149"
+           y="112.91941"
+           x="114.6874"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.76111126px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+             y="112.91941"
+             x="114.6874"
+             id="tspan5147"
+             sodipodi:role="line">variables</tspan></text>
+        <text
+           id="text5159"
+           y="131.18904"
+           x="114.15286"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.76111126px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+             y="131.18904"
+             x="114.15286"
+             id="tspan5151"
+             sodipodi:role="line">o1,o2:object</tspan><tspan
+             id="tspan5153"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.76111126px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+             y="140.89043"
+             x="114.15286"
+             sodipodi:role="line">n1,n2:number</tspan><tspan
+             id="tspan5155"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.76111126px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+             y="150.59181"
+             x="114.15286"
+             sodipodi:role="line">i1,i2:int</tspan><tspan
+             id="tspan5157"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.76111126px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+             y="160.29321"
+             x="114.15286"
+             sodipodi:role="line">d1,d2:double</tspan></text>
+      </g>
+      <text
+         id="text5183"
+         y="119.22652"
+         x="142.09528"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="119.22652"
+           x="142.09528"
+           id="tspan5181"
+           sodipodi:role="line">assignable</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:5.58653879px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Italic Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.19045018"
+         x="186.63423"
+         y="119.34721"
+         id="text5187"><tspan
+           sodipodi:role="line"
+           id="tspan5185"
+           x="186.63423"
+           y="119.34721"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:5.58653879px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Italic Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.19045018">x1 = x2 ?</tspan></text>
+      <g
+         transform="matrix(0.84634762,0,0,0.84634762,25.88923,30.702508)"
+         id="g1575">
+        <g
+           id="g7053"
+           transform="translate(-11.566081,4.5357142)">
+          <g
+             id="g6942">
+            <rect
+               y="114.90997"
+               x="161.77382"
+               height="10.488839"
+               width="17.670387"
+               id="rect6861"
+               style="fill:#cbcbcb;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:1.00000001, 1.00000001" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="163.85896"
+               y="122.96024"
+               id="text5175"><tspan
+                 sodipodi:role="line"
+                 id="tspan5173"
+                 x="163.85896"
+                 y="122.96024"
+                 style="stroke-width:0.26458332">inv</tspan></text>
+          </g>
+          <g
+             id="g6982">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6861"
+               id="use6869"
+               transform="translate(17.67038,10.488838)"
+               width="100%"
+               height="100%" />
+            <text
+               id="text5223"
+               y="133.51735"
+               x="181.95085"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="133.51735"
+                 x="181.95085"
+                 id="tspan5221"
+                 sodipodi:role="line">inv</tspan></text>
+          </g>
+          <g
+             id="g6972">
+            <use
+               height="100%"
+               width="100%"
+               transform="translate(35.340775,20.977676)"
+               id="use6871"
+               xlink:href="#rect6861"
+               y="0"
+               x="0" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="199.90707"
+               y="143.68782"
+               id="text5259"><tspan
+                 sodipodi:role="line"
+                 id="tspan5257"
+                 x="199.90707"
+                 y="143.68782"
+                 style="stroke-width:0.26458332">inv</tspan></text>
+          </g>
+          <g
+             id="g6912">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6861"
+               id="use6875"
+               transform="translate(53.011169,31.466522)"
+               width="100%"
+               height="100%" />
+            <text
+               id="text5263"
+               y="154.08167"
+               x="217.33177"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="154.08167"
+                 x="217.33177"
+                 id="tspan5261"
+                 sodipodi:role="line">inv</tspan></text>
+          </g>
+          <g
+             id="g6937">
+            <rect
+               style="fill:#e8ff99;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:1.00000001, 1.00000001"
+               id="rect6851"
+               width="17.670387"
+               height="10.488839"
+               x="179.4442"
+               y="114.90997" />
+            <text
+               id="text5267"
+               y="122.96024"
+               x="182.09296"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 id="tspan5265"
+                 style="stroke-width:0.26458332"
+                 y="122.96024"
+                 x="182.09296"
+                 sodipodi:role="line">cov</tspan></text>
+          </g>
+          <g
+             id="g6932">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6851"
+               id="use6853"
+               transform="translate(17.670395)"
+               width="100%"
+               height="100%" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="200.04918"
+               y="122.96024"
+               id="text5271"><tspan
+                 sodipodi:role="line"
+                 x="200.04918"
+                 y="122.96024"
+                 style="stroke-width:0.26458332"
+                 id="tspan5269">cov</tspan></text>
+          </g>
+          <g
+             id="g6927">
+            <use
+               height="100%"
+               width="100%"
+               transform="translate(35.34079)"
+               id="use6855"
+               xlink:href="#rect6851"
+               y="0"
+               x="0" />
+            <text
+               id="text5275"
+               y="122.96024"
+               x="217.47388"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 id="tspan5273"
+                 style="stroke-width:0.26458332"
+                 y="122.96024"
+                 x="217.47388"
+                 sodipodi:role="line">cov</tspan></text>
+          </g>
+          <g
+             id="g6987">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6851"
+               id="use6857"
+               transform="translate(17.670395,10.488838)"
+               width="100%"
+               height="100%" />
+            <text
+               id="text5279"
+               y="133.51735"
+               x="200.04918"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 id="tspan5277"
+                 style="stroke-width:0.26458332"
+                 y="133.51735"
+                 x="200.04918"
+                 sodipodi:role="line">cov</tspan></text>
+          </g>
+          <g
+             id="g6922">
+            <use
+               height="100%"
+               width="100%"
+               transform="translate(35.34079,10.488838)"
+               id="use6859"
+               xlink:href="#rect6851"
+               y="0"
+               x="0" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="217.47388"
+               y="133.51735"
+               id="text5283"><tspan
+                 sodipodi:role="line"
+                 x="217.47388"
+                 y="133.51735"
+                 style="stroke-width:0.26458332"
+                 id="tspan5281">cov</tspan></text>
+          </g>
+          <g
+             id="g6947">
+            <rect
+               y="125.39881"
+               x="161.77382"
+               height="10.488839"
+               width="17.670387"
+               id="rect6891"
+               style="fill:#ffe299;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:1.00000001, 1.00000001" />
+            <text
+               id="text5287"
+               y="133.51735"
+               x="164.0238"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="133.51735"
+                 x="164.0238"
+                 id="tspan5285"
+                 sodipodi:role="line">ctr</tspan></text>
+          </g>
+          <g
+             id="g6952">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6891"
+               id="use6893"
+               transform="translate(0,10.488838)"
+               width="100%"
+               height="100%" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="164.0238"
+               y="143.68782"
+               id="text5291"><tspan
+                 sodipodi:role="line"
+                 id="tspan5289"
+                 x="164.0238"
+                 y="143.68782"
+                 style="stroke-width:0.26458332">ctr</tspan></text>
+          </g>
+          <g
+             id="g6957">
+            <use
+               height="100%"
+               width="100%"
+               transform="translate(-1.4897461e-5,20.977676)"
+               id="use6899"
+               xlink:href="#rect6891"
+               y="0"
+               x="0" />
+            <text
+               id="text5295"
+               y="154.17641"
+               x="164.0238"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="154.17641"
+                 x="164.0238"
+                 id="tspan5293"
+                 sodipodi:role="line">ctr</tspan></text>
+          </g>
+          <g
+             id="g6977">
+            <use
+               height="100%"
+               width="100%"
+               transform="translate(17.67038,10.488838)"
+               id="use6895"
+               xlink:href="#rect6891"
+               y="0"
+               x="0" />
+            <text
+               id="text5299"
+               y="143.68782"
+               x="182.11571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="143.68782"
+                 x="182.11571"
+                 id="tspan5297"
+                 sodipodi:role="line">ctr</tspan></text>
+          </g>
+          <g
+             id="g6962">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6891"
+               id="use6897"
+               transform="translate(17.670381,20.977676)"
+               width="100%"
+               height="100%" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="182.11571"
+               y="154.08167"
+               id="text5303"><tspan
+                 sodipodi:role="line"
+                 id="tspan5301"
+                 x="182.11571"
+                 y="154.08167"
+                 style="stroke-width:0.26458332">ctr</tspan></text>
+          </g>
+          <g
+             id="g6917">
+            <rect
+               style="fill:#ff9999;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:1.00000001, 1.00000001"
+               id="rect6873"
+               width="17.670387"
+               height="10.488839"
+               x="214.78499"
+               y="135.88765" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="219.507"
+               y="143.68782"
+               id="text5315"><tspan
+                 sodipodi:role="line"
+                 id="tspan5313"
+                 x="219.507"
+                 y="143.68782"
+                 style="stroke-width:0.26458332">no</tspan></text>
+          </g>
+          <g
+             id="g6967">
+            <use
+               x="0"
+               y="0"
+               xlink:href="#rect6873"
+               id="use6879"
+               transform="translate(-17.670394,10.488838)"
+               width="100%"
+               height="100%" />
+            <text
+               id="text5319"
+               y="154.08167"
+               x="202.08231"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               xml:space="preserve"><tspan
+                 style="stroke-width:0.26458332"
+                 y="154.08167"
+                 x="202.08231"
+                 id="tspan5317"
+                 sodipodi:role="line">no</tspan></text>
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="139.0887"
+           y="127.49596"
+           id="text5191"><tspan
+             sodipodi:role="line"
+             id="tspan5189"
+             x="139.0887"
+             y="127.49596"
+             style="stroke-width:0.26458332">o1</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="139.04701"
+           y="138.05307"
+           id="text5195"><tspan
+             sodipodi:role="line"
+             id="tspan5193"
+             x="139.04701"
+             y="138.05307"
+             style="stroke-width:0.26458332">n1</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="138.62915"
+           y="148.22354"
+           id="text5199"><tspan
+             sodipodi:role="line"
+             id="tspan5197"
+             x="138.62915"
+             y="148.22354"
+             style="stroke-width:0.26458332">i1</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="138.91338"
+           y="158.71213"
+           id="text5203"><tspan
+             sodipodi:role="line"
+             id="tspan5201"
+             x="138.91338"
+             y="158.71213"
+             style="stroke-width:0.26458332">d1</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="154.45105"
+           y="116.05067"
+           id="text5207"><tspan
+             sodipodi:role="line"
+             id="tspan5205"
+             x="154.45105"
+             y="116.05067"
+             style="stroke-width:0.26458332">o2</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="172.52211"
+           y="116.14542"
+           id="text5211"><tspan
+             sodipodi:role="line"
+             id="tspan5209"
+             x="172.52211"
+             y="116.14542"
+             style="stroke-width:0.26458332">n2</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="190.33621"
+           y="116.14542"
+           id="text5215"><tspan
+             sodipodi:role="line"
+             id="tspan5213"
+             x="190.33621"
+             y="116.14542"
+             style="stroke-width:0.26458332">i2</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="207.90303"
+           y="116.05067"
+           id="text5219"><tspan
+             sodipodi:role="line"
+             id="tspan5217"
+             x="207.90303"
+             y="116.05067"
+             style="stroke-width:0.26458332">d2</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 137.30305,119.3647 h 83.58854"
+           id="path5225"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 150.25488,110.87064 v 50.58077"
+           id="path5227"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+      <text
+         id="text1397"
+         y="136.13885"
+         x="227.31245"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:6.15097046px;line-height:1.25;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:6.15097046px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="136.13885"
+           x="227.31245"
+           id="tspan1395"
+           sodipodi:role="line">inv - invariant</tspan><tspan
+           id="tspan1399"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:6.15097046px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="143.82758"
+           x="227.31245"
+           sodipodi:role="line">cov - covariant</tspan><tspan
+           id="tspan1401"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:6.15097046px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="151.51628"
+           x="227.31245"
+           sodipodi:role="line">ctr - contravariant</tspan><tspan
+           id="tspan1403"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:6.15097046px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="159.20499"
+           x="227.31245"
+           sodipodi:role="line">no - assign</tspan></text>
+    </g>
+    <g
+       id="g1171"
+       transform="translate(0,-8.9958326)">
+      <g
+         transform="matrix(1.3125173,0,0,1.3125173,4.0417406,-34.501684)"
+         id="g1295">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="26.156731"
+           y="178.52133"
+           id="text974"><tspan
+             sodipodi:role="line"
+             id="tspan972"
+             x="26.156731"
+             y="178.52133"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">object</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="26.156727"
+           y="202.84285"
+           id="text978"><tspan
+             sodipodi:role="line"
+             id="tspan976"
+             x="26.156727"
+             y="202.84285"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">number</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="12.504495"
+           y="224.49168"
+           id="text982"><tspan
+             sodipodi:role="line"
+             id="tspan980"
+             x="12.504495"
+             y="224.49168"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">int</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="44.209606"
+           y="224.49168"
+           id="text986"><tspan
+             sodipodi:role="line"
+             id="tspan984"
+             x="44.209606"
+             y="224.49168"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">double</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+           d="m 16.668748,215.35714 v -14.55208 h 5.008184"
+           id="path996"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1282)"
+           d="M 57.112202,215.35714 V 200.80506 H 51.537053"
+           id="path998"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1278)"
+           d="M 36.285715,195.4189 V 184.45759"
+           id="path1000"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+      <text
+         id="text1579"
+         y="195.5085"
+         x="111.01579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="195.5085"
+           x="111.01579"
+           id="tspan1577"
+           sodipodi:role="line">f1:fn( a:int,      b:int      ):number</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         x="111.01579"
+         y="204.30022"
+         id="text1583"><tspan
+           sodipodi:role="line"
+           id="tspan1581"
+           x="111.01579"
+           y="204.30022"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041">f2:fn( a:number,   b:number   ):int</tspan></text>
+      <text
+         id="text1587"
+         y="240.65479"
+         x="179.1837"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="240.65479"
+           x="179.1837"
+           id="tspan1585"
+           sodipodi:role="line">f1 = f2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         x="111.37955"
+         y="213.09195"
+         id="text1591"><tspan
+           sodipodi:role="line"
+           id="tspan1589"
+           x="111.37955"
+           y="213.09195"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:6.83441114px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"> f:fn( a:[ctr],    b:[ctr]    ):[cov]</tspan></text>
+      <text
+         id="text1595"
+         y="251.01144"
+         x="179.03352"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25629041"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="251.01144"
+           x="179.03352"
+           id="tspan1593"
+           sodipodi:role="line">convariant</tspan><tspan
+           id="tspan1597"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.51785278px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.25629041"
+           y="260.40875"
+           x="179.03352"
+           sodipodi:role="line">assignment</tspan></text>
+      <g
+         transform="matrix(0.89802027,0,0,0.89802027,25.452637,28.078743)"
+         id="g1653">
+        <g
+           id="g1639">
+          <text
+             id="text1601"
+             y="231.4023"
+             x="95.249992"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+               y="231.4023"
+               x="95.249992"
+               id="tspan1599"
+               sodipodi:role="line">n1 = f1(i1,i2)</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             x="95.249992"
+             y="240.79489"
+             id="text1605"><tspan
+               sodipodi:role="line"
+               id="tspan1603"
+               x="95.249992"
+               y="240.79489"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">n1 = f2(i1,i2)</tspan></text>
+          <text
+             id="text1609"
+             y="250.18747"
+             x="95.249992"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+               y="250.18747"
+               x="95.249992"
+               id="tspan1607"
+               sodipodi:role="line">n1 = f2(n1,n2)</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             x="95.249992"
+             y="259.58005"
+             id="text1617"><tspan
+               sodipodi:role="line"
+               id="tspan1615"
+               x="95.249992"
+               y="259.58005"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">n1 = f2(d1,i2)</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             x="95.249992"
+             y="222.00972"
+             id="text1625"><tspan
+               sodipodi:role="line"
+               id="tspan1623"
+               x="95.249992"
+               y="222.00972"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:semi-condensed;font-size:7.05555534px;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Semi-Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">n1 = f1(o1,i2)</tspan></text>
+        </g>
+        <path
+           style="fill:none;stroke:#aa0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 123.65356,223.44632 c 1.46431,-1.05743 2.1691,0.65086 3.52513,-0.0668 1.68847,-0.89363 1.95087,0.68891 3.62727,-0.23386"
+           id="path1627"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="csc" />
+      </g>
+      <path
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path1655"
+         d="m 163.79741,192.3169 v 1.9372 h 8.41353 v 6.94136 h -1.80105 v -2.47431 l -3.19911,3.40536 3.19911,3.19914 v -2.19299 h 3.73824 V 192.3169 Z"
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffe299;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.48432839;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      <use
+         height="100%"
+         width="100%"
+         transform="translate(41.519071)"
+         id="use1666"
+         xlink:href="#path1655"
+         y="0"
+         x="0" />
+      <path
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#e8ff99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.48432839;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+         d="m 244.89503,203.4459 v -1.9372 h 8.41353 v -6.94136 h -1.80104 v 2.47431 l -3.19911,-3.40536 3.19911,-3.19914 v 2.19299 h 3.73824 v 10.81576 z"
+         id="use1668"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccccccccc" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:7.05555556px;line-height:1.25;font-family:'Anka/Coder Condensed';-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+       x="148.86913"
+       y="99.755096"
+       id="text1823"><tspan
+         sodipodi:role="line"
+         id="tspan1821"
+         x="148.86913"
+         y="99.755096"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'Anka/Coder Condensed, Bold Semi-Condensed';font-family:'Anka/Coder Condensed';font-weight:bold;font-style:normal;font-stretch:semi-condensed;font-variant:normal;font-size:7.05555556px;text-anchor:middle;text-align:center;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;fill:#ffffff;fill-opacity:1;">Co/Contra/Invariant</tspan></text>
+    <rect
+       y="267.67422"
+       x="0"
+       height="29.325788"
+       width="297"
+       id="rect983"
+       style="fill:#ff4e4e;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:7.05555556px;line-height:1.25;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:end;fill:#f6f6f6;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="291.17908"
+       y="279.37628"
+       id="text1285"><tspan
+         sodipodi:role="line"
+         id="tspan1283"
+         x="291.17908"
+         y="279.37628"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:7.05555556px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr;text-anchor:end;fill:#f6f6f6;fill-opacity:1;stroke-width:0.26458332;">nt.gocha@gmail.com</tspan><tspan
+         sodipodi:role="line"
+         x="291.17908"
+         y="288.19574"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:7.05555556px;font-family:'Anka/Coder Narrow';-inkscape-font-specification:'Anka/Coder Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr;text-anchor:end;fill:#f6f6f6;fill-opacity:1;stroke-width:0.26458332;"
+         id="tspan1287">cofe.xyz</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,90 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>oracle dblink mssql cisdb</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="oracle dblink mssql cisdb"><a name="oracle dblink mssql cisdb"></a><h1>oracle dblink mssql cisdb</h1>
+<b>Добавить/редактировать freetds</b>
+mcedit <a style="color:#3465A4" href="/usr/local/etc/freetds.conf">/usr/local/etc/freetds.conf</a>
+
+<span style="font-family:monospace"># Added by Kamnev - 20.01.2017
+[WINCC_10_75_34_2]
+  host = 10.75.34.2
+  # port = 1433
+  instance = WINCC
+  tds version = 8.0
+  client charset = utf8
+  language = russian
+</span>
+<b>Проверка</b>
+tsql -S WINCC_10_75_34_2 -U user -P password
+
+select Table_name as "Table name" From Information_schema.Tables;
+go
+
+<b>Добавить/редактировать odbc</b>
+mcedit <a style="color:#3465A4" href="/usr/local/etc/odbc.ini">/usr/local/etc/odbc.ini</a>
+
+<span style="font-family:monospace">[WINCC_10_75_34_2Dsn]
+Driver = <a style="color:#3465A4" href="/usr/local/lib/libtdsodbc.so.0">/usr/local/lib/libtdsodbc.so.0</a></span><span style="font-family:monospace">
+Description = WINCC_10_75_43_2
+Servername = WINCC_10_75_34_2
+
+<b><i>Имя базы олжно быть на англицком</i></b></span><span style="font-family:monospace"></span><span style="font-family:monospace">, <b><i>либо вообще не указывать</i></b></span><span style="font-family:monospace"></span><span style="font-family:monospace">
+Database = Device</span> 
+
+<b>Проверка</b>
+
+<a style="color:#3465A4" href="/home/cis/r_/stow/unixODBC-2.2.9/bin/isql">/home/cis/r_/stow/unixODBC-2.2.9/bin/isql</a> -v WINCC_10_75_34_2Dsn user password
+
+<b>Создание файла oracle hs</b>
+cd <a style="color:#3465A4" href="/oracle/ora102/A102/hs/admin">/oracle/ora102/A102/hs/admin</a>
+создать файл initWINCC_10_75_34_2.ora
+
+<span style="font-family:monospace">HS_FDS_CONNECT_INFO = WINCC_10_75_34_2Dsn
+HS_FDS_TRACE_LEVEL = OFF
+HS_FDS_SHAREABLE_NAME = <a style="color:#3465A4" href="/usr/local/lib/libodbc.so">/usr/local/lib/libodbc.so</a></span><span style="font-family:monospace">
+#HS_FDS_TRACE_LEVEL = 0
+#HS_FDS_TRACE_FILE_NAME = <a style="color:#3465A4" href="/tmp/wincc_10_75_34_2.trc">/tmp/wincc_10_75_34_2.trc</a></span><span style="font-family:monospace">
+set LIBPATH=/usr/local/lib
+set ODBCINI=/usr/local/etc/odbc.ini</span>
+
+<b>редактировать listener.ora</b>
+cd <a style="color:#3465A4" href="/oracle/ora102/A102/network/admin">/oracle/ora102/A102/network/admin</a>
+
+<span style="font-family:monospace">     (SID_DESC =
+       (SID_NAME = WINCC_10_75_34_2)
+       (ORACLE_HOME = <a style="color:#3465A4" href="/oracle/ora102/A102)">/oracle/ora102/A102)</a></span><span style="font-family:monospace">
+       (PROGRAM = hsodbc)
+       (ENVS="LIBPATH=/usr/local/lib")
+    )
+</span>
+<b>добавить в tnsname.ora</b>
+
+WINCC_10_75_34_2 =
+ (DESCRIPTION =
+  (ADDRESS_LIST =
+   (ADDRESS = (PROTOCOL = TCP) ( HOST = 127.0.0.1 )( PORT = 1521 ) )
+  )
+  (CONNECT_DATA = ( SID = WINCC_10_75_34_2 ))
+  (HS = OK)
+ )
+
+
+<b>перезапустить lsnrctl</b>
+
+<b>создать link sql</b>
+
+create public database link WINCC_10_75_34_2 CONNECT TO "user" IDENTIFIED BY "password" USING 'WINCC_10_75_34_2';
+
+<i>обязательно в кавычках!</i></div></body></html>

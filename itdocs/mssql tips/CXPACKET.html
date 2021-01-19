@@ -1,0 +1,30 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>CXPACKET</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="CXPACKET"><a name="cxpacket"></a><h1>CXPACKET</h1>
+Означает параллелизм, но не обязательно в нем проблема. 
+
+Поток-координатор в параллельном запросе всегда накапливает эти ожидания. Если параллельные потоки не заняты работой или один из потоков заблокирован, то ожидающие потоки также накапливают ожидание CXPACKET, что приводит к более быстрому накоплению статистики по этому типу — в этом и проблема. 
+
+Один поток может иметь больше работы, чем остальные, и по этой причине весь запрос блокируется, пока долгий поток не закончит свою работу. 
+
+Если этот тип ожидания совмещен с большими цифрами ожидания <a style="color:#204A87" href="#pageiolatch_xx">PAGEIOLATCH_XX</a>, то это может быть сканирование больших таблиц по причине некорректных некластерных индексов или из-за плохого плана выполнения запроса. 
+
+Если это не является причиной, вы можете попробовать применение опции MAXDOP со значениями 4, 2, или 1 для проблемных запросов или для всего экземпляра сервера (устанавливается на сервере параметром «max degree of parallelism»). 
+
+Если ваша система основана на схеме NUMA, попробуйте установить MAXDOP в значение, равное количеству процессоров в одном узле NUMA для того, чтобы определить, не в этом ли проблема. 
+
+Вам также нужно определить эффект от установки MAXDOP на системах со смешанной нагрузкой. Если честно, я бы поиграл с параметром «cost threshold for parallelism» (поднял его до 25 для начала), прежде чем снижать значение MAXDOP для всего экземпляра. И не забывайте про регулятор ресурсов (Resource Governor) в Enterprise версии SQL Server 2008, который позволяет установить количество процессоров для конкретной группы соединений с сервером.
+</div></body></html>

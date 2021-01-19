@@ -1,0 +1,132 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql mirror</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql mirror"><a name="mssql mirror"></a><h1>mssql mirror</h1>
+<span style="font-size:xx-large">Описание серверов</span>
+3 сервера - ОС Windows 7
+<ul><li dir="ltr"><b>Principal</b> 
+<ul><li dir="ltr">Главный сервер
+</li><li dir="ltr">IP 192.168.56.50
+</li><li dir="ltr">MSSQL 2008 R2
+</li><li dir="ltr">sa / sa
+</li></ul></li><li dir="ltr"><b>Mirror</b>
+<ul><li dir="ltr">Зеркальный сервер
+</li><li dir="ltr">IP 192.168.56.51
+</li><li dir="ltr">MSSQL 2008 R2
+</li><li dir="ltr">sa / sa
+</li></ul></li><li dir="ltr"><b>Whiteness</b>
+<ul><li dir="ltr">Следящий сервер
+</li><li dir="ltr">IP 192.168.56.60
+</li><li dir="ltr">MSSQL 2008 R2</li></ul></li></ul>
+
+Общая сетевая папка Z:\mssql-mirror
+
+<a style="color:#3465A4" href="https://msdn.microsoft.com/ru-ru/library/ms191477.aspx">https://msdn.microsoft.com/ru-ru/library/ms191477.aspx</a>
+
+<span style="font-size:xx-large">На сервере Principal</span>
+Проверка наличия/отсуствия главного кллюча базы
+
+SELECT * FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##'
+
+Создание ключа если его нет
+
+IF NOT EXISTS(SELECT 1 FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##')
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'pswd'
+GO
+
+Тайная манипуляция
+
+IF NOT EXISTS (select 1 from sys.databases where [is_master_key_encrypted_by_server] = 1)
+ALTER MASTER KEY ADD ENCRYPTION BY SERVICE MASTER KEY 
+GO
+
+В базе данных master создайте зашифрованный сертификат для экземпляра сервера.
+
+IF NOT EXISTS (SELECT 1 FROM sys.certificates WHERE name = 'PrincipalServerCert')
+CREATE CERTIFICATE PrincipalServerCert
+WITH SUBJECT = 'Principal Server Certificate',
+START_DATE = '08/15/2011',
+EXPIRY_DATE = '08/15/2021';
+GO
+
+Копирование/экспорт сертификата
+
+BACKUP CERTIFICATE PrincipalServerCert TO FILE = 'C:\Certs\PrincipalServerCert.cer'
+
+Скопировать сертификат в общуюю папку
+
+<span style="font-size:xx-large">На сервере Mirror</span>
+Проверка наличия/отсуствия главного кллюча базы
+
+SELECT * FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##'
+
+Создание ключа если его нет
+
+IF NOT EXISTS(SELECT 1 FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##')
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'pswd'
+GO
+
+Тайная манипуляция
+
+IF NOT EXISTS (select 1 from sys.databases where [is_master_key_encrypted_by_server] = 1)
+ALTER MASTER KEY ADD ENCRYPTION BY SERVICE MASTER KEY 
+GO
+
+В базе данных master создайте зашифрованный сертификат для экземпляра сервера.
+
+IF NOT EXISTS (SELECT 1 FROM sys.certificates WHERE name = 'MirrorServerCert')
+CREATE CERTIFICATE MirrorServerCert
+WITH SUBJECT = 'Mirror Server Certificate',
+START_DATE = '08/15/2011',
+EXPIRY_DATE = '08/15/2021';
+GO
+
+Копирование/экспорт сертификата
+
+BACKUP CERTIFICATE MirrorServerCert TO FILE = 'C:\Certs\MirrorServerCert.cer'
+
+Скопировать сертификат в общуюю папку
+
+<span style="font-size:xx-large">На сервере Whiteness</span>
+Проверка наличия/отсуствия главного кллюча базы
+
+SELECT * FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##'
+
+Создание ключа если его нет
+
+IF NOT EXISTS(SELECT 1 FROM sys.symmetric_keys where name = '##MS_DatabaseMasterKey##')
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'pswd'
+GO
+
+Тайная манипуляция
+
+IF NOT EXISTS (select 1 from sys.databases where [is_master_key_encrypted_by_server] = 1)
+ALTER MASTER KEY ADD ENCRYPTION BY SERVICE MASTER KEY 
+GO
+
+В базе данных master создайте зашифрованный сертификат для экземпляра сервера.
+
+IF NOT EXISTS (SELECT 1 FROM sys.certificates WHERE name = 'WhitenessServerCert')
+CREATE CERTIFICATE WhitenessServerCert
+WITH SUBJECT = 'Whiteness Server Certificate',
+START_DATE = '08/15/2011',
+EXPIRY_DATE = '08/15/2021';
+GO
+
+Копирование/экспорт сертификата
+
+BACKUP CERTIFICATE WhitenessServerCert TO FILE = 'C:\Certs\WhitenessServerCert.cer'
+
+Скопировать сертификат в общуюю папку</div></body></html>

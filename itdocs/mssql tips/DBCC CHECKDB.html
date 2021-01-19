@@ -1,0 +1,101 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>DBCC CHECKDB</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="DBCC CHECKDB"><a name="dbcc checkdb"></a><h1>DBCC CHECKDB</h1>
+<a style="color:#3465A4" href="https://msdn.microsoft.com/ru-ru/library/ms176064.aspx">https://msdn.microsoft.com/ru-ru/library/ms176064.aspx</a>
+
+<span style="font-family:monospace">DBCC CHECKDB     
+    [ ( database_name | database_id | 0    
+        [ , NOINDEX     
+        | , { REPAIR_ALLOW_DATA_LOSS | REPAIR_FAST | REPAIR_REBUILD } ]    
+    ) ]    
+    [ WITH     
+        {    
+            [ ALL_ERRORMSGS ]    
+            [ , EXTENDED_LOGICAL_CHECKS ]     
+            [ , NO_INFOMSGS ]    
+            [ , TABLOCK ]    
+            [ , ESTIMATEONLY ]    
+            [ , { PHYSICAL_ONLY | DATA_PURITY } ]    
+            [ , MAXDOP  = number_of_processors ]    
+        }    
+    ]    
+]</span>
+
+<i><a style="color:#204A87" href="#mssql single user mode database">mssql single user mode database</a></i>
+DBCC CHECKDB (Main, REPAIR_FAST);
+
+<b><span style="font-size:large">REPAIR_FAST</span></b>
+Синтаксис поддерживается только для обеспечения обратной совместимости. Действия по восстановлению не выполняются.
+
+<b><span style="font-size:large">REPAIR_REBUILD</span></b>
+Выполняет действия по восстановлению данных, которые можно выполнить без риска их потери. Это может быть быстрое восстановление (например, восстановление отсутствующих строк в некластеризованных индексах) или более ресурсоемкие операции (например, перестроение индекса).
+
+REPAIR_REBUILD не исправляет ошибки, связанные с данными FILESTREAM.
+
+<b><span style="font-size:large">ALL_ERRORMSGS</span></b>
+В SQL Server Management Studio, возвращаемых максимальное количество сообщений об ошибках равно 1000. Если указан параметр ALL_ERRORMSGS, рекомендуется выполнять команду DBCC с помощью программы sqlcmd или с помощью SQL Server агента для выполнения команды и направить вывод в файл. 
+
+<b><span style="font-size:large">EXTENDED_LOGICAL_CHECKS</span></b>
+При уровне совместимости 100 (SQL Server 2008) и выше выполняются проверки логической согласованности индексированных представлений, XML-индексов и пространственных индексов, если они есть
+
+<b><span style="font-size:large">NO_INFOMSGS</span></b>
+Подавляет вывод всех информационных сообщений.
+
+<b><span style="font-size:large">TABLOCK</span></b>
+Указание значения аргумента приводит к получению инструкцией DBCC CHECKDB блокировок вместо использования внутреннего моментального снимка базы данных
+
+<b><span style="font-size:large">ESTIMATEONLY</span></b>
+Отображает Оценочный объем пространства tempdb, необходимый для запуска инструкции DBCC CHECKDB со все заданные параметры. Сама проверка базы данных не выполняется.
+
+<b><span style="font-size:large">PHYSICAL_ONLY</span></b>
+Ограничивает проверку лишь проверкой целостности физической структуры страниц и заголовков записей и целостности выделения пространства в базе данных. Эта проверка служит для выполнения проверки физической согласованности базы данных с низкими накладными расходами на выполнение
+
+<b><span style="font-size:large">DATA_PURITY</span></b>
+Указание значения аргумента приводит к выполнению инструкцией DBCC CHECKDB проверки базы данных на недействительность или выход из допустимого диапазона значений столбцов. Например, инструкция DBCC CHECKDB будет обнаруживать столбцы со значения даты и времени, которые больше или меньше допустимого диапазона для datetime тип данных; или десятичное или приблизительных числовых данных введите столбцы со значениями масштаба или точности не допускаются.
+
+<span style="font-size:xx-large">Основные сведения о сообщениях об ошибках DBCC</span>
+
+После завершения выполнения команды DBCC CHECKDB в журнал ошибок SQL Server записывается сообщение. Если команда DBCC выполнена успешно, сообщение указывает на успешное завершение и содержит время, в течение которого выполнялась команда. Если команда DBCC была остановлена из-за ошибки до завершения проверки, сообщение указывает на прекращение выполнения команды и содержит значение состояния и время, в течение которого выполнялась команда. В следующей таблице перечислены и описаны значения состояний, которые могут быть включены в сообщение.
+
+0	Возникла ошибка с номером 8930. Указывает на повреждение в метаданных, приведшее к завершению команды DBCC.
+1	Возникла ошибка с номером 8967. Внутренняя ошибка DBCC.
+2	При аварийном восстановлении базы данных произошла ошибка.
+3	Указывает на повреждение в метаданных, приведшее к завершению команды DBCC.
+4	Обнаружено нарушение доступа или утверждения.
+5	Возникла неизвестная ошибка, которая привела к прекращению выполнения команды DBCC.
+
+<span style="font-size:large">Отчет об ошибках</span>
+
+Файл дампа (SQLDUMPnnnn.txt) создается в SQL Server каталог ЖУРНАЛА всякий раз, когда инструкция DBCC CHECKDB обнаруживает ошибку повреждения. При включении сбора данных об использовании компонентов и отчета об ошибках для экземпляра SQL Server, файл автоматически отправляется корпорации Microsoft
+
+</div><div class="note" id="mssql single user mode database"><a name="mssql single user mode database"></a><h1>mssql single user mode database</h1>
+<span style="font-family:monospace">USE master;
+GO
+
+ALTER DATABASE AdventureWorks2012
+SET SINGLE_USER
+WITH ROLLBACK IMMEDIATE;
+GO
+
+ALTER DATABASE AdventureWorks2012
+SET READ_ONLY;
+GO
+
+ALTER DATABASE AdventureWorks2012
+SET MULTI_USER;
+GO</span>
+
+</div></body></html>

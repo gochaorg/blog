@@ -1,0 +1,55 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql magic - missing index etc</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql magic - missing index etc"><a name="mssql magic - missing index etc"></a><h1>mssql magic - missing index etc</h1>
+ANDY: 
+
+<span style="font-family:monospace">SELECT 
+dm_mid.database_id AS DatabaseID, dm_migs.avg_user_impact As Avg_Impact,
+dm_migs.avg_user_impact*(dm_migs.user_seeks+dm_migs.user_scans) Avg_Estimated_Impact,
+dm_migs.last_user_seek AS Last_User_Seek,dm_migs.user_seeks as Seeks,  dm_migs.user_scans as Scans,
+object_name(dm_mid.object_id,dm_mid.database_id) AS [TableName],
+'drop index [IX_' + object_name(dm_mid.object_id,dm_mid.database_id) + '_'
++ REPLACE(REPLACE(REPLACE(ISNULL(dm_mid.equality_columns,''),', ','_'),'[',''),']','') +
+CASE
+	WHEN dm_mid.equality_columns IS NOT NULL AND dm_mid.inequality_columns IS NOT NULL THEN '_'
+	ELSE ''
+END
++ REPLACE(REPLACE(REPLACE(ISNULL(dm_mid.inequality_columns,''),', ','_'),'[',''),']','')
++ ']'
+,
+'CREATE INDEX [IX_' + object_name(dm_mid.object_id,dm_mid.database_id) + '_'
++ REPLACE(REPLACE(REPLACE(ISNULL(dm_mid.equality_columns,''),', ','_'),'[',''),']','') +
+CASE
+	WHEN dm_mid.equality_columns IS NOT NULL AND dm_mid.inequality_columns IS NOT NULL THEN '_'
+	ELSE ''
+END
++ REPLACE(REPLACE(REPLACE(ISNULL(dm_mid.inequality_columns,''),', ','_'),'[',''),']','')
++ ']'
++ ' ON ' + dm_mid.statement
++ ' (' + ISNULL (dm_mid.equality_columns,'')
++ CASE WHEN dm_mid.equality_columns IS NOT NULL AND dm_mid.inequality_columns IS NOT NULL THEN ',' ELSE
+'' END
++ ISNULL (dm_mid.inequality_columns, '')
++ ')'
++ ISNULL (' INCLUDE (' + dm_mid.included_columns + ')', '')+' with (online=on)' AS Create_Statement
+FROM sys.dm_db_missing_index_groups dm_mig
+INNER JOIN sys.dm_db_missing_index_group_stats dm_migs
+ON dm_migs.group_handle = dm_mig.index_group_handle
+INNER JOIN sys.dm_db_missing_index_details dm_mid
+ON dm_mig.index_handle = dm_mid.index_handle
+WHERE dm_mid.database_ID = DB_ID()
+--and object_name(dm_mid.object_id,dm_mid.database_id) = 'ЖДСоставы'
+ORDER BY seeks DESC </span></div></body></html>

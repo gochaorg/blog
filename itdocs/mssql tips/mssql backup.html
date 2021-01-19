@@ -1,0 +1,158 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql backup</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql backup"><a name="mssql backup"></a><h1>mssql backup</h1>
+see <a style="color:#204A87" href="#mssql backup views">mssql backup views</a>
+
+<span style="font-size:xx-large">Backup</span>
+<span style="font-family:monospace">BACKUP 
+	DATABASE [TestBackup] 
+	TO DISK = N'G:\Backup\TestBackup.bak' 
+	WITH 
+		NOFORMAT,     -- save header, else NOFORMAT
+		INIT,         -- overwrite backupset, else append (NOINIT)
+		NAME = N'TestBackup-Full Database Backup', -- name of backupset
+		SKIP,         -- no checking expiration of exists backupset
+		NOREWIND,     -- no rewind tape
+		NOUNLOAD,     -- after backup tape is loaded
+		COMPRESSION,  -- explicated compress, else NO_COMPRESSION
+		STATS = 5     -- progress % echo
+GO
+</span>
+<span style="font-size:xx-large">Restore</span>
+<span style="font-family:monospace">RESTORE 
+	DATABASE [TestBackup] 
+	FROM  DISK = N'G:\Backup\TestBackup.bak' 
+	WITH  
+		FILE = 1,      -- Необязательный параметр - номер файла в backupset
+		MOVE N'TestBackup_log' TO N'D:\SQLData\TestBackup.ldf',  -- перемещение файла в новую локацию
+		NOUNLOAD,      -- ....
+		REPLACE,       -- переписывать имеющийся лог файл
+		WITH RECOVERY, -- Необязательный параметр
+		STATS = 5      -- progress % echo
+GO</span>
+
+<span style="font-size:xx-large">Пользователь для backup/restore</span>
+CREATE LOGIN [testbackup] WITH PASSWORD=N'пароль', 
+DEFAULT_DATABASE=[master], 
+DEFAULT_LANGUAGE=[us_english], 
+CHECK_EXPIRATION=OFF, 
+CHECK_POLICY=OFF
+GO
+
+EXEC sys.sp_addsrvrolemember @loginame = N'testbackup', @rolename = N'processadmin'
+GO
+
+EXEC sys.sp_addsrvrolemember @loginame = N'testbackup', @rolename = N'diskadmin'
+GO
+
+EXEC sys.sp_addsrvrolemember @loginame = N'testbackup', @rolename = N'dbcreator'
+GO
+
+db_owner для базы
+
+<span style="font-size:xx-large">Remote Backup</span>
+
+<span style="font-family:monospace">-- configure veraibles
+
+declare @backup_db_name varchar(100) = 'master'
+declare @remote_share varchar(100) = '\\<a style="color:#204A87" href="#ad.com">address.com</a></span><span style="font-family:monospace">\backup'
+declare @mnt_drive varchar(10) = 'O:'
+declare @remote_dir varchar(200) = '1C-81\backup'
+declare @remote_login varchar(100) = 'pswd'
+declare @remote_password varchar(100) = 'host\<a style="color:#204A87" href="#passdesk-db.nikom.ru">passdesk-db.nikom.ru</a></span><span style="font-family:monospace">\'
+declare @diff <span style="color:#555753;text-decoration:underline">bit</span></span><span style="font-family:monospace"> = 1
+declare @compressed <span style="color:#555753;text-decoration:underline">bit</span></span><span style="font-family:monospace"> = 1
+
+-- main code
+declare @backup_name varchar(100)
+set @backup_name = 'backup ' + @backup_db_name + ' to '+@remote_share
+
+declare @mnt_cmd varchar(250)
+set @mnt_cmd = 'net use '+@mnt_drive+' '+@remote_share+' "'+@remote_password+'" /USER:'+@remote_login
+
+declare @umnt_cmd varchar(250)
+set @umnt_cmd = 'net use '+@mnt_drive+' /delete'
+
+declare @curdate datetime
+set @curdate = getdate()
+
+declare @curdate_s varchar(100)
+set @curdate_s = right(replicate('0',10) + cast(datepart( year, @curdate ) as varchar(10)),4) +
+ '-' + right(replicate('0',10) + cast(datepart( day, @curdate ) as varchar(10)),2) +
+ '-' + right(replicate('0',10) + cast(datepart( day, @curdate ) as varchar(10)),2) +
+ '_' + right(replicate('0',10) + cast(datepart( hour, @curdate ) as varchar(10)),2) +
+ '-' + right(replicate('0',10) + cast(datepart( minute, @curdate ) as varchar(10)),2) +
+ '-' + right(replicate('0',10) + cast(datepart( second, @curdate ) as varchar(10)),2)
+ ;
+
+declare @filename nvarchar(250)
+
+if( @diff = 1 ) begin
+  set @filename = @<a style="color:#3465A4" href="mnt_drive+'\'+@remote_dir+@backup_db_name+'_'+@curdate_s+'(diff)'+'.bak'">mnt_drive+'\'+@remote_dir+@backup_db_name+'_'+@curdate_s+'(diff)'+'.bak'</a></span><span style="font-family:monospace">
+end else begin
+  set @filename = @<a style="color:#3465A4" href="mnt_drive+'\'+@remote_dir+@backup_db_name+'_'+@curdate_s+'(full)'+'.bak'">mnt_drive+'\'+@remote_dir+@backup_db_name+'_'+@curdate_s+'(full)'+'.bak'</a></span><span style="font-family:monospace">
+end
+
+print 'mount '+@mnt_drive+' '+@remote_share
+
+DECLARE @result int
+exec @result = xp_cmdshell @mnt_cmd
+
+if (@result = 0) begin
+  print 'mount success'
+
+  if ( @diff = 1 ) begin
+	if ( @compressed = 1 ) begin
+	  backup database @backup_db_name to disk = @filename with
+		stats = 1,
+		name = @backup_name,
+		DIFFERENTIAL,
+		COMPRESSION
+	  ;
+	end else begin
+	  backup database @backup_db_name to disk = @filename with
+		stats = 1,
+		name = @backup_name,
+		DIFFERENTIAL
+	  ;
+	end
+  end else begin
+    if ( @compressed = 1 ) begin
+      backup database @backup_db_name to disk = @filename with
+		stats = 1,
+		name = @backup_name,
+		COMPRESSION
+	  ;
+    end else begin
+      backup database @backup_db_name to disk = @filename with
+		stats = 1,
+		name = @backup_name
+	  ;
+    end
+  end
+
+
+  print 'unmount '+@mnt_drive
+  exec @result = xp_cmdshell @umnt_cmd
+  if (@result = 0) begin
+    print 'unmount success'
+  end
+  else begin
+    print 'unmount failure: '+@result
+  end
+end 
+else  
+   print 'mount failure: '+@result;</span></div></body></html>

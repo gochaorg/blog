@@ -1,0 +1,38 @@
+JVM
+================
+- Thread
+	- Отличия daemon = true / false
+	- volatile переменные
+	- synchronized, wait, notify
+	- Lock / Reenterant / Stamped
+- Байт код
+	- отличие байт кода от ассемблера
+	- как просмотреть байт код
+- Загрузка классов
+	- ClassLoader - что это и какие бывают
+	- Как сгенерировать класс на лету ?
+- GC	
+	- Минимальный размер объекта в байтах 
+	- Различия между ссылками hard / soft / weak
+	- Что такое GC
+	- Какие бывают GC
+- Рефлексия
+	- Рефлексия стандартная
+	- MethodHandles
+	- CGLIB/JAVASSIST
+- Модульность в java 9+
+	- Split Packages
+	- [Jigsaw Layers](https://www.youtube.com/watch?v=aw6YJLJG5hw)	
+	- Java service loader
+	- module layes
+- JMX
+	- Что это JMX
+	- Инструменты для работы
+- Java agent
+	- Java agent - Что это
+	- Инструментация байт кода, примеры
+	- Отладка на ходу
+- Native
+	- AOT Компиляция, GraalVM
+	- dll load
+	- jna

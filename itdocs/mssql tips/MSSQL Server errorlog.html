@@ -1,0 +1,60 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>MSSQL Server errorlog</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="MSSQL Server errorlog"><a name="mssql server errorlog"></a><h1>MSSQL Server errorlog</h1>
+<span style="font-size:large">Определение расположения error log</span>
+<span style="font-family:monospace">SELECT SERVERPROPERTY('ErrorLogFileName')</span>
+
+<span style="font-size:large">Переключение Error Log</span>
+EXEC<span style="font-family:monospace"> sp_cycle_errorlog</span>
+
+<span style="font-size:large">Чтение Error log</span>
+<span style="font-family:monospace">EXEC sys.xp_readerrorlog @p1,@p2,@p3,@p4 </span>
+<ul><li dir="ltr">@p1 - Value of error log file you want to read: 
+<ul><li dir="ltr">0 = current, 
+</li><li dir="ltr">1 = Archive #1, 
+</li><li dir="ltr">2 = Archive #2, 
+</li><li dir="ltr">etc...
+</li></ul></li><li dir="ltr">@p2 - Log file type: 
+<ul><li dir="ltr">1 or NULL = error log, 
+</li><li dir="ltr">2 = SQL Agent log 
+</li></ul></li><li dir="ltr">@p3 - Search string 1: String one you want to search for 
+</li><li dir="ltr">@p4 - Search string 2: String two you want to search for to further refine the results</li></ul>
+
+<span style="font-size:large">Чтение error log в таблицу</span>
+/*
+create table #tmp
+(
+	logdate datetime,
+	processinfo nvarchar(250),
+	text nvarchar(250),
+)
+*/
+/*alter table #tmp
+alter column [text] text*/
+drop table #tmp
+--insert #tmp exec xp_readerrorlog 6
+
+select * from #tmp 
+where 
+	processinfo = 'Logon'
+	and text like 'Login succeeded%for user%sqluser%'
+	
+select * from #tmp 
+where 
+	processinfo = 'Logon'
+	and text like 'Login succeeded%for user%sqluser%'
+	and text not like '%CLIENT%local%'
+</div></body></html>

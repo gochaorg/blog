@@ -1,0 +1,28 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql buffer cache hit ratio</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql buffer cache hit ratio"><a name="mssql buffer cache hit ratio"></a><h1>mssql buffer cache hit ratio</h1>
+SELECT c1.cntr_value, c2.cntr_value, 
+case 
+when c2.cntr_value &gt; 0 then c1.cntr_value * 100 / c2.cntr_value
+else -1
+end as cache_hit_ratio_pct
+
+FROM sys.dm_os_performance_counters c1,
+     sys.dm_os_performance_counters c2
+WHERE 
+c1.[object_name] LIKE '%Buffer Manager%' AND c1.[counter_name] = '<a style="color:#204A87" href="#buffer cache hit ratio">Buffer cache hit ratio</a>'
+and
+c2.[object_name] LIKE '%Buffer Manager%' AND c2.[counter_name] = '<a style="color:#204A87" href="#buffer cache hit ratio">Buffer cache hit ratio</a> base'</div></body></html>

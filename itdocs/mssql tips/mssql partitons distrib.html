@@ -1,0 +1,51 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql partitons distrib</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql partitons distrib"><a name="mssql partitons distrib"></a><h1>mssql partitons distrib</h1>
+with q1 as 
+(
+select 
+	p.partition_id, p.partition_number,
+	p.object_id, object_name(p.object_id) object_name, p.index_id, p.rows, p.data_compression_desc,
+	i.name index_name, i.type_desc index_type, i.data_space_id, i.is_primary_key, i.fill_factor
+from sys.partitions p 
+left join sys.indexes i on i.object_id = p.object_id
+--left join sys.data_spaces ds on ds.data_space_id = i.data_space_id
+--left join sys.filegroups fg ON ds.data_space_id = fg.data_space_id
+where exists (select * from sys.objects o where o.object_id = p.object_id and o.type = 'U')
+)
+
+select * from q1,
+(
+SELECT 
+	dds.partition_scheme_id,
+	dds.destination_id,
+	dds.data_space_id,
+	fg.name fg_name,
+	fg.data_space_id fg_data_space_id,
+	fg.is_read_only fg_read_only,
+	ps.name ps_name,
+	ps.is_default ps_default,
+	pf.function_id pf_id,
+	pf.name pf_name,
+	pf.boundary_value_on_right,
+	pf.modify_date pf_modify_date
+FROM
+    sys.destination_data_spaces dds
+    INNER JOIN sys.filegroups fg ON dds.data_space_id = fg.data_space_id
+    INNER JOIN sys.partition_schemes ps ON ps.data_space_id = dds.partition_scheme_id
+    INNER JOIN sys.partition_functions pf on ps.function_id = pf.function_id
+) t2
+where q1.data_space_id = t2.partition_scheme_id and q1.partition_number = t2.destination_id</div></body></html>

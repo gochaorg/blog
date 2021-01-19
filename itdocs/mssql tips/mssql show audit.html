@@ -1,0 +1,33 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>mssql show audit</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="mssql show audit"><a name="mssql show audit"></a><h1>mssql show audit</h1>
+SELECT 
+  event_time, sequence_number, af.action_id, daa.name, daa.class_desc, af.succeeded, af.permission_bitmask, 
+  af.is_column_permission, af.session_id, af.database_principal_id, 
+  af.target_database_principal_id, af.target_database_principal_name,
+  af.target_server_principal_id, af.target_server_principal_name,
+  af.object_id, af.object_name, 
+  af.session_server_principal_name, af.server_principal_name, af.server_principal_sid, 
+  af.database_name, af.schema_name, af.object_name,
+  af.database_principal_id, af.database_principal_name, 
+  af.server_instance_name, 
+  af.statement,
+  af.additional_information,
+  af.file_name, af.audit_file_offset
+FROM sys.fn_get_audit_file ( 'N:\Audit3\*.sqlaudit' , null , null ) af
+left join sys.dm_audit_class_type_map tm on (tm.class_type = af.class_type)
+left join sys.dm_audit_actions daa on (daa.action_id = af.action_id and daa.class_desc = tm.class_type_desc)
+</div></body></html>

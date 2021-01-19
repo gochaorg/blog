@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>test-jfrog-oss-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <modules>
+        <module>test-jfrog-oss</module>
+        <module>test-jfrod-dep1</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>rcr-65kgp</id>
+            <name>3ec53f8980c2-releases</name>
+            <url>http://10.1.18.18:8081/artifactory/kgp65-test</url>
+        </repository>
+        <snapshotRepository>
+            <id>rcr-65kgp-snapshots</id>
+            <name>3ec53f8980c2-snapshots</name>
+            <url>http://10.1.18.18:8081/artifactory/kgp65-test</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
