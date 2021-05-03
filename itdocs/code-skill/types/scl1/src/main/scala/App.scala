@@ -8,6 +8,9 @@ object App {
   def main(args:Array[String]):Unit = {
     println("hello")
 
+    val call1 : Boolean = strCmp("a")
+    val call2 : Any = strCmp("b")
+
     val cmp1 : (String)=>Boolean = App.strCmp;
     val cmp2 : (String)=>Boolean = App.anyCmp
     val cmp3 : (Any)=>Boolean = App.anyCmp
