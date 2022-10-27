@@ -1,0 +1,7 @@
+![](vlcsnap-2022-10-27-13h01m44s611.png)
+![](vlcsnap-2022-10-27-13h02m41s459.png)
+![](vlcsnap-2022-10-27-13h02m57s170.png)
+![](vlcsnap-2022-10-27-13h03m06s599.png)
+![](vlcsnap-2022-10-27-13h03m31s819.png)
+![](vlcsnap-2022-10-27-13h03m52s149.png)
+![](vlcsnap-2022-10-27-13h04m07s483.png)
