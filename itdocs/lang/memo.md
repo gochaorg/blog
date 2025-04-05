@@ -160,7 +160,11 @@ graph TD
 Организация памяти процесса
 ==============================
 
+Типичное изображение памяти процесса ОС
+
 ![image](https://github.com/user-attachments/assets/bdb26091-70c7-4ec7-a977-b73f1c63f99e)
+
+А вот так связана память одного и другого процесса, а так же DLL/SO
 
 ```mermaid
 graph LR
@@ -205,3 +209,4 @@ mmap1b <---> mmap2b
 mmap1a --> Lib1
 mmap2a --> Lib1
 ```
+
