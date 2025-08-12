@@ -41,6 +41,11 @@
 
 **Ссылки**:  
 - [Java Hello World (Oracle)](https://docs.oracle.com/javase/tutorial/getStarted/application/index.html)  
+- Установка JDK, Idea
+  - https://javarush.com/quests/lectures/questsyntaxpro.level20.lecture00
+  - https://skillbox.ru/media/base/kak_ustanovit_jdk_i_sredu_razrabotki_intellij_idea/
+- база https://ru.hexlet.io/courses/java-basics
+
 
 **Пример решения**:  
 ```java
@@ -70,6 +75,9 @@ public class Main {
 
 **Ссылки**:  
 - [Variables and Methods (Oracle)](https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html)  
+- https://habr.com/ru/articles/542480/
+- https://ru.hexlet.io/blog/posts/rabota-s-peremennymi-v-java-ob-yavlenie-initsializatsiya-i-oblasti-vidimosti
+- база https://ru.hexlet.io/courses/java-basics
 
 **Пример решения**:  
 ```java
@@ -113,6 +121,9 @@ public class Main {
 
 **Ссылки**:  
 - [Collections Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/collections/)  
+- https://javarush.com/groups/posts/2308-korotko-o-glavnom---java-collections-framework
+- https://skillbox.ru/media/code/gotovimsya_k_sobesedovaniyu_chto_nuzhno_znat_o_kollektsiyakh_v_java/
+- https://struchkov.dev/blog/ru/java-collection-framework/
 
 **Пример решения**:  
 ```java
@@ -156,6 +167,9 @@ public class Main {
 
 **Ссылки**:  
 - [Scanner Class (Oracle)](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)  
+- https://metanit.com/java/tutorial/2.9.php
+- https://otus.ru/nest/post/1673/
+
 
 **Пример решения**:  
 ```java
@@ -227,6 +241,7 @@ java -jar myapp.jar
 
 **Ссылки**:  
 - [Maven in 5 Minutes (Apache)](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)  
+- https://github.com/gochaorg/blog/tree/master/itdocs/maven
 
 **Пример решения**:  
 ```java
@@ -262,7 +277,13 @@ public class Main {
 - ❓ Как безопасно закрыть `BufferedReader`?  
 
 **Ссылки**:  
-- [Java I/O Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/essential/io/)  
+- [Java I/O Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/essential/io/)
+- https://metanit.com/java/tutorial/6.11.php
+- https://ru.hexlet.io/qna/java/questions/kak-chitat-iz-fayla-java
+- Потоки ввода, InputStream https://java-online.ru/java-inputstream.xhtml
+- Потоки вывода, OutputStream https://java-online.ru/java-outputstream.xhtml
+- Потоки Reader и Writerhttps://java-online.ru/java-reader.xhtml
+- [Электронная библиотека БГУ / Java. Потоки ввода-вывода. Работа с файлами. Кравчук А ...](https://elib.bsu.by/bitstream/123456789/294799/1/Java.%20%D0%9F%D0%BE%D1%82%D0%BE%D0%BA%D0%B8%20%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%D0%BC%D0%B8.%20%D0%9A%D1%80%D0%B0%D0%B2%D1%87%D1%83%D0%BA%20%D0%90.%D0%A1.%2C%20%D0%9A%D1%80%D0%B0%D0%B2%D1%87%D1%83%D0%BA%20%D0%90.%D0%98.%2C%20%D0%9A%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%8C%20%D0%95.%D0%92_.pdf)
 
 **Пример решения**:  
 ```java
