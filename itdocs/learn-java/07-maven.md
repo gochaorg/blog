@@ -22,6 +22,10 @@
 
 ---
 
+Учебник https://books.sonatype.com/mvnex-book/reference/index.html
+
+---
+
 # 🚀 **Полный план**
 
 ---
@@ -74,6 +78,15 @@ mvn install         # Проверка: ~/.m2/repository/org/example/basic-app/
 1. Почему `mvn install` не требует указания версии, но `mvn deploy` — да?  
 2. Что произойдет, если удалить `<properties>` с версией Java?  
 3. Где хранятся результаты `test` — в `target/` или в папке проекта?
+
+**Ссылки:**
+- Maven in 5 Minutes https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+- Maven Getting Started Guide https://maven.apache.org/guides/getting-started/index.html
+- https://apache-maven.simplex-software.ru/index.html
+- Установка https://apache-maven.simplex-software.ru/install.html
+- Простой пример https://apache-maven.simplex-software.ru/quick_start.html
+- Что такое pom.xml https://apache-maven.simplex-software.ru/project-file.html
+- Репозитории https://apache-maven.simplex-software.ru/repository.html
 
 ---
 
@@ -145,7 +158,175 @@ cat target/classes/app.properties
 > </plugin>
 > ```
 
+**Ссылки:**
+- https://maven.apache.org/shared/maven-filtering/
+- https://javarush.com/quests/lectures/questservlets.level02.lecture01
+
+
 ---
+
+## **2.1. Глубокое понимание GAV (Group ID, Artifact ID, Version)**
+
+### ✅ **Задача**  
+Создать проект с **нестандартным GAV**, который:
+1. Использует домен компании в обратном порядке для `groupId` (но с ошибкой в написании)
+2. Содержит спецсимволы в `artifactId`
+3. Имеет кастомную схему версионирования `major.minor.patch-build`
+
+### 🛠 **Пример решения**  
+`pom.xml`:
+```xml
+<groupId>com.example.project</groupId>  <!-- Ошибка: должно быть com.example -->
+<artifactId>my-app_v2</artifactId>    <!-- Недопустимый символ '_' -->
+<version>1.0.0-20231015</version>     <!-- Кастомная схема -->
+```
+
+**Шаги**:
+1. Создать проект:
+   ```bash
+   mvn archetype:generate -DgroupId=com.example.project -DartifactId=my-app_v2 -Dversion=1.0.0-20231015
+   ```
+2. Исправить `pom.xml`:
+   ```xml
+   <groupId>com.example</groupId>
+   <artifactId>my-app</artifactId>
+   <version>1.0.0</version>
+   ```
+3. Проверить расположение в репозитории:
+   ```bash
+   mvn install
+   ls -R ~/.m2/repository/com/example/my-app/
+   ```
+
+### 🔍 **Контроль**  
+- После исправления артефакт должен находиться в:  
+  `~/.m2/repository/com/example/my-app/1.0.0/my-app-1.0.0.jar`
+- С ошибками — Maven выдаст предупреждения, но соберёт проект
+
+### ❓ **Каверзные вопросы**  
+1. Почему Maven позволяет использовать `_` в `artifactId`, но это **плохая практика**?  
+   > 💡 Ответ: Хотя Maven формально разрешает `_`, многие инструменты (Nexus, Artifactory) могут некорректно обрабатывать спецсимволы. GAV должен соответствовать шаблону `[A-Za-z0-9_\-.]+`
+
+2. Что произойдет, если изменить `groupId` после `mvn install` и пересобрать проект?  
+   > 💡 Ответ: Старая версия останется в `.m2/repository/.../project/`, новая появится в `.../project_new/`. Maven **не удалит** старые артефакты автоматически.
+
+3. Как Maven определяет путь в репозитории для SNAPSHOT-версий?  
+   > 💡 Ответ: Для `1.0.0-SNAPSHOT` путь будет:  
+   > `~/.m2/repository/com/example/my-app/1.0.0-SNAPSHOT/my-app-1.0.0-20231015.123456-1.jar`  
+   > Где `20231015.123456-1` — временная метка + номер сборки
+
+4. Почему в `groupId` рекомендуется использовать домен компании в обратном порядке?  
+   > 💡 Ответ: Чтобы гарантировать глобальную уникальность (как в Java-пакетах). Например, `com.google` вместо `google`.
+
+**Ссылки:**
+- Naming convention of Maven coordinates https://maven.apache.org/guides/mini/guide-naming-conventions.html
+- Maven зависимости, dependency https://java-online.ru/maven-dependency.xhtml
+- How to Resolve a Version Collision of Artifacts in Maven https://www.baeldung.com/maven-version-collision
+
+---
+
+## **2.2. Управление расположением исходников и ресурсов**
+
+### ✅ **Задача**  
+Перенастроить проект так, чтобы:
+1. Основные исходники лежали в `src/main/java-11/` (вместо стандартного `java/`)
+2. Тестовые ресурсы для профиля `dev` брались из `src/test/resources-dev/`
+3. Конфигурационные файлы фильтровались с подстановкой версии из `pom.xml`
+4. Добавить второй source directory для утилит (`src/main/utils/`)
+
+### 🛠 **Пример решения**  
+`pom.xml`:
+```xml
+<build>
+    <!-- Кастомные директории исходников -->
+    <sourceDirectory>src/main/java-11</sourceDirectory>
+    
+    <!-- Дополнительный source directory -->
+    <resources>
+        <resource>
+            <directory>src/main/utils</directory>
+        </resource>
+    </resources>
+    
+    <!-- Профиль для dev-ресурсов -->
+    <testResources>
+        <testResource>
+            <directory>src/test/resources${profile.resource.suffix}</directory>
+            <filtering>true</filtering>
+        </testResource>
+    </testResources>
+</build>
+
+<profiles>
+    <profile>
+        <id>dev</id>
+        <properties>
+            <profile.resource.suffix>-dev</profile.resource.suffix>
+        </properties>
+    </profile>
+</profiles>
+```
+
+**Структура проекта**:
+```
+src/
+├── main/
+│   ├── java-11/          # Основные исходники
+│   ├── utils/           # Дополнительные утилиты
+│   └── resources/
+│       └── app.properties
+└── test/
+    ├── java/
+    ├── resources/       # Стандартные тестовые ресурсы
+    └── resources-dev/   # Dev-специфичные ресурсы
+```
+
+`app.properties` (с фильтрацией):
+```properties
+app.version=${project.version}
+build.date=@build.date@
+```
+
+**Команды**:  
+```bash
+# Сборка с фильтрацией
+mvn clean process-resources -Dbuild.date=$(date +%Y%m%d)
+
+# Проверка подстановки
+cat target/classes/app.properties
+
+# Сборка с профилем dev
+mvn test -Pdev
+```
+
+### 🔍 **Контроль**  
+- В `target/classes/`:
+  - Есть классы из `java-11/` и `utils/`
+  - В `app.properties` подставлены значения
+- При `-Pdev` используются ресурсы из `resources-dev/`
+
+### ❓ **Каверзные вопросы**  
+1. Почему `utils/` попадает в classpath, но не компилируется?  
+   > 💡 Ответ: `<resource>` копирует файлы как есть, без компиляции. Для компилируемых исходников нужно использовать `<build><plugins><plugin><configuration><sources>`.
+
+2. Что произойдет, если не указать `<filtering>true</filtering>` для тестовых ресурсов?  
+   > 💡 Ответ: Свойства Maven (`${project.version}`) не будут подставлены — останутся как есть в файле.
+
+3. Как добавить **еще один** test resource directory без профилей?  
+   > 💡 Ответ:  
+   > ```xml
+   > <testResources>
+   >   <testResource>
+   >     <directory>src/test/resources</directory>
+   >   </testResource>
+   >   <testResource>
+   >     <directory>src/test/additional</directory>
+   >   </testResource>
+   > </testResources>
+   > ```
+
+4. Почему в шаблоне использовано `@build.date@`, а не `${build.date}`?  
+   > 💡 Ответ: `${...}` зарезервирован для свойств Maven. Для кастомных замен используется `@...@` (требует `<useDefaultDelimiters>false</useDefaultDelimiters>` в `maven-resources-plugin`).
 
 ## **3. Множественные проекты: Multi-module архитектура**
 
@@ -212,6 +393,12 @@ mvn clean install  # Должны собраться оба модуля
 2. Почему `core` не нужно явно указывать в `<dependencies>` `parent`?  
 3. Как добавить общий плагин для всех модулей?
 
+**Ссылки:**
+- https://www.baeldung.com/maven-multi-module
+- https://books.sonatype.com/mvnex-book/reference/multimodule.html
+- https://www.baeldung.com/maven-relativepath
+
+
 ---
 
 ## **4. Артефакты и версии: Деплой и управление версиями**
@@ -246,6 +433,13 @@ mvn clean deploy                     # Деплой в local-repo
 1. Почему `SNAPSHOT` можно деплоить повторно, а `release` — нет?  
 2. Что делает `mvn versions:commit` после `versions:set`?  
 3. Как откатить изменения версии без `versions:commit`?
+
+**Ссылки:**
+- Maven Artifacts https://maven.apache.org/repositories/artifacts.html
+- Naming convention of Maven coordinates https://maven.apache.org/guides/mini/guide-naming-conventions.html
+- GAV-параметры и полное наименование артефакта https://java-online.ru/maven-faq.xhtml#gav
+- Apache Maven Deploy Plugin https://maven.apache.org/plugins/maven-deploy-plugin/
+- Maven Deploy to Nexus https://www.baeldung.com/maven-deploy-nexus
 
 ---
 
@@ -321,6 +515,9 @@ unzip -p target/app-1.0.0.jar META-INF/MANIFEST.MF | grep Implementation-Version
    > String version = App.class.getPackage().getImplementationVersion();
    > ```
 
+**Ссылки:**
+- https://github.com/git-commit-id/git-commit-id-maven-plugin
+
 ---
 
 ## **6. Документация: Javadoc и исходники**
@@ -374,7 +571,130 @@ mvn clean install  # Проверка: target/*.jar + *-sources.jar + *-javadoc.
 2. Как исключить тестовые классы из `sources.jar`?  
 3. Что будет, если запустить `mvn deploy` без `source` и `javadoc`?
 
+**Ссылки:**
+- https://maven.apache.org/plugins/maven-javadoc-plugin/
+- https://maven.apache.org/plugins/maven-source-plugin/
+- https://java-online.ru/maven-plugins.xhtml
+
 ---
+
+## **6.1. Расширенное тестирование: Surefire и профили**
+
+### ✅ **Задача**  
+Настроить проект так, чтобы:
+1. Юнит-тесты запускались по умолчанию
+2. Интеграционные тесты (в `src/test/java/integration/`) запускались только в профиле `it`
+3. Генерировался отчет в формате HTML и XML
+4. Тесты с пометкой `@Slow` исключались из обычного запуска
+
+### 🛠 **Пример решения**  
+`pom.xml`:
+```xml
+<build>
+    <plugins>
+        <!-- Юнит-тесты (запускаются всегда) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <excludes>
+                    <exclude>**/integration/**</exclude>
+                    <exclude>**/*SlowTest.java</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
+        
+        <!-- Интеграционные тесты (только в профиле it) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                    <id>integration-tests</id>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <includes>
+                    <include>**/integration/**</include>
+                </includes>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+<profiles>
+    <profile>
+        <id>it</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <excludes><!-- Снимаем исключение для IT -->
+                            <exclude>**/*SlowTest.java</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+```
+
+**Структура тестов**:
+```
+src/test/java/
+├── unit/
+│   └── MyUnitTest.java
+└── integration/
+    └── MyIntegrationTest.java
+```
+
+**Команды**:  
+```bash
+# Только юнит-тесты
+mvn test
+
+# Юнит + интеграционные тесты
+mvn verify -Pit
+
+# Проверка отчетов
+ls target/surefire-reports/  # XML
+ls target/site/surefire-report.html  # HTML
+```
+
+### 🔍 **Контроль**  
+- В `target/surefire-reports/` есть результаты юнит-тестов
+- При `-Pit` в `target/failsafe-reports/` появляются IT-отчеты
+- Тесты с `*SlowTest.java` не запускаются без профиля
+
+### ❓ **Каверзные вопросы**  
+1. Почему интеграционные тесты требуют **отдельного плагина** (failsafe), а не surefire?  
+   > 💡 Ответ: Failsafe продолжает сборку даже при падении IT (фаза `verify`), в отличие от Surefire, который останавливает сборку на фазе `test`.
+
+2. Что произойдет, если запустить `mvn install` без фазы `test`?  
+   > 💡 Ответ: Сборка пропустит тесты, но установит артефакт. Это **опасно** для релизов — используйте `-DskipTests` только в крайних случаях.
+
+3. Как запустить только тесты с аннотацией `@Slow`?  
+   > 💡 Ответ:  
+   > ```xml
+   > <configuration>
+   >   <includes>
+   >     <include>**/*SlowTest.java</include>
+   >   </includes>
+   > </configuration>
+   > ```
+
+4. Почему в профиле `it` нужно **переопределять** Surefire, а не отключать его?  
+   > 💡 Ответ: Чтобы снять исключение для `*SlowTest.java` при запуске IT. Отключение Surefire приведет к пропуску всех unit-тестов.
+
+**Ссылки:**
 
 ## **7. Документация сайта: Maven Site + Markdown**
 
@@ -421,6 +741,11 @@ mvn site  # Проверка: target/site/index.html
 1. Почему `mvn site` не включает Javadoc по умолчанию?  
 2. Как добавить кастомный CSS для сайта?  
 3. Что произойдет, если `index.md` содержит синтаксис AsciiDoc?
+
+**Ссылки:**
+- https://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html
+- https://github.com/gelin/maven-markdown
+- https://www.reddit.com/r/java/comments/rybhi8/generating_documentation_sites_for_maven_projects/
 
 ---
 
@@ -477,6 +802,10 @@ mvn package  # Проверка: target/core-1.0.0-config.zip
 2. Как добавить classifier `config` к артефакту?  
 3. Что будет, если два модуля используют одинаковый `id` в assembly?
 
+**Ссылки:**
+- https://maven.apache.org/guides/mini/guide-assemblies.html
+- https://www.sonatype.com/maven-complete-reference/maven-assemblies
+
 ---
 
 ## **9. Подпись артефактов: GPG**
@@ -514,6 +843,11 @@ mvn clean install -Dgpg.passphrase="your-pass"
 1. Почему подпись происходит в фазе `verify`, а не `install`?  
 2. Что будет, если GPG ключ не найден?  
 3. Как проверить подпись артефакта?
+
+**Ссылки:**
+- https://central.sonatype.org/publish/requirements/gpg/
+- https://maven.apache.org/plugins/maven-gpg-plugin/
+- Dev Log | How to Release jar Package to the Maven Central Repository https://www.nebula-graph.io/posts/maven
 
 ---
 
@@ -556,6 +890,10 @@ mvn compile -Pprod  # Проверка: javap -v target/classes/... | grep flags
 1. Как активировать профиль переменной окружения `ENV=prod`?  
 2. Что будет, если активировать два профиля с конфликтующими свойствами?  
 3. Почему `activeByDefault` не работает с `-P`?
+
+**Ссылки:**
+- https://maven.apache.org/guides/introduction/introduction-to-profiles.html
+- https://pro-prof.com/forums/topic/%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%B8-%D0%B2-maven
 
 ---
 
@@ -603,6 +941,13 @@ mvn initialize  # Создаст build.txt
 2. Как передать системные свойства в `exec:java`?  
 3. Что будет, если Ant-задача упадёт?
 
+**Ссылки:**
+- https://www.baeldung.com/maven-java-main-method
+- https://www.mojohaus.org/exec-maven-plugin/usage.html
+- https://stackoverflow.com/questions/2472376/how-do-i-execute-a-program-using-maven
+- https://www.mojohaus.org/exec-maven-plugin/
+- https://www.baeldung.com/maven-ant-task
+
 ---
 
 ## **12. ServiceLoader: SPI реализация**
@@ -638,6 +983,13 @@ loader.forEach(l -> l.log("SPI Works!"));
 1. Почему файл должен лежать именно в `META-INF/services`?  
 2. Что будет, если реализация не имеет публичного конструктора?  
 3. Как отфильтровать реализации по условию?
+
+**Ссылки:**
+- https://www.baeldung.com/java-spi
+- https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
+- https://habr.com/ru/companies/otus/articles/457440/
+- https://github.com/francisdb/serviceloader-maven-plugin
+
 
 ---
 
@@ -682,6 +1034,9 @@ mvn package  # Проверка: target/appassembler/bin/run
 1. Как добавить JVM-опции в сгенерированный скрипт?  
 2. Почему классы лежат в `lib/`, а не в корне JAR?  
 3. Что будет, если `mainClass` указан неверно?
+
+**Ссылки:**
+- https://www.mojohaus.org/appassembler/appassembler-maven-plugin/index.html
 
 ---
 
@@ -728,6 +1083,15 @@ mvn package  # Проверка: java -jar target/app-1.0.0.jar
 2. Что будет при конфликте `META-INF/services`?  
 3. Как исключить транзитивную зависимость из Fat JAR?
 
+**Ссылки:**
+- shade plugin 
+  - https://medium.com/@lavneesh.chandna/unveiling-the-maven-shade-plugin-a-comprehensive-guide-e878966f6ee8
+  - https://maven.apache.org/plugins/maven-shade-plugin/
+  - https://sky.pro/media/ispolzovanie-maven-shade-plugin-v-java-i-perenos-paketov/
+- fat jar
+  - https://stackoverflow.com/questions/16222748/building-a-fat-jar-using-maven
+  - https://jenkov.com/tutorials/maven/maven-build-fat-jar.html
+
 ---
 
 ## **15. Рекурсивная смена версий**
@@ -749,6 +1113,10 @@ mvn versions:commit  # Удаляет backup-файлы
 1. Что делает `versions:revert`?  
 2. Как изменить только версию родителя?  
 3. Почему `versions:set` не работает без `-D`?
+
+**Ссылки:**
+- https://habr.com/ru/articles/264505/
+- https://www.mojohaus.org/versions/versions-maven-plugin/index.html
 
 ---
 
@@ -802,6 +1170,8 @@ mvn compile  # Проверка: вывод "Hello from plugin!"
 2. Что будет при дублировании `@Mojo(name)`?  
 3. Почему Mojo должен наследоваться от `AbstractMojo`?
 
+**Ссылки:**
+
 ---
 
 ## **17. Дерево зависимостей: Анализ и оптимизация**
@@ -831,6 +1201,10 @@ mvn versions:display-dependency-updates
 1. Как работает правило `nearest wins`?  
 2. Почему `dependency:tree -Dverbose` показывает `omitted for conflict`?  
 3. Как обновить только одну транзитивную зависимость?
+
+**Ссылки:**
+- https://www.baeldung.com/maven-dependency-graph
+- https://www.baeldung.com/maven-dependency-latest-version
 
 ---
 
@@ -903,6 +1277,10 @@ deploy:
 2. Как GitLab использует `CI_JOB_TOKEN` без пароля?  
 3. Что будет при несовпадении `groupId` и имени репозитория?
 
+**Ссылки:**
+- https://www.baeldung.com/maven-repo-github
+- https://stackoverflow.com/questions/52357496/add-gitlab-private-repository-as-maven-dependency
+
 ---
 
 ## **19. Безопасность: Шифрование паролей**
@@ -936,6 +1314,9 @@ mvn --encrypt-password "real-pass"  # Выведет {encrypted-pass}
 1. Как работает шифрование без указания пути к `settings-security.xml`?  
 2. Что будет при потере USB с `settings-security.xml`?  
 3. Почему мастер-пароль нельзя хранить в Git?
+
+**Ссылки:**
+- https://maven.apache.org/guides/mini/guide-encryption.html
 
 ---
 
@@ -983,6 +1364,23 @@ mvn clean install site deploy -Dgpg.passphrase="pass"
 | Репозитории | ☐ | ☐ |
 | Безопасность | ☐ | ☐ |
 
+## ✅ **Чеклист для самопроверки новых задач**
+
+| Задача | Проверка | Результат |
+|--------|----------|-----------|
+| **GAV** | `ls ~/.m2/repository/...` | Путь соответствует исправленному GAV |
+| | `mvn help:evaluate -Dexpression=project.groupId` | Выводит `com.example` |
+| **Тестирование** | `mvn test -Pit` | Запускает IT-тесты |
+| | `grep -r "SlowTest" target/` | Нет упоминаний без профиля |
+| **Ресурсы** | `cat target/classes/app.properties` | Подставлены `1.0.0` и дата |
+| | `ls target/test-classes/` | Есть файлы только из `resources-dev/` при `-Pdev` |
+
+
+Эти задачи **закрывают пробелы** в понимании Maven, которые часто приводят к:
+- Долгому поиску ошибок в CI/CD
+- Проблемам при миграции на новые версии
+- Непредсказуемому поведению в multi-module проектах
+
 ---
 
 # 💡 **Советы по прохождению плана**
@@ -1007,10 +1405,3 @@ mvn clean install site deploy -Dgpg.passphrase="pass"
 - [GitLab Maven Repository Docs](https://docs.gitlab.com/ee/user/packages/maven_repository/)
 
 ---
-
-Готов приступить к практике? Начните с **шага 1**, выполните задание и пришлите:  
-1. Вывод `mvn -v`  
-2. Содержимое `pom.xml`  
-3. Ответ на первый каверзный вопрос  
-
-Проверю и дам обратную связь! 🚀
