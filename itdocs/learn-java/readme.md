@@ -5,28 +5,59 @@
 --------------------------------------------------
 
 ```mermaid
-flowchart TD
+flowchart TB
 
-start((start)) ==> pp
+start((start)) --> pp
+
+test1[Тестирование / JUnit]
 
 pp[процедурное программирование]
+pp --> oop1["ООП, простая 'база'"]
+oop1 --> oop2
+oop2 --> maven
+oop1 --> gc --> errs
+maven --> test1
 
+ppc1@{ shape: braces, label: "Базовый синтаксис без ООП, <br> сборка приложения, <br> debug" } -.-> pp
+oop1c1@{ shape: braces, label: "Классы, наследование, интерфейсы, <br> sealed <br> generics без ко-вариации" } -.-> oop1
+pp -.-> | можно сразу писать тесты <br> разобраться только <br> с maven dependency, тестами| test1
 
-subgraph pp[процедурное программирование]
-  pp_start((start)) -->  
-  pp_01[Hello world]
-  pp_01 --> pp_02[Функции и переменные]
-  pp_02 --> pp_03[Списки и карты: Работа с коллекциями]
-  pp_03 --> pp_04[Ввод/вывод с консоли: Работа с пользователем]
-  pp_04 --> pp_05[Отладка: Поиск ошибок]
-  pp_05 --> pp_06[Создание дистрибутива]
-  pp_06 --> pp_07[Maven: Управление зависимостями]
-  pp_07 --> pp_08[Работа с файлами: Сохранение данных между запусками]
-  pp_08 --> pp_09[Итоговый проект: Консольный трекер задач]
+oop1 --> errs
 
-  pp_01_c1@{ shape: braces, label: "Взять пример и скомпилировать + запустить" } --> pp_01
-  click pp_start "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
+subgraph oop2["Углубленное освоение ООП и доп тем"]
+  coll1[коллекции]
+  gen1[Generics с Ко-вариациями]
+  lambda1[Лямбды]
 end
+
+subgraph errs[ошибки и исключения]
+  tcf[try, catch, finally]
+  err_h[Иерархия ошибок]
+  log[Логирование]
+end
+
+lambda1 --- tcf
+log --- maven
+
+subgraph maven
+ m_dep[Зависимости]
+ m_m[Модули]
+ m_t[Тестирование]
+ m_dist[Сборки дистрибутива]
+ m_deploy[Поставка на сервер / Deploy]
+ m_docs[Документирование]
+end
+
+subgraph gc[Garbage Collector]
+  direction TB
+  gc1[Создание и удаление объектов]
+  gc2[Создание искусственной утечки памяти]
+  gc3[Работа с различными типами ссылок]
+  gc4[Эксперимент с finalize]
+  gc5[Настройка параметров кучи]
+  gc1 --> gc2 --> gc3 --> gc4 --> gc5
+end
+
 
 ```
 
