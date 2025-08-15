@@ -10,10 +10,23 @@ flowchart TD
 start((start)) ==> pp
 
 pp[процедурное программирование]
-pp --> pp_01[Hello world]
-pp_01_c1@{ shape: braces, label: "Взять пример и скомпилировать + запустить" } --> pp_01
-pp --> pp_02[Функции и переменные]
-click pp "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
+
+
+subgraph pp[процедурное программирование]
+  pp_start((start)) -->  
+  pp_01[Hello world]
+  pp_01 --> pp_02[Функции и переменные]
+  pp_02 --> pp_03[Списки и карты: Работа с коллекциями]
+  pp_03 --> pp_04[Ввод/вывод с консоли: Работа с пользователем]
+  pp_04 --> pp_05[Отладка: Поиск ошибок]
+  pp_05 --> pp_06[Создание дистрибутива]
+  pp_06 --> pp_07[Maven: Управление зависимостями]
+  pp_07 --> pp_08[Работа с файлами: Сохранение данных между запусками]
+  pp_08 --> pp_09[Итоговый проект: Консольный трекер задач]
+
+  pp_01_c1@{ shape: braces, label: "Взять пример и скомпилировать + запустить" } --> pp_01
+  click pp_start "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
+end
 
 ```
 
