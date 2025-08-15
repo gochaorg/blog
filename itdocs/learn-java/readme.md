@@ -5,13 +5,15 @@
 --------------------------------------------------
 
 ```mermaid
-flowchart TB
+flowchart TD
 
-start ==> pp
+start((start)) ==> pp
 
 pp[процедурное программирование]
 pp --> pp_01[Hello world]
+pp_01_c1@{ shape: braces, label: "Взять пример и скомпилировать + запустить" } --> pp_01
 pp --> pp_02[Функции и переменные]
+click pp "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
 
 ```
 
