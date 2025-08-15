@@ -4,11 +4,77 @@
 ```mermaid
 flowchart TB
 
-start((start)) --> basic
+start((start)) ==> basic
 
-basic[База]
+basic[База для junior]
 
 b_c1@{ shape: braces, label: "Процедурное программивароние <br> ООП <br> Лямбды <br> Generic <br> maven <br> gc <br> errors <br> logging <br> junit" } --- basic
+
+
+subgraph base2[База для middle]
+  fp[Базовое функциональное программирование]
+  bytecode[bytecode и reflection]
+  coll[Коллекции]
+  async[Многопоточное программирование]
+  metrics
+  logging
+  async --> metrics
+  async --> logging
+  fp --> async  
+  ffi --> jni
+  ffi --> jna
+  ffi --> jnr
+  ffi --> ffi_jvm --> ffi_ram
+  ffi_jvm --> ffi_dll
+end
+
+formats_c1[xml, json, serialization, <br> grpc, zip, ...]@{ shape: braces }
+
+subgraph tech[Технологии]
+  files
+  ui
+  formats -.- formats_c1
+  sql
+  mq
+  net
+  http
+
+  http --> jvm_simple_http
+  http --> javalin
+  http --> jetty
+
+  net --> http
+  net --> mq
+  net --> sql
+
+  sql --> jdbc
+  sql --> hibernate
+
+  net_c[tcp, udp, icmp, dns, arp, dhcp]@{ shape: braces }
+  net -.- net_c
+
+  crypto
+
+  files --> file_stream
+  file_stream --> random_access
+  random_access --> mmap
+  file_stream --> pipe
+  pipe --> unixsocket
+
+  sound --> wav
+  sound --> midi
+
+  ui --> swing
+  ui --> javafx
+  ui --> teavm
+
+  http_c -.- http
+  http_c[http 1.1, 2, <br> session <br> https, websocket]@{ shape: braces }
+end
+
+basic ==> base2
+
+base2 ==> tech
 
 click basic "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/map-begin.md"
 ```
