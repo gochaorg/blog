@@ -4,8 +4,6 @@
 ```mermaid
 flowchart TB
 
-click pp "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
-
 start((start)) --> pp
 
 test1[Тестирование / JUnit]
@@ -57,5 +55,5 @@ subgraph gc[Garbage Collector]
   gc1 --> gc2 --> gc3 --> gc4 --> gc5
 end
 
-
+click pp "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/01-proc.md"
 ```
