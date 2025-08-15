@@ -1,6 +1,17 @@
 Изучение java
 ========================
 
+```mermaid
+flowchart TB
+
+start((start)) --> basic
+
+basic[База]
+
+b_c1@{ shape: braces, label: "Процедурное программивароние <br> ООП <br> Лямбды <br> Generic <br> maven <br> gc <br> errors <br> logging <br> junit" } --- basic
+
+click basic "https://github.com/gochaorg/blog/blob/master/itdocs/learn-java/map-begin.md"
+```
 
 
 Практические задачи
