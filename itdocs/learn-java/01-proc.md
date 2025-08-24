@@ -1,4 +1,4 @@
-Минимальный базис Java
+Базис Java
 =======================================
 
 Требования к gpt/qwen/grok
@@ -46,8 +46,10 @@
   - https://skillbox.ru/media/base/kak_ustanovit_jdk_i_sredu_razrabotki_intellij_idea/
 - база https://ru.hexlet.io/courses/java-basics
 
+<details><summary><b>
+Пример решения
+</b></summary>
 
-**Пример решения**:  
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -60,6 +62,9 @@ public class Main {
 }
 ```
 *Комментарий*: Здесь `String` и `.length()` — часть ООП, но для задачи достаточно знать синтаксис, как калькулятор.
+
+</details>
+
 
 ---
 
@@ -79,7 +84,10 @@ public class Main {
 - https://ru.hexlet.io/blog/posts/rabota-s-peremennymi-v-java-ob-yavlenie-initsializatsiya-i-oblasti-vidimosti
 - база https://ru.hexlet.io/courses/java-basics
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -107,6 +115,9 @@ public class Main {
 ```
 *Комментарий*: Все методы — **статические**, как функции в Python. ООП не требуется.
 
+</details>
+
+
 ---
 
 ### **3. Списки и карты: Работа с коллекциями**  
@@ -125,7 +136,11 @@ public class Main {
 - https://skillbox.ru/media/code/gotovimsya_k_sobesedovaniyu_chto_nuzhno_znat_o_kollektsiyakh_v_java/
 - https://struchkov.dev/blog/ru/java-collection-framework/
 
-**Пример решения**:  
+
+<details><summary><b>
+Пример решения
+</b></summary>
+
 ```java
 import java.util.*;
 
@@ -153,6 +168,9 @@ public class Main {
 ```
 *Комментарий*: `List` и `Map` — часть ООП, но для задачи достаточно знать синтаксис, как списки и словари в Python.
 
+</details>
+
+
 ---
 
 ### **4. Ввод/вывод с консоли: Работа с пользователем**  
@@ -171,7 +189,10 @@ public class Main {
 - https://otus.ru/nest/post/1673/
 
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
 ```java
 import java.util.*;
 
@@ -199,6 +220,9 @@ public class Main {
 ```
 *Комментарий*: `try/catch` — базовая обработка ошибок (как `try/except` в Python). Иерархия исключений не требуется.
 
+</details>
+
+
 ---
 
 ### **5. Отладка: Поиск ошибок**  
@@ -209,11 +233,17 @@ public class Main {
 **Ссылки**:  
 - [Debugging in IntelliJ (JetBrains)](https://www.jetbrains.com/help/idea/debugging-code.html)  
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
 - Запустите программу в дебаггере, поставьте breakpoint на `int age = scanner.nextInt();`.  
 - При вводе `abc` увидите:  
   - Переменная `e` содержит текст ошибки.  
-  - Выполнение переходит в `catch` блок.  
+  - Выполнение переходит в `catch` блок. 
+
+</details>
+ 
 
 ---
 
@@ -225,12 +255,18 @@ public class Main {
 **Ссылки**:  
 - [Building JAR Files (Oracle)](https://docs.oracle.com/javase/tutorial/deployment/jar/build.html)  
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
 ```bash
 javac Main.java
 jar cfe myapp.jar Main Main.class
 java -jar myapp.jar
 ```
+
+</details>
+
 
 ---
 
@@ -243,7 +279,11 @@ java -jar myapp.jar
 - [Maven in 5 Minutes (Apache)](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)  
 - https://github.com/gochaorg/blog/tree/master/itdocs/maven
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
+
 ```java
 // pom.xml
 <dependencies>
@@ -263,6 +303,10 @@ public class Main {
     }
 }
 ```
+
+</details>
+
+
 
 ---
 
@@ -285,7 +329,11 @@ public class Main {
 - Потоки Reader и Writerhttps://java-online.ru/java-reader.xhtml
 - [Электронная библиотека БГУ / Java. Потоки ввода-вывода. Работа с файлами. Кравчук А ...](https://elib.bsu.by/bitstream/123456789/294799/1/Java.%20%D0%9F%D0%BE%D1%82%D0%BE%D0%BA%D0%B8%20%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0-%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0.%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%81%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%D0%BC%D0%B8.%20%D0%9A%D1%80%D0%B0%D0%B2%D1%87%D1%83%D0%BA%20%D0%90.%D0%A1.%2C%20%D0%9A%D1%80%D0%B0%D0%B2%D1%87%D1%83%D0%BA%20%D0%90.%D0%98.%2C%20%D0%9A%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D1%8C%20%D0%95.%D0%92_.pdf)
 
-**Пример решения**:  
+<details><summary><b>
+Пример решения
+</b></summary>
+
+
 ```java
 import java.io.*;
 import java.util.*;
@@ -324,6 +372,10 @@ public class Main {
 - `try-with-resources` автоматически закрывает файлы (без деталей ООП).  
 - Обработка ошибок **такая же, как в п.4** — только `IOException` вместо `InputMismatchException`.
 
+</details>
+
+
+
 ---
 
 ### **9. Итоговый проект: Консольный трекер задач**  
@@ -342,7 +394,11 @@ public class Main {
 3. **Сборка** (п.6, п.7):  
    - Сборка через Maven (п.7) для упрощения запуска.  
 
-#### **Пример структуры кода**  
+<details><summary><b>
+Пример структуры кода
+</b></summary>
+
+
 ```java
 import java.io.*;
 import java.util.*;
@@ -375,6 +431,10 @@ public class Main {
     private static int getValidIntInput(Scanner scanner) { ... }
 }
 ```
+
+</details>
+
+
 
 #### **Критерии проверки**  
 - При запуске `java -jar tracker.jar` выводится меню.  
