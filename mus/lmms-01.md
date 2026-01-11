@@ -30,4 +30,11 @@
 
 Вот пример
 
+Простое редактирование
+---------------------------------
+
+Взять [файл](wait-for-spring.mmpz) для образца и по пробовать его отредактировать
+
+<img width="2038" height="1770" alt="image" src="https://github.com/user-attachments/assets/6e553bf6-6b2f-48f1-b325-5e017646bde0" />
+
 
