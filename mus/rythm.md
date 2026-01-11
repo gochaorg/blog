@@ -72,3 +72,9 @@ Allegretto - умеренно быстрый - это название скор�
 Вот тут названия и соответствия https://mosaicmusicinstruction.com/wp-content/uploads/2018/07/basic-tempo-markings.pdf
 
 Но по настоящему BPM не так важен, а важно собственно чувство/понимание мелодии, как оно должно звучать.
+
+Слабая и сильная доля
+---------------------------
+
+<img width="2043" height="618" alt="image" src="https://github.com/user-attachments/assets/417c6b1e-b34e-4e74-9d05-c729db0e9673" />
+
