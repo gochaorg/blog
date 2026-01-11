@@ -23,9 +23,9 @@
 
 Можно обозначить так
 
-- <img width="43" height="61" alt="image" src="https://github.com/user-attachments/assets/1a929bae-2b60-4717-9570-4ca81f976d32" /> Целая нота продолжительностью 1 секунда - 𝅝 в форме буквы О
-- <img width="42" height="67" alt="image" src="https://github.com/user-attachments/assets/aac7da31-6d75-451a-a234-2bb7015ba343" /> Половина ноты - 500 мс - 𝅝𝅗𝅥  буква О с палкой
-- <img width="38" height="63" alt="image" src="https://github.com/user-attachments/assets/4114f7e4-5de6-4226-9987-949f009298e7" /> Четверть ноты - 250 мс - 𝅝𝅗𝅥𝅘𝅥  буква О закрашенная с палкой
+- <img width="43" height="61" alt="image" src="https://github.com/user-attachments/assets/1a929bae-2b60-4717-9570-4ca81f976d32" /> Целая нота продолжительностью 1 секунда - 𝅝  в форме буквы О
+- <img width="42" height="67" alt="image" src="https://github.com/user-attachments/assets/aac7da31-6d75-451a-a234-2bb7015ba343" /> Половина ноты - 500 мс - 𝅝𝅗𝅥   буква О с палкой
+- <img width="38" height="63" alt="image" src="https://github.com/user-attachments/assets/4114f7e4-5de6-4226-9987-949f009298e7" /> Четверть ноты - 250 мс - 𝅝𝅗𝅥𝅘𝅥   буква О закрашенная с палкой
 - <img width="45" height="61" alt="image" src="https://github.com/user-attachments/assets/4ddcc180-2bce-42e0-a9a7-c0928801c90b" /> 1/8 ноты - 125 мс - 𝅘𝅥𝅮  буква О закрашенная с палкой и хвостом
 - <img width="47" height="63" alt="image" src="https://github.com/user-attachments/assets/9b2e842f-13e8-496c-b94e-159049a51a1f" /> 1/16 ноты - 62.5 им - 𝅘𝅥𝅮𝅘𝅥𝅯  буква О закрашенная с палкой и двумя хвостами
 
