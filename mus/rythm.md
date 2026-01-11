@@ -38,3 +38,5 @@
 - <img width="38" height="63" alt="image" src="https://github.com/user-attachments/assets/4114f7e4-5de6-4226-9987-949f009298e7" /> Четверть ноты - 375 мс - 𝅝𝅗𝅥𝅘𝅥  буква О закрашенная с палкой
 - <img width="45" height="61" alt="image" src="https://github.com/user-attachments/assets/4ddcc180-2bce-42e0-a9a7-c0928801c90b" /> 1/8 ноты - 187.5 мс - 𝅘𝅥𝅮  буква О закрашенная с палкой и хвостом
 - <img width="47" height="63" alt="image" src="https://github.com/user-attachments/assets/9b2e842f-13e8-496c-b94e-159049a51a1f" /> 1/16 ноты - 93.75 им - 𝅘𝅥𝅮𝅘𝅥𝅯  буква О закрашенная с палкой и двумя хвостами
+
+Если НЕ сохраняется отношение продолжительности - то мелодия "рассыпается", и ее становится не "слышно", т.е. при прослушивании слышны отдельные звуки, но не мелодия
